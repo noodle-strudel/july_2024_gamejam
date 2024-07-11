@@ -1,2 +1,5 @@
 # Godot 4+ specific ignores
 .godot/
+
+# iOS specific ignores
+.DS_Store
