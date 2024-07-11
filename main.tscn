@@ -1,8 +1,12 @@
-[gd_scene load_steps=2 format=3 uid="uid://qmi8c5dydg75"]
+[gd_scene load_steps=3 format=3 uid="uid://qmi8c5dydg75"]
 
 [ext_resource type="Texture2D" uid="uid://cgqxlk41rrq71" path="res://icon.svg" id="1_84pak"]
+[ext_resource type="Script" path="res://TestScript.gd" id="2_qmmeq"]
 
 [node name="Node2D" type="Node2D"]
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite" type="Sprite2D" parent="."]
 texture = ExtResource("1_84pak")
+script = ExtResource("2_qmmeq")
+
+[node name="TestNode" type="Node2D" parent="."]
