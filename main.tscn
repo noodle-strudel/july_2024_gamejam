@@ -4,5 +4,5 @@
 
 [node name="Node2D" type="Node2D"]
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Hello" type="Sprite2D" parent="."]
 texture = ExtResource("1_84pak")
