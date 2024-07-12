@@ -1,12 +1,110 @@
 [gd_scene load_steps=3 format=3 uid="uid://qmi8c5dydg75"]
 
-[ext_resource type="Texture2D" uid="uid://cgqxlk41rrq71" path="res://icon.svg" id="1_84pak"]
-[ext_resource type="Script" path="res://TestScript.gd" id="2_qmmeq"]
+[ext_resource type="Theme" uid="uid://bpxh7lh817tql" path="res://themes/ui.tres" id="1_e1g62"]
+[ext_resource type="Script" path="res://main_menu.gd" id="1_y2sul"]
 
-[node name="Node2D" type="Node2D"]
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_e1g62")
+script = ExtResource("1_y2sul")
 
-[node name="Sprite" type="Sprite2D" parent="."]
-texture = ExtResource("1_84pak")
-script = ExtResource("2_qmmeq")
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -101.0
+offset_right = 70.0
+grow_vertical = 0
 
-[node name="TestNode" type="Node2D" parent="."]
+[node name="StartButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Start"
+
+[node name="SettingsButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Settings"
+
+[node name="QuitButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Quit"
+
+[node name="Settings" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Settings"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="Settings/MarginContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Settings/MarginContainer"]
+layout_mode = 2
+
+[node name="VolumeLabel" type="RichTextLabel" parent="Settings/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Volume"
+fit_content = true
+
+[node name="Volume" type="HSlider" parent="Settings/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="ResolutionLabel" type="RichTextLabel" parent="Settings/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Resolution"
+fit_content = true
+
+[node name="Resolution" type="OptionButton" parent="Settings/MarginContainer/VBoxContainer"]
+layout_mode = 2
+item_count = 4
+selected = 1
+popup/item_0/text = "2560x1440"
+popup/item_0/id = 0
+popup/item_1/text = "1920x1080"
+popup/item_1/id = 1
+popup/item_2/text = "1366x768"
+popup/item_2/id = 2
+popup/item_3/text = "1280x720"
+popup/item_3/id = 3
+
+[node name="DisplayLabel" type="RichTextLabel" parent="Settings/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Display"
+fit_content = true
+
+[node name="OptionButton" type="OptionButton" parent="Settings/MarginContainer/VBoxContainer"]
+layout_mode = 2
+item_count = 3
+popup/item_0/text = "Windowed"
+popup/item_0/id = 0
+popup/item_1/text = "Borderless Windowed"
+popup/item_1/id = 1
+popup/item_2/text = "Fullscreen"
+popup/item_2/id = 2
+
+[node name="SettingsBackButton" type="Button" parent="Settings/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Back"
+
+[connection signal="pressed" from="VBoxContainer/SettingsButton" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="value_changed" from="Settings/MarginContainer/VBoxContainer/Volume" to="." method="_on_volume_value_changed"]
+[connection signal="item_selected" from="Settings/MarginContainer/VBoxContainer/Resolution" to="." method="_on_resolution_item_selected"]
+[connection signal="item_selected" from="Settings/MarginContainer/VBoxContainer/OptionButton" to="." method="_on_option_button_item_selected"]
+[connection signal="pressed" from="Settings/MarginContainer/VBoxContainer/SettingsBackButton" to="." method="_on_settings_back_button_pressed"]
