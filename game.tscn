@@ -1,0 +1,69 @@
+[gd_scene load_steps=7 format=3 uid="uid://rwhrwbfp81m3"]
+
+[ext_resource type="Script" path="res://playerScript.gd" id="1_nuuqp"]
+[ext_resource type="Texture2D" uid="uid://cgqxlk41rrq71" path="res://icon.svg" id="2_j7deo"]
+[ext_resource type="Texture2D" uid="uid://bhtfxnhd5x4v5" path="res://devTexture.jpg" id="3_y0koe"]
+[ext_resource type="Script" path="res://Employee.gd" id="4_kna2b"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ghn6u"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eqbj3"]
+size = Vector2(238.431, 239.138)
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Player" type="CharacterBody2D" parent="."]
+scale = Vector2(1.59921, 1.36868)
+script = ExtResource("1_nuuqp")
+
+[node name="Sprite2D" type="Sprite2D" parent="Player"]
+visibility_layer = 519
+scale = Vector2(0.970719, 1.00868)
+texture = ExtResource("2_j7deo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+scale = Vector2(6.48, 6.36)
+shape = SubResource("RectangleShape2D_ghn6u")
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+scale = Vector2(1.50189, 0.369756)
+zoom = Vector2(0.72, 0.72)
+position_smoothing_enabled = true
+
+[node name="BG Test Texture" type="Sprite2D" parent="."]
+z_index = -1
+scale = Vector2(3.50869, 3.00734)
+texture = ExtResource("3_y0koe")
+
+[node name="Employee" type="Area2D" parent="."]
+position = Vector2(-1003, -465)
+scale = Vector2(2.1222, 1.84831)
+script = ExtResource("4_kna2b")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Employee"]
+position = Vector2(0, 1.52588e-05)
+shape = SubResource("RectangleShape2D_eqbj3")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Employee"]
+modulate = Color(0.85368, 0.108742, 0, 1)
+position = Vector2(0.471203, -7.62939e-06)
+texture = ExtResource("3_y0koe")
+
+[node name="Employee2" type="Area2D" parent="."]
+position = Vector2(-1003, -465)
+scale = Vector2(2.1222, 1.84831)
+script = ExtResource("4_kna2b")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Employee2"]
+position = Vector2(3.76967, 282.961)
+shape = SubResource("RectangleShape2D_eqbj3")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Employee2"]
+modulate = Color(0.85368, 0.108742, 0, 1)
+position = Vector2(4.24088, 282.961)
+texture = ExtResource("3_y0koe")
+
+[connection signal="area_entered" from="Employee" to="Player" method="_on_employee_area_entered"]
+[connection signal="body_entered" from="Employee" to="Employee" method="_on_body_entered"]
+[connection signal="area_entered" from="Employee2" to="Player" method="_on_employee_area_entered"]
+[connection signal="body_entered" from="Employee2" to="Employee2" method="_on_body_entered"]
