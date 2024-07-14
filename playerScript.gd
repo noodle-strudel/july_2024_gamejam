@@ -10,7 +10,7 @@ var input: Vector2
 
 # Task Class Setup
 class Task:
-	var desc : String
+	var name : String
 	var timeRemaining : Timer
 	var complete : bool
 	var taskID : int
@@ -46,7 +46,7 @@ func _on_employee_new_task(value):
 	
 	# Task Setup
 	var newTask = Task.new()
-	newTask.desc = "desc"
+	newTask.name = "name"
 	newTask.timeRemaining = timer
 	newTask.taskID = value
 	tasks.append(newTask)
@@ -68,10 +68,9 @@ func _timer_Timeout():
 			var index = tasks.find(i)
 			tasks.remove_at(index)
 			print("Timeout time left: ", i.timeRemaining.time_left, " ID ", i.taskID)
+
 # Repeat code for additonal employees need to find way to combine signals
 func _on_employee_2_new_task(value):
 	_on_employee_new_task(value)
-
-
 func _on_employee_2_task_complete(value):
 	_on_employee_task_complete(value)
