@@ -1,0 +1,25 @@
+[gd_scene load_steps=2 format=3 uid="uid://c8tesd4webff6"]
+
+[ext_resource type="Script" path="res://task.gd" id="1_1bf7s"]
+
+[node name="Task" type="MarginContainer"]
+offset_right = 256.0
+offset_bottom = 54.0
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+script = ExtResource("1_1bf7s")
+
+[node name="IndivTaskContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="TaskLabel" type="RichTextLabel" parent="IndivTaskContainer"]
+layout_mode = 2
+bbcode_enabled = true
+text = "[center]Task Here[/center]"
+fit_content = true
+
+[node name="TaskTimerBar" type="ProgressBar" parent="IndivTaskContainer"]
+layout_mode = 2
+value = 100.0

@@ -1,10 +1,20 @@
-[gd_resource type="Theme" load_steps=2 format=3 uid="uid://bpxh7lh817tql"]
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://bpxh7lh817tql"]
 
 [ext_resource type="FontFile" uid="uid://c70rvu4u5qh1" path="res://fonts/PixelatedPusab.ttf" id="1_n76hs"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sdfuc"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
 
 [resource]
 Button/font_sizes/font_size = 32
 Button/fonts/font = ExtResource("1_n76hs")
 PopupMenu/fonts/font = ExtResource("1_n76hs")
+ProgressBar/colors/font_color = Color(0.231373, 0.129412, 0.0627451, 1)
+ProgressBar/fonts/font = ExtResource("1_n76hs")
+ProgressBar/styles/fill = SubResource("StyleBoxFlat_sdfuc")
 RichTextLabel/font_sizes/normal_font_size = 32
 RichTextLabel/fonts/normal_font = ExtResource("1_n76hs")
