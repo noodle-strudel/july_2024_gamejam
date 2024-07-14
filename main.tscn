@@ -2,7 +2,7 @@
 
 [ext_resource type="Theme" uid="uid://bpxh7lh817tql" path="res://themes/ui.tres" id="1_e1g62"]
 [ext_resource type="Script" path="res://main_menu.gd" id="1_y2sul"]
-[ext_resource type="AudioStream" uid="uid://bmdixbywl3r6o" path="res://SFX/game themes/mainMenuLessanoying.mp3" id="3_tyhkn"]
+[ext_resource type="AudioStream" uid="uid://bmj18qobi7in8" path="res://SFX/game themes/mainMenuLessanoying2.mp3" id="3_iyxc8"]
 [ext_resource type="AudioStream" uid="uid://dnnwqt7uagwgf" path="res://SFX/click.mp3" id="4_1u644"]
 
 [node name="MainMenu" type="Control"]
@@ -37,7 +37,6 @@ layout_mode = 2
 text = "Quit"
 
 [node name="Settings" type="Control" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -66,6 +65,9 @@ fit_content = true
 
 [node name="Volume" type="HSlider" parent="Settings/MarginContainer/VBoxContainer"]
 layout_mode = 2
+max_value = 1.0
+step = 0.001
+value = 1.0
 
 [node name="ResolutionLabel" type="RichTextLabel" parent="Settings/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -105,10 +107,12 @@ layout_mode = 2
 text = "Back"
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("3_tyhkn")
+stream = ExtResource("3_iyxc8")
+bus = &"music"
 
 [node name="ClickSFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_1u644")
+bus = &"SFX"
 
 [connection signal="pressed" from="VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/SettingsButton" to="." method="_on_settings_button_pressed"]
