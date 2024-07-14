@@ -1,0 +1,97 @@
+[gd_scene load_steps=6 format=3 uid="uid://bij64nm8l8lic"]
+
+[ext_resource type="Theme" uid="uid://bpxh7lh817tql" path="res://themes/ui.tres" id="1_j3ik4"]
+[ext_resource type="Script" path="res://game_ui.gd" id="2_g3dmm"]
+[ext_resource type="PackedScene" uid="uid://c8tesd4webff6" path="res://task.tscn" id="2_v2wri"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fak5i"]
+bg_color = Color(0.403375, 0.3975, 0.75, 1)
+border_width_left = 16
+border_width_top = 16
+border_width_right = 16
+border_width_bottom = 16
+border_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_341wg"]
+bg_color = Color(0.23, 0.12788, 0.0644, 1)
+border_width_left = 16
+border_width_top = 16
+border_width_right = 16
+border_width_bottom = 16
+border_color = Color(1, 1, 1, 1)
+
+[node name="Game UI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_j3ik4")
+script = ExtResource("2_g3dmm")
+
+[node name="ScorePanelContainer" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.033
+anchor_top = 0.059
+anchor_right = 0.033
+anchor_bottom = 0.059
+offset_left = 0.639999
+offset_top = 0.279995
+offset_right = 512.64
+offset_bottom = 192.28
+theme_override_styles/panel = SubResource("StyleBoxFlat_fak5i")
+
+[node name="MarginContainer" type="MarginContainer" parent="ScorePanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_right = 16
+
+[node name="HSplitContainer" type="HBoxContainer" parent="ScorePanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="ScoreLabel" type="RichTextLabel" parent="ScorePanelContainer/MarginContainer/HSplitContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_font_sizes/normal_font_size = 64
+text = "Score: "
+fit_content = true
+autowrap_mode = 0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="ScorePanelContainer/MarginContainer/HSplitContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_font_sizes/normal_font_size = 64
+text = "0"
+fit_content = true
+autowrap_mode = 0
+
+[node name="TaskPanelContainer" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.733
+anchor_top = 0.059
+anchor_right = 0.733
+anchor_bottom = 0.059
+offset_left = 0.639893
+offset_top = 0.279995
+offset_right = 448.64
+offset_bottom = 272.28
+theme_override_styles/panel = SubResource("StyleBoxFlat_341wg")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TaskPanelContainer"]
+layout_mode = 2
+
+[node name="TaskLabel" type="RichTextLabel" parent="TaskPanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 64
+bbcode_enabled = true
+text = "[center]Tasks[/center]"
+fit_content = true
+
+[node name="TaskContainer" type="VBoxContainer" parent="TaskPanelContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Task" parent="TaskPanelContainer/VBoxContainer/TaskContainer" instance=ExtResource("2_v2wri")]
+layout_mode = 2
