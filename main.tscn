@@ -100,7 +100,6 @@ step = 0.001
 value = 1.0
 
 [node name="ResolutionLabel" type="RichTextLabel" parent="Settings/PanelContainer/MarginContainer/VBoxContainer"]
-
 layout_mode = 2
 text = "Resolution"
 fit_content = true
