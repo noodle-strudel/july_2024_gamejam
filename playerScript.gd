@@ -3,6 +3,8 @@ signal linkTask(value)
 signal removeTask(value)
 
 # Var Init
+@onready var ui := $"../CanvasLayer/GameUI"
+
 var speed = 600.0
 var accel = 5
 var rng = RandomNumberGenerator.new()
@@ -19,19 +21,21 @@ class Task:
 	var taskID : int
 	var taskGoal : int
 
+
 # Movement Input
 func get_input():
 	input.x = Input.get_action_strength("right") - Input.get_action_strength("left")
 	input.y = Input.get_action_strength("down") - Input.get_action_strength("up")
 	return input.normalized()
 
+
 # Apply Movement
 func _process(delta):
 	var playerInput = get_input()
 	velocity = lerp(velocity, playerInput * speed, delta * accel)
 	move_and_slide()
-			
-	
+
+
 # Setup Task upon Claim
 func _on_employee_new_task():
 	var value = rng.randi_range(1, 3)
@@ -61,6 +65,7 @@ func _on_employee_new_task():
 	
 	# Specific Task Setup
 	var newTask = Task.new()
+
 	match value:
 		1:
 			newTask.taskName = "Get and Bring water"
@@ -76,6 +81,7 @@ func _on_employee_new_task():
 	tasks.append(newTask)
 	taskCount += 1
 
+
 # Find task to remove on completion and grant score
 func _on_employee_task_complete(value):
 	for i in tasks:
@@ -89,8 +95,9 @@ func _on_employee_task_complete(value):
 					score += 100
 				3: 
 					score += 50
-					
+
 			var index = tasks.find(i)
+			ui.remove_task(tasks[index].taskID)
 			tasks.remove_at(index)
 			taskCount -= 1
 
@@ -99,6 +106,7 @@ func _timer_Timeout():
 	for i in tasks:
 		if (i.timerObject.time_left <= 0):
 			var index = tasks.find(i)
+			ui.remove_task(tasks[index].taskID)
 			tasks.remove_at(index)
 			taskCount -= 1
 			print("Timeout time left: ", i.timerObject.time_left, " ID ", i.taskID)

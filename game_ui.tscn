@@ -1,8 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://bij64nm8l8lic"]
+[gd_scene load_steps=5 format=3 uid="uid://bij64nm8l8lic"]
 
 [ext_resource type="Theme" uid="uid://bpxh7lh817tql" path="res://themes/ui.tres" id="1_j3ik4"]
 [ext_resource type="Script" path="res://game_ui.gd" id="2_g3dmm"]
-[ext_resource type="PackedScene" uid="uid://c8tesd4webff6" path="res://task.tscn" id="2_v2wri"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fak5i"]
 bg_color = Color(0.403375, 0.3975, 0.75, 1)
@@ -13,14 +12,14 @@ border_width_bottom = 16
 border_color = Color(1, 1, 1, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_341wg"]
-bg_color = Color(0.23, 0.12788, 0.0644, 1)
+bg_color = Color(0.445935, 0.268402, 0.158406, 1)
 border_width_left = 16
 border_width_top = 16
 border_width_right = 16
 border_width_bottom = 16
 border_color = Color(1, 1, 1, 1)
 
-[node name="Game UI" type="Control"]
+[node name="GameUI" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -91,7 +90,4 @@ text = "[center]Tasks[/center]"
 fit_content = true
 
 [node name="TaskContainer" type="VBoxContainer" parent="TaskPanelContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="Task" parent="TaskPanelContainer/VBoxContainer/TaskContainer" instance=ExtResource("2_v2wri")]
 layout_mode = 2

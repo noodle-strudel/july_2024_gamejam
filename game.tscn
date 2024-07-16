@@ -44,12 +44,10 @@ script = ExtResource("4_kna2b")
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Employee"]
-position = Vector2(0, 1.52588e-05)
 shape = SubResource("RectangleShape2D_eqbj3")
 
 [node name="Sprite2D2" type="Sprite2D" parent="Employee"]
 modulate = Color(0.85368, 0.108742, 0, 1)
-position = Vector2(0.471203, -7.62939e-06)
 texture = ExtResource("3_y0koe")
 
 [node name="Employee2" type="Area2D" parent="." groups=["Employees"]]
@@ -59,6 +57,7 @@ script = ExtResource("4_kna2b")
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Employee2"]
+position = Vector2(0.312909, -0.650787)
 shape = SubResource("RectangleShape2D_eqbj3")
 
 [node name="Sprite2D2" type="Sprite2D" parent="Employee2"]
@@ -67,7 +66,7 @@ texture = ExtResource("3_y0koe")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="Game UI" parent="CanvasLayer" instance=ExtResource("5_8u384")]
+[node name="GameUI" parent="CanvasLayer" instance=ExtResource("5_8u384")]
 
 [node name="Cooler" type="Area2D" parent="."]
 position = Vector2(735, 334)
