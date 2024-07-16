@@ -79,6 +79,7 @@ func _on_employee_new_task():
 	newTask.timerObject = timer
 	newTask.taskID = value
 	tasks.append(newTask)
+	ui.create_task(newTask.taskName, newTask.timerObject.wait_time, newTask.taskID)
 	taskCount += 1
 
 
