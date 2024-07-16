@@ -17,9 +17,7 @@ func _on_quit_button_pressed():
 
 
 func _on_volume_value_changed(value):
-	
-	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Master"), 
-		linear_to_db($Settings/MarginContainer/VBoxContainer/Volume.value))
+	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Master"), linear_to_db($Settings/PanelContainer/MarginContainer/VBoxContainer/Volume.value))
 
 
 func _on_resolution_item_selected(index):

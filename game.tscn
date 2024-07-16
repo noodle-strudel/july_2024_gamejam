@@ -40,33 +40,33 @@ texture = ExtResource("3_y0koe")
 position = Vector2(-1003, -465)
 scale = Vector2(2.1222, 1.84831)
 script = ExtResource("4_kna2b")
+metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Employee"]
-position = Vector2(0, 1.52588e-05)
 shape = SubResource("RectangleShape2D_eqbj3")
 
 [node name="Sprite2D2" type="Sprite2D" parent="Employee"]
 modulate = Color(0.85368, 0.108742, 0, 1)
-position = Vector2(0.471203, -7.62939e-06)
 texture = ExtResource("3_y0koe")
 
 [node name="Employee2" type="Area2D" parent="." groups=["Employees"]]
-position = Vector2(-1003, -465)
+position = Vector2(-1000, 128)
 scale = Vector2(2.1222, 1.84831)
 script = ExtResource("4_kna2b")
+metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Employee2"]
-position = Vector2(3.76967, 282.961)
+position = Vector2(0.312909, -0.650787)
 shape = SubResource("RectangleShape2D_eqbj3")
 
 [node name="Sprite2D2" type="Sprite2D" parent="Employee2"]
 modulate = Color(0.85368, 0.108742, 0, 1)
-position = Vector2(4.24088, 282.961)
+position = Vector2(0.784119, -0.650787)
 texture = ExtResource("3_y0koe")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="Game UI" parent="CanvasLayer" instance=ExtResource("5_8u384")]
+[node name="GameUI" parent="CanvasLayer" instance=ExtResource("5_8u384")]
 
 [connection signal="area_entered" from="Employee" to="Player" method="_on_employee_area_entered"]
 [connection signal="body_entered" from="Employee" to="Employee" method="_on_body_entered"]
@@ -74,5 +74,5 @@ texture = ExtResource("3_y0koe")
 [connection signal="taskComplete" from="Employee" to="Player" method="_on_employee_task_complete"]
 [connection signal="area_entered" from="Employee2" to="Player" method="_on_employee_area_entered"]
 [connection signal="body_entered" from="Employee2" to="Employee2" method="_on_body_entered"]
-[connection signal="newTask" from="Employee2" to="Player" method="_on_employee_2_new_task"]
-[connection signal="taskComplete" from="Employee2" to="Player" method="_on_employee_2_task_complete"]
+[connection signal="newTask" from="Employee2" to="Player" method="_on_employee_new_task"]
+[connection signal="taskComplete" from="Employee2" to="Player" method="_on_employee_task_complete"]

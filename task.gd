@@ -1,10 +1,7 @@
 extends MarginContainer
 
-# When a task is instanced, the bar starts decreasing until either the task is finished or it goes to zero.
-# The task sends out a signal when the task is complete or when the task fails.
-
-signal on_task_complete
-signal on_task_fail
+var id: int
+var timer_on = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -13,4 +10,19 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
+	if timer_on:
+		$IndivTaskContainer/TaskTimerBar.value = snapped($Timer.time_left, 0.01)
+
+func init_task(new_name, new_time, new_id):
+	$IndivTaskContainer/TaskLabel.text = new_name
+	$Timer.wait_time = new_time
+	id = new_id
+	$IndivTaskContainer/TaskTimerBar.max_value = new_time
+	$IndivTaskContainer/TaskTimerBar.value = new_time
+	timer_on = true
+
+func get_id() -> int:
+	return id
+
+func _on_timer_timeout():
+	timer_on = false
