@@ -1,20 +1,39 @@
-[gd_resource type="Theme" load_steps=3 format=3 uid="uid://bpxh7lh817tql"]
+[gd_resource type="Theme" load_steps=4 format=3 uid="uid://bpxh7lh817tql"]
 
 [ext_resource type="FontFile" uid="uid://c70rvu4u5qh1" path="res://fonts/PixelatedPusab.ttf" id="1_n76hs"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sdfuc"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pyith"]
+bg_color = Color(0.201527, 0.201527, 0.201527, 1)
+border_width_left = 8
+border_width_top = 8
+border_width_right = 8
+border_width_bottom = 8
+border_color = Color(0.2, 0.2, 0.2, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xrsn1"]
 bg_color = Color(1, 1, 1, 1)
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
+border_width_left = 8
+border_width_top = 8
+border_width_right = 8
+border_width_bottom = 8
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
 
 [resource]
-Button/font_sizes/font_size = 32
+Button/font_sizes/font_size = 64
 Button/fonts/font = ExtResource("1_n76hs")
+PopupMenu/font_sizes/font_size = 32
 PopupMenu/fonts/font = ExtResource("1_n76hs")
 ProgressBar/colors/font_color = Color(0.231373, 0.129412, 0.0627451, 1)
 ProgressBar/fonts/font = ExtResource("1_n76hs")
-ProgressBar/styles/fill = SubResource("StyleBoxFlat_sdfuc")
-RichTextLabel/font_sizes/normal_font_size = 32
+ProgressBar/styles/background = SubResource("StyleBoxFlat_pyith")
+ProgressBar/styles/fill = SubResource("StyleBoxFlat_xrsn1")
+RichTextLabel/font_sizes/normal_font_size = 64
 RichTextLabel/fonts/normal_font = ExtResource("1_n76hs")

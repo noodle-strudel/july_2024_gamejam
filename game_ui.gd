@@ -13,6 +13,16 @@ func _process(delta):
 	pass
 
 # Creates a task given the name of the task and how long it takes before it disappears
-func create_task(task_name, task_time):
-	var task = task_scene.instantiate()
-	task.init_task(task_name, task_time)
+func create_task(task_name, task_time, task_id):
+	var new_task = task_scene.instantiate()
+	new_task.init_task(task_name, task_time, task_id)
+	task_container.add_child(new_task)
+	print("New task has id", task_id)
+
+# Remove the task by id
+func remove_task(task_id):
+	for task in task_container.get_children():
+		print(task)
+		if task.get_id() == task_id:
+			task.queue_free()
+			print("task with id", task_id, "removed")
