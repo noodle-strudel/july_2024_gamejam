@@ -1,7 +1,6 @@
 extends CharacterBody2D
 signal linkTask(value)
 signal removeTask(value)
-signal taskFinished(value)
 
 # Var Init
 var speed = 600.0
@@ -11,6 +10,7 @@ var tasks : Array[Task] = []
 var taskCount = 0
 var input: Vector2
 var score = 0
+var warnings = 0
 
 # Task Class Setup
 class Task:
@@ -31,11 +31,10 @@ func _process(delta):
 	velocity = lerp(velocity, playerInput * speed, delta * accel)
 	move_and_slide()
 			
-
+	
 # Setup Task upon Claim
 func _on_employee_new_task():
 	var value = rng.randi_range(1, 3)
-	print("Original Number: ", value)
 	
 	# Duplicate Task Checking
 	var taskInList = true
@@ -68,22 +67,21 @@ func _on_employee_new_task():
 		2:
 			newTask.taskName = "Fix Printer"
 		3:
+			# Case not set so this auto completes goal
 			get_tree().call_group("Employees", "_on_task_goal_complete", 3)
 					
-	
+	# Add task to list and finish setup
 	newTask.timerObject = timer
 	newTask.taskID = value
 	tasks.append(newTask)
 	taskCount += 1
-	
-	for i in tasks:
-		print("Array Task Name: ", i.taskName)
-		print("Array Task ID: ", i.taskID)
 
-# Find task to remove on completion
+# Find task to remove on completion and grant score
 func _on_employee_task_complete(value):
 	for i in tasks:
 		if (i.taskID == value):
+			# General effects for task completion go here
+			# Specific Task effects go inside match case
 			match value:
 				1:
 					score += 10
@@ -91,10 +89,12 @@ func _on_employee_task_complete(value):
 					score += 100
 				3: 
 					score += 50
+					
 			var index = tasks.find(i)
 			tasks.remove_at(index)
 			taskCount -= 1
 
+# Timer End remove from list and give warning
 func _timer_Timeout():
 	for i in tasks:
 		if (i.timerObject.time_left <= 0):
@@ -103,3 +103,5 @@ func _timer_Timeout():
 			taskCount -= 1
 			print("Timeout time left: ", i.timerObject.time_left, " ID ", i.taskID)
 			emit_signal("removeTask", i.taskID)
+	warnings += 1
+	print("Warnings: ", warnings)

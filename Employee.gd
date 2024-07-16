@@ -11,7 +11,7 @@ var taskCompleted = false
 var localTaskID = 0
 var rng = RandomNumberGenerator.new()
 
-# Check if player collides with Employee
+# Run if player collides with employee
 func _on_body_entered(body):
 	# See if task is requested from player and start
 	if (taskActive == false && taskRequested == true):
@@ -28,25 +28,28 @@ func _on_body_entered(body):
 		print("Task Completed")
 		taskCompleted = false
 		return
+	# Debug Purposes
 	else:
 		print("Not Complete")
-		
+
+# After starting task get corrected value and set internally
 func _on_player_link_task(value):
 	if (task == 0 && taskActive == true):
 		task = value
 
+# Task Failing remove from Employee
 func _on_player_remove_task(value):
 	if (task == value):
 		task = 0
 		taskActive = false
-
-func _on_player_task_finished(value):
-	taskCompleted = true
-
+		taskCompleted = false
+		
+# Call when goal is complete but need to return to Employee
 func _on_task_goal_complete(value):
 	if (value == task):
 		taskCompleted = true
 		
+# Call when task is completed away from employee
 func _on_task_remote_complete(value):
 	if (value == task):
 		emit_signal("taskComplete", task)
