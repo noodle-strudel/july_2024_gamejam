@@ -1,11 +1,14 @@
-[gd_scene load_steps=9 format=3 uid="uid://41lgrdf33hi2"]
+[gd_scene load_steps=11 format=3 uid="uid://cwwig1f1cr45b"]
 
+[ext_resource type="Script" path="res://game.gd" id="1_iju5o"]
 [ext_resource type="Script" path="res://playerScript.gd" id="1_nuuqp"]
 [ext_resource type="Texture2D" uid="uid://cgqxlk41rrq71" path="res://icon.svg" id="2_j7deo"]
 [ext_resource type="Texture2D" uid="uid://bhtfxnhd5x4v5" path="res://devTexture.jpg" id="3_y0koe"]
 [ext_resource type="Script" path="res://Employee.gd" id="4_kna2b"]
 [ext_resource type="PackedScene" uid="uid://bij64nm8l8lic" path="res://game_ui.tscn" id="5_8u384"]
+[ext_resource type="AudioStream" uid="uid://bden4ex1hw444" path="res://SFX/game themes/Game.mp3" id="7_5ce1c"]
 [ext_resource type="Script" path="res://taskObject.gd" id="6_ef730"]
+[ext_resource type="AudioStream" uid="uid://db88odf3n051q" path="res://SFX/game themes/GameRepeat.mp3" id="8_4eobv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ghn6u"]
 
@@ -13,6 +16,7 @@
 size = Vector2(238.431, 239.138)
 
 [node name="Node2D" type="Node2D"]
+script = ExtResource("1_iju5o")
 
 [node name="Player" type="CharacterBody2D" parent="."]
 scale = Vector2(1.59921, 1.36868)
@@ -68,6 +72,13 @@ texture = ExtResource("3_y0koe")
 
 [node name="GameUI" parent="CanvasLayer" instance=ExtResource("5_8u384")]
 
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_5ce1c")
+bus = &"Music"
+
+[node name="MusicRepeat" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_4eobv")
+
 [node name="Cooler" type="Area2D" parent="."]
 position = Vector2(735, 334)
 script = ExtResource("6_ef730")
@@ -104,6 +115,7 @@ texture = ExtResource("3_y0koe")
 [connection signal="taskComplete" from="Employee" to="Player" method="_on_employee_task_complete"]
 [connection signal="area_entered" from="Employee2" to="Player" method="_on_employee_area_entered"]
 [connection signal="body_entered" from="Employee2" to="Employee2" method="_on_body_entered"]
+[connection signal="finished" from="Music" to="." method="_on_music_finished"]
 [connection signal="newTask" from="Employee2" to="Player" method="_on_employee_new_task"]
 [connection signal="taskComplete" from="Employee2" to="Player" method="_on_employee_task_complete"]
 [connection signal="area_entered" from="Cooler" to="Player" method="_on_printer_area_entered"]
