@@ -2,7 +2,7 @@
 
 [ext_resource type="Theme" uid="uid://bpxh7lh817tql" path="res://themes/ui.tres" id="1_e1g62"]
 [ext_resource type="Script" path="res://main_menu.gd" id="1_y2sul"]
-[ext_resource type="AudioStream" uid="uid://bmj18qobi7in8" path="res://SFX/game themes/mainMenuLessanoying2.mp3" id="3_iyxc8"]
+[ext_resource type="AudioStream" uid="uid://c1fvaf15ns0cu" path="res://SFX/game themes/Menu.mp3" id="3_g3foa"]
 [ext_resource type="AudioStream" uid="uid://dnnwqt7uagwgf" path="res://SFX/click.mp3" id="4_1u644"]
 
 [node name="MainMenu" type="Control"]
@@ -73,6 +73,28 @@ max_value = 1.0
 step = 0.001
 value = 1.0
 
+[node name="SFXLabel" type="RichTextLabel" parent="Settings/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Sound Effects"
+fit_content = true
+
+[node name="SFX" type="HSlider" parent="Settings/MarginContainer/VBoxContainer"]
+layout_mode = 2
+max_value = 1.0
+step = 0.001
+value = 1.0
+
+[node name="MusicLabel" type="RichTextLabel" parent="Settings/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Music"
+fit_content = true
+
+[node name="Music" type="HSlider" parent="Settings/MarginContainer/VBoxContainer"]
+layout_mode = 2
+max_value = 1.0
+step = 0.001
+value = 1.0
+
 [node name="ResolutionLabel" type="RichTextLabel" parent="Settings/MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "Resolution"
@@ -111,8 +133,8 @@ layout_mode = 2
 text = "Back"
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("3_iyxc8")
-bus = &"music"
+stream = ExtResource("3_g3foa")
+bus = &"Music"
 
 [node name="ClickSFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_1u644")
@@ -120,8 +142,11 @@ bus = &"SFX"
 
 [connection signal="pressed" from="VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/SettingsButton" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/CreditsButton" to="." method="_on_credits_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
 [connection signal="value_changed" from="Settings/MarginContainer/VBoxContainer/Volume" to="." method="_on_volume_value_changed"]
+[connection signal="value_changed" from="Settings/MarginContainer/VBoxContainer/SFX" to="." method="_on_sfx_value_changed"]
+[connection signal="value_changed" from="Settings/MarginContainer/VBoxContainer/Music" to="." method="_on_music_value_changed"]
 [connection signal="item_selected" from="Settings/MarginContainer/VBoxContainer/Resolution" to="." method="_on_resolution_item_selected"]
 [connection signal="item_selected" from="Settings/MarginContainer/VBoxContainer/OptionButton" to="." method="_on_option_button_item_selected"]
 [connection signal="pressed" from="Settings/MarginContainer/VBoxContainer/SettingsBackButton" to="." method="_on_settings_back_button_pressed"]
