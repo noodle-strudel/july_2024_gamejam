@@ -1,4 +1,7 @@
 extends CharacterBody2D
+signal linkTask(value)
+signal removeTask(value)
+signal taskFinished(value)
 
 # Var Init
 var speed = 600.0
@@ -7,18 +10,14 @@ var rng = RandomNumberGenerator.new()
 var tasks : Array[Task] = []
 var taskCount = 0
 var input: Vector2
+var score = 0
 
 # Task Class Setup
 class Task:
-	var name : String
-	var timeRemaining : Timer
-	var complete : bool
+	var taskName = ""
+	var timerObject : Timer
 	var taskID : int
 	var taskGoal : int
-	
-# Testing
-func _ready():
-	get_tree().call_group("Employees", "on_employee_new_task")	
 
 # Movement Input
 func get_input():
@@ -34,43 +33,73 @@ func _process(delta):
 			
 
 # Setup Task upon Claim
-func _on_employee_new_task(value):
-	# Timer Setup
+func _on_employee_new_task():
+	var value = rng.randi_range(1, 3)
+	print("Original Number: ", value)
+	
+	# Duplicate Task Checking
+	var taskInList = true
+	while taskInList:
+		taskInList = false
+		for i in tasks:
+			if (i.taskID == value):
+				print("Duplicate found: ", value)
+				value = rng.randi_range(1, 3)
+				print("New Value: ", value)
+				taskInList = true
+	
+	emit_signal("linkTask", value)
+	print("Task Number: ", value)
+	
+	# Timer
 	var timer : Timer = Timer.new()
 	add_child(timer)
 	timer.one_shot = true
 	timer.autostart = true
-	timer.wait_time = 5.0
+	timer.wait_time = 20.0
 	timer.timeout.connect(_timer_Timeout)
 	timer.start()
 	
-	# Task Setup
+	# Specific Task Setup
 	var newTask = Task.new()
-	newTask.name = "name"
-	newTask.timeRemaining = timer
+	match value:
+		1:
+			newTask.taskName = "Get and Bring water"
+		2:
+			newTask.taskName = "Fix Printer"
+		3:
+			get_tree().call_group("Employees", "_on_task_goal_complete", 3)
+					
+	
+	newTask.timerObject = timer
 	newTask.taskID = value
 	tasks.append(newTask)
-	++taskCount
-	print(tasks)
+	taskCount += 1
+	
+	for i in tasks:
+		print("Array Task Name: ", i.taskName)
+		print("Array Task ID: ", i.taskID)
 
 # Find task to remove on completion
 func _on_employee_task_complete(value):
 	for i in tasks:
-		print(i.taskID)
 		if (i.taskID == value):
+			match value:
+				1:
+					score += 10
+				2:
+					score += 100
+				3: 
+					score += 50
 			var index = tasks.find(i)
 			tasks.remove_at(index)
-			print("Removed ", i, " at index ", index)
+			taskCount -= 1
 
 func _timer_Timeout():
 	for i in tasks:
-		if (i.timeRemaining.time_left <= 0):
+		if (i.timerObject.time_left <= 0):
 			var index = tasks.find(i)
 			tasks.remove_at(index)
-			print("Timeout time left: ", i.timeRemaining.time_left, " ID ", i.taskID)
-
-# Repeat code for additonal employees need to find way to combine signals
-func _on_employee_2_new_task(value):
-	_on_employee_new_task(value)
-func _on_employee_2_task_complete(value):
-	_on_employee_task_complete(value)
+			taskCount -= 1
+			print("Timeout time left: ", i.timerObject.time_left, " ID ", i.taskID)
+			emit_signal("removeTask", i.taskID)
