@@ -4,6 +4,7 @@ signal removeTask(value)
 
 # Var Init
 @onready var ui := $"../CanvasLayer/GameUI"
+@onready var animations = $AnimationPlayer
 
 var speed = 600.0
 var accel = 5
@@ -28,12 +29,49 @@ func get_input():
 	input.y = Input.get_action_strength("down") - Input.get_action_strength("up")
 	return input.normalized()
 
-
+#updates movement animation
+func updateAnimation():
+	"""
+	if velocity.length() == 0:
+		animations.stop()
+		animations.play("idle")
+	else:
+		var direction = "front"
+		if velocity.x < 0: direction = "left"
+		elif velocity.x > 0: direction = "right"
+		elif velocity.y < 0: direction = "back"
+	
+		animations.play(direction + " walk")
+	"""
+	if velocity.length() != 0:
+		var direction = ""
+		# Compare absolute values of x and y velocities
+		if abs(velocity.x) > abs(velocity.y):
+			# More horizontal movement
+			if velocity.x < 0:
+				direction = "left"
+			else:
+				direction = "right"
+		else:
+			# More vertical movement
+			if velocity.y < 0:
+				direction = "back"
+			else:
+				direction = "front"
+		
+		if direction != "":
+			animations.play(direction + " walk")
+	else:
+		animations.play("idle")
 # Apply Movement
 func _process(delta):
 	var playerInput = get_input()
-	velocity = lerp(velocity, playerInput * speed, delta * accel)
+	if playerInput == Vector2.ZERO:
+		velocity = Vector2.ZERO
+	else:
+		velocity = lerp(velocity, playerInput * speed, delta * accel)
 	move_and_slide()
+	updateAnimation()
 
 
 # Setup Task upon Claim
