@@ -1,44 +1,18 @@
-[gd_scene load_steps=5 format=3 uid="uid://qmi8c5dydg75"]
+[gd_scene load_steps=4 format=3 uid="uid://01jtlan6ab7s"]
 
-[ext_resource type="Theme" uid="uid://bpxh7lh817tql" path="res://themes/ui.tres" id="1_e1g62"]
-[ext_resource type="Script" path="res://main_menu.gd" id="1_y2sul"]
-[ext_resource type="AudioStream" uid="uid://c1fvaf15ns0cu" path="res://SFX/game themes/Menu.mp3" id="3_g3foa"]
-[ext_resource type="AudioStream" uid="uid://dnnwqt7uagwgf" path="res://SFX/click.mp3" id="4_1u644"]
+[ext_resource type="Theme" uid="uid://bpxh7lh817tql" path="res://themes/ui.tres" id="1_ub7xj"]
+[ext_resource type="Script" path="res://pause_menu.gd" id="2_kn37s"]
+[ext_resource type="AudioStream" uid="uid://dnnwqt7uagwgf" path="res://SFX/click.mp3" id="3_apste"]
 
-[node name="MainMenu" type="Control"]
+[node name="PauseMenu" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("1_e1g62")
-script = ExtResource("1_y2sul")
-
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
-layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_top = -101.0
-offset_right = 70.0
-grow_vertical = 0
-
-[node name="StartButton" type="Button" parent="VBoxContainer"]
-layout_mode = 2
-text = "Start"
-
-[node name="SettingsButton" type="Button" parent="VBoxContainer"]
-layout_mode = 2
-text = "Settings"
-
-[node name="CreditsButton" type="Button" parent="VBoxContainer"]
-layout_mode = 2
-text = "Credits"
-
-[node name="QuitButton" type="Button" parent="VBoxContainer"]
-layout_mode = 2
-text = "Quit"
+theme = ExtResource("1_ub7xj")
+script = ExtResource("2_kn37s")
 
 [node name="Settings" type="Control" parent="."]
 layout_mode = 1
@@ -121,7 +95,7 @@ layout_mode = 2
 text = "Display"
 fit_content = true
 
-[node name="OptionButton" type="OptionButton" parent="Settings/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="Display" type="OptionButton" parent="Settings/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 item_count = 3
 selected = 0
@@ -132,25 +106,22 @@ popup/item_1/id = 1
 popup/item_2/text = "Fullscreen"
 popup/item_2/id = 2
 
-[node name="SettingsBackButton" type="Button" parent="Settings/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="ResumeButton" type="Button" parent="Settings/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "Back"
+text = "Resume"
 
-[node name="Music" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("3_g3foa")
-bus = &"Music"
+[node name="MainMenuButton" type="Button" parent="Settings/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Main Menu"
 
 [node name="ClickSFX" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("4_1u644")
+stream = ExtResource("3_apste")
 bus = &"SFX"
 
-[connection signal="pressed" from="VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/SettingsButton" to="." method="_on_settings_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/CreditsButton" to="." method="_on_credits_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
 [connection signal="value_changed" from="Settings/PanelContainer/MarginContainer/VBoxContainer/Volume" to="." method="_on_volume_value_changed"]
 [connection signal="value_changed" from="Settings/PanelContainer/MarginContainer/VBoxContainer/SFX" to="." method="_on_sfx_value_changed"]
 [connection signal="value_changed" from="Settings/PanelContainer/MarginContainer/VBoxContainer/Music" to="." method="_on_music_value_changed"]
-[connection signal="item_selected" from="Settings/PanelContainer/MarginContainer/VBoxContainer/Resolution" to="." method="_on_resolution_item_selected"]
-[connection signal="item_selected" from="Settings/PanelContainer/MarginContainer/VBoxContainer/OptionButton" to="." method="_on_option_button_item_selected"]
-[connection signal="pressed" from="Settings/PanelContainer/MarginContainer/VBoxContainer/SettingsBackButton" to="." method="_on_settings_back_button_pressed"]
+[connection signal="pressed" from="Settings/PanelContainer/MarginContainer/VBoxContainer/Resolution" to="." method="_on_resolution_pressed"]
+[connection signal="pressed" from="Settings/PanelContainer/MarginContainer/VBoxContainer/Display" to="." method="_on_display_pressed"]
+[connection signal="pressed" from="Settings/PanelContainer/MarginContainer/VBoxContainer/ResumeButton" to="." method="_on_resume_button_pressed"]
+[connection signal="pressed" from="Settings/PanelContainer/MarginContainer/VBoxContainer/MainMenuButton" to="." method="_on_main_menu_button_pressed"]

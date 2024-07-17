@@ -96,9 +96,11 @@ func _on_employee_task_complete(value):
 					score += 100
 				3: 
 					score += 50
-
+			ui.update_score(str(score))
+			
 			var index = tasks.find(i)
 			ui.remove_task(tasks[index].taskID)
+			tasks[index].timerObject.queue_free()
 			tasks.remove_at(index)
 			taskCount -= 1
 
@@ -112,5 +114,7 @@ func _timer_Timeout():
 			taskCount -= 1
 			print("Timeout time left: ", i.timerObject.time_left, " ID ", i.taskID)
 			emit_signal("removeTask", i.taskID)
+	
+	ui.add_warning(warnings)
 	warnings += 1
 	print("Warnings: ", warnings)

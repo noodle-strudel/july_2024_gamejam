@@ -22,32 +22,27 @@ func _on_volume_value_changed(value):
 
 
 func _on_resolution_item_selected(index):
+	$ClickSFX.play()
 	match index:
 		0:
-			$ClickSFX.play()
 			DisplayServer.window_set_size(Vector2i(2560, 1440))
 		1:
-			$ClickSFX.play()
 			DisplayServer.window_set_size(Vector2i(1920, 1080))
 		2:
-			$ClickSFX.play()
 			DisplayServer.window_set_size(Vector2i(1366, 768))
 		3:
-			$ClickSFX.play()
 			DisplayServer.window_set_size(Vector2i(1280, 720))
 
 
 func _on_option_button_item_selected(index):
+	$ClickSFX.play()
 	match index:
 		0:
-			$ClickSFX.play()
 			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
 		1:
-			$ClickSFX.play()
 			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
 			DisplayServer.window_set_size(DisplayServer.window_get_size())
 		2:
-			$ClickSFX.play()
 			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
 
 
