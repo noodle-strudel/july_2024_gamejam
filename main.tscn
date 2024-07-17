@@ -138,7 +138,6 @@ text = "Back"
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_g3foa")
-bus = &"Music"
 
 [node name="ClickSFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_1u644")

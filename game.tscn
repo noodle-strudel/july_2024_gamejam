@@ -1,19 +1,197 @@
-[gd_scene load_steps=12 format=3 uid="uid://cwwig1f1cr45b"]
+[gd_scene load_steps=22 format=3 uid="uid://cwwig1f1cr45b"]
 
 [ext_resource type="Script" path="res://game.gd" id="1_iju5o"]
 [ext_resource type="Script" path="res://playerScript.gd" id="1_nuuqp"]
-[ext_resource type="Texture2D" uid="uid://cgqxlk41rrq71" path="res://icon.svg" id="2_j7deo"]
+[ext_resource type="Texture2D" uid="uid://8nayyx6tw5n7" path="res://player animations.png" id="3_eui5l"]
 [ext_resource type="Texture2D" uid="uid://bhtfxnhd5x4v5" path="res://devTexture.jpg" id="3_y0koe"]
 [ext_resource type="Script" path="res://Employee.gd" id="4_kna2b"]
 [ext_resource type="PackedScene" uid="uid://bij64nm8l8lic" path="res://game_ui.tscn" id="5_8u384"]
 [ext_resource type="Script" path="res://taskObject.gd" id="6_ef730"]
 [ext_resource type="AudioStream" uid="uid://bden4ex1hw444" path="res://SFX/game themes/Game.mp3" id="7_5ce1c"]
 [ext_resource type="AudioStream" uid="uid://db88odf3n051q" path="res://SFX/game themes/GameRepeat.mp3" id="8_4eobv"]
+[ext_resource type="Texture2D" uid="uid://vyypdnaoiexn" path="res://Assets/tilemap.png" id="10_guypu"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ghn6u"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_guvmm"]
+texture = ExtResource("10_guypu")
+use_texture_padding = false
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+4:1/0 = 0
+4:2/0 = 0
+5:2/0 = 0
+4:3/0 = 0
+0:6/size_in_atlas = Vector2i(4, 1)
+0:6/0 = 0
+0:3/size_in_atlas = Vector2i(4, 2)
+0:3/0 = 0
+0:1/size_in_atlas = Vector2i(4, 2)
+0:1/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_21p80"]
+sources/3 = SubResource("TileSetAtlasSource_guvmm")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eqbj3"]
 size = Vector2(238.431, 239.138)
+
+[sub_resource type="Animation" id="Animation_jjcio"]
+length = 0.001
+
+[sub_resource type="Animation" id="Animation_hfe33"]
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = false
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [10, 11, 10, 12]
+}
+
+[sub_resource type="Animation" id="Animation_uh7tg"]
+length = 0.8
+loop_mode = 1
+step = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = false
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [7, 8, 7, 9]
+}
+
+[sub_resource type="Animation" id="Animation_kd2om"]
+length = 3.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = false
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.45, 0.6, 0.75, 1.25, 1.4, 1.55, 1.7, 1.85, 2.35, 2.5, 2.65, 2.8, 2.95, 3.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [7, 13, 14, 15, 16, 17, 18, 15, 15, 16, 17, 18, 15, 15, 16, 19, 20, 7]
+}
+
+[sub_resource type="Animation" id="Animation_q2mrg"]
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = false
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [4, 5, 4, 6]
+}
+
+[sub_resource type="Animation" id="Animation_0rlio"]
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = false
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [1, 2, 1, 3]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8ihs1"]
+_data = {
+"RESET": SubResource("Animation_jjcio"),
+"back walk": SubResource("Animation_hfe33"),
+"front walk": SubResource("Animation_uh7tg"),
+"idle": SubResource("Animation_kd2om"),
+"left walk": SubResource("Animation_q2mrg"),
+"right walk": SubResource("Animation_0rlio")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ghn6u"]
+size = Vector2(11.3868, 23.9004)
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_iju5o")
@@ -40,7 +218,17 @@ scale = Vector2(1.50189, 0.369756)
 zoom = Vector2(0.72, 0.72)
 position_smoothing_enabled = true
 
+[node name="TileMap" type="TileMap" parent="."]
+scale = Vector2(8.32, 8.32)
+tile_set = SubResource("TileSet_21p80")
+format = 2
+layer_0/name = "floor"
+layer_0/tile_data = PackedInt32Array(65535, 262147, 2, 0, 262147, 2, 65536, 262147, 2, 131071, 262147, 2, 131070, 262147, 2, 131069, 262147, 2, 65533, 262147, 2, 65534, 262147, 2, -65539, 262147, 2, -3, 262147, 2, -65538, 262147, 2, -65537, 262147, 2, -1, 262147, 2, -2, 262147, 2, -131072, 262147, 2, -65536, 262147, 2, -131071, 262147, 2, -65535, 262147, 2, 1, 262147, 2, -65534, 262147, 2, 2, 262147, 2, 65538, 262147, 2, 65537, 262147, 2, 131072, 262147, 2, 196607, 262147, 2, 196606, 262147, 2, 131073, 262147, 2, 131074, 262147, 2, 196605, 262147, 2, -131068, 262147, 2, -131069, 262147, 2, -131070, 262147, 2, -65533, 262147, 2, -65532, 262147, 2, 4, 262147, 2, 3, 262147, 2, -196605, 262147, 2, -196604, 262147, 2, -196606, 262147, 2, -262142, 262147, 2, -262143, 262147, 2, -262144, 262147, 2, -131073, 262147, 2, -131074, 262147, 2, -196608, 262147, 2, -196607, 262147, 2, -196609, 262147, 2, -196610, 262147, 2, -196611, 262147, 2, -131075, 262147, 2, -196612, 262147, 2, -196613, 262147, 2, -131077, 262147, 2, -65541, 262147, 2, -131076, 262147, 2, -131078, 262147, 2, -65542, 262147, 2, -5, 262147, 2, -196614, 262147, 2, -262150, 262147, 2, -262151, 262147, 2, -196616, 262147, 2, -131080, 262147, 2, -65544, 262147, 2, -65543, 262147, 2, -131079, 262147, 2, -196615, 262147, 2, -196617, 262147, 2, -131082, 262147, 2, -65546, 262147, 2, -10, 262147, 2, -9, 262147, 2, -8, 262147, 2, -262153, 262147, 2, -262154, 262147, 2, -196618, 262147, 2, -131081, 262147, 2, -7, 262147, 2, -65545, 262147, 2, -6, 262147, 2, -262149, 262147, 2, -65540, 262147, 2, -4, 262147, 2, -262148, 262147, 2, 65531, 262147, 2, 65530, 262147, 2, 65529, 262147, 2, 65528, 262147, 2, 65527, 262147, 2, 131063, 262147, 2, 131062, 262147, 2, 131064, 262147, 2, 131065, 262147, 2, 196599, 262147, 2, 65526, 262147, 2, 196598, 262147, 2, 262134, 262147, 2, 196600, 262147, 2, 131066, 262147, 2, 131067, 262147, 2, 196603, 262147, 2, 196602, 262147, 2, 262138, 262147, 2, 131068, 262147, 2, 196604, 262147, 2, 262140, 262147, 2, 65532, 262147, 2, 262139, 262147, 2, -327690, 262147, 2, -327689, 262147, 2, -327688, 262147, 2, -327687, 262147, 2, -327686, 262147, 2, -327685, 262147, 2, -327684, 262147, 2, -327683, 262147, 2, -327682, 262147, 2, -327681, 262147, 2, -393216, 262147, 2, -393215, 262147, 2, -393214, 262147, 2, -393213, 262147, 2, -393212, 262147, 2, -393211, 262147, 2, -393210, 262147, 2, -393209, 262147, 2, -393208, 262147, 2, -327672, 262147, 2, -327671, 262147, 2, -393207, 262147, 2, -327673, 262147, 2, -327674, 262147, 2, -327675, 262147, 2, -327676, 262147, 2, -327677, 262147, 2, -327678, 262147, 2, -327679, 262147, 2, -327680, 262147, 2, -262145, 262147, 2, -262146, 262147, 2, -262147, 262147, 2, -262141, 262147, 2, -262140, 262147, 2, -262139, 262147, 2, -262138, 262147, 2, -262137, 262147, 2, -262136, 262147, 2, -262135, 262147, 2, -196599, 262147, 2, -196600, 262147, 2, -196601, 262147, 2, -196602, 262147, 2, -196603, 262147, 2, -131067, 262147, 2, -65531, 262147, 2, 5, 262147, 2, 6, 262147, 2, 7, 262147, 2, -65529, 262147, 2, -131065, 262147, 2, -131066, 262147, 2, -65530, 262147, 2, -131064, 262147, 2, -65528, 262147, 2, 8, 262147, 2, -65527, 262147, 2, 9, 262147, 2, -131063, 262147, 2, 327670, 262147, 2, 393206, 262147, 2, 393207, 262147, 2, 393208, 262147, 2, 393209, 262147, 2, 393210, 262147, 2, 327674, 262147, 2, 327675, 262147, 2, 327673, 262147, 2, 327672, 262147, 2, 327671, 262147, 2, 262135, 262147, 2, 262136, 262147, 2, 262137, 262147, 2, 327676, 262147, 2, 327677, 262147, 2, 327678, 262147, 2, 393213, 262147, 2, 393212, 262147, 2, 393211, 262147, 2, 393214, 262147, 2, 393215, 262147, 2, 327680, 262147, 2, 262144, 262147, 2, 327679, 262147, 2, 262143, 262147, 2, 262142, 262147, 2, 262141, 262147, 2, 327681, 262147, 2, 327682, 262147, 2, 262146, 262147, 2, 196610, 262147, 2, 196609, 262147, 2, 196608, 262147, 2, 327683, 262147, 2, 327684, 262147, 2, 262148, 262147, 2, 196612, 262147, 2, 196611, 262147, 2, 262147, 262147, 2, 131076, 262147, 2, 131075, 262147, 2, 65539, 262147, 2, 262145, 262147, 2, 65541, 262147, 2, 65542, 262147, 2, 131078, 262147, 2, 131077, 262147, 2, 65540, 262147, 2, 196613, 262147, 2, 262149, 262147, 2, 327685, 262147, 2, 262150, 262147, 2, 196614, 262147, 2, 196615, 262147, 2, 131079, 262147, 2, 327686, 262147, 2, 327687, 262147, 2, 262152, 262147, 2, 196616, 262147, 2, 131080, 262147, 2, 65543, 262147, 2, 327688, 262147, 2, 131081, 262147, 2, 196617, 262147, 2, 262153, 262147, 2, 65545, 262147, 2, 65544, 262147, 2, 262151, 262147, 2, 327689, 262147, 2, 196601, 262147, 2, -262152, 262147, 2, -393226, 262147, 2, -393225, 262147, 2, -393224, 262147, 2, -393223, 262147, 2, -393222, 262147, 2, -393221, 262147, 2, -393220, 262147, 2, -393219, 262147, 2, -393218, 262147, 2, -393217, 262147, 2, -458752, 262147, 2, -458751, 262147, 2, -458750, 262147, 2, -458749, 262147, 2, -458748, 262147, 2, -458747, 262147, 2, -458746, 262147, 2, -458745, 262147, 2, -458744, 262147, 2, -458743, 262147, 2, -458762, 327683, 2, -524298, 327683, 2, -524297, 327683, 2, -458761, 327683, 2, -589834, 327683, 2, -589833, 327683, 2, -589832, 327683, 2, -589831, 327683, 2, -589830, 327683, 2, -589829, 327683, 2, -589828, 327683, 2, -589827, 327683, 2, -589826, 327683, 2, -589825, 327683, 2, -655360, 327683, 2, -655359, 327683, 2, -655358, 327683, 2, -655357, 327683, 2, -655356, 327683, 2, -655355, 327683, 2, -655354, 327683, 2, -655353, 327683, 2, -655352, 327683, 2, -655351, 327683, 2, -589815, 327683, 2, -524284, 327683, 2, -524285, 327683, 2, -524286, 327683, 2, -524287, 327683, 2, -524288, 327683, 2, -458753, 327683, 2, -458754, 327683, 2, -458755, 327683, 2, -458756, 327683, 2, -458757, 327683, 2, -458758, 327683, 2, -458759, 327683, 2, -524295, 327683, 2, -524296, 327683, 2, -458760, 327683, 2, -524294, 327683, 2, -524293, 327683, 2, -524292, 327683, 2, -524291, 327683, 2, -524290, 327683, 2, -524289, 327683, 2, -589824, 327683, 2, -589823, 327683, 2, -589822, 327683, 2, -589821, 327683, 2, -589820, 327683, 2, -589819, 327683, 2, -589818, 327683, 2, -589817, 327683, 2, -589816, 327683, 2, -524283, 327683, 2, -524282, 327683, 2, -524281, 327683, 2, -524280, 327683, 2, -524279, 327683, 2)
+layer_1/name = "items"
+layer_1/tile_data = PackedInt32Array(-458762, 262147, 3, -458761, 262147, 3, -458760, 262147, 3, -458759, 262147, 3, -458758, 262147, 3, -458757, 262147, 3, -458756, 262147, 3, -458755, 262147, 3, -458754, 262147, 3, -458753, 262147, 3, -524288, 262147, 3, -524287, 262147, 3, -524286, 262147, 3, -524285, 262147, 3, -524284, 262147, 3, -524283, 262147, 3, -524282, 262147, 3, -524281, 262147, 3, -524280, 262147, 3, -524279, 262147, 3)
+
 [node name="BG Test Texture" type="Sprite2D" parent="."]
+visible = false
 z_index = -1
 scale = Vector2(3.50869, 3.00734)
 texture = ExtResource("3_y0koe")
@@ -54,10 +242,6 @@ metadata/_edit_group_ = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Employee"]
 shape = SubResource("RectangleShape2D_eqbj3")
 
-[node name="Sprite2D2" type="Sprite2D" parent="Employee"]
-modulate = Color(0.85368, 0.108742, 0, 1)
-texture = ExtResource("3_y0koe")
-
 [node name="Employee2" type="Area2D" parent="." groups=["Employees"]]
 position = Vector2(-961, 436)
 scale = Vector2(2.1222, 1.84831)
@@ -65,12 +249,26 @@ script = ExtResource("4_kna2b")
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Employee2"]
-position = Vector2(0.312909, -0.650787)
+position = Vector2(0.312866, -0.650757)
 shape = SubResource("RectangleShape2D_eqbj3")
 
 [node name="Sprite2D2" type="Sprite2D" parent="Employee2"]
 modulate = Color(0.85368, 0.108742, 0, 1)
 texture = ExtResource("3_y0koe")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="GameUI" parent="CanvasLayer" instance=ExtResource("5_8u384")]
+offset_left = 29.0
+offset_top = 24.0
+offset_right = 29.0
+offset_bottom = 24.0
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_5ce1c")
+
+[node name="MusicRepeat" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_4eobv")
 
 [node name="Cooler" type="Area2D" parent="."]
 position = Vector2(735, 334)
@@ -109,6 +307,53 @@ stream = ExtResource("8_4eobv")
 [connection signal="linkTask" from="Player" to="Employee2" method="_on_player_link_task"]
 [connection signal="removeTask" from="Player" to="Employee" method="_on_player_remove_task"]
 [connection signal="removeTask" from="Player" to="Employee2" method="_on_player_remove_task"]
+
+[node name="Player" type="CharacterBody2D" parent="."]
+scale = Vector2(1.59921, 1.36868)
+script = ExtResource("1_nuuqp")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Player"]
+root_node = NodePath("../Sprite2D")
+libraries = {
+"": SubResource("AnimationLibrary_8ihs1")
+}
+
+[node name="Sprite2D" type="Sprite2D" parent="Player"]
+visibility_layer = 519
+texture_filter = 1
+scale = Vector2(6.056, 6.294)
+texture = ExtResource("3_eui5l")
+hframes = 5
+vframes = 5
+frame = 7
+metadata/_aseprite_wizard_config_ = {
+"i_mode": -1,
+"keep_anim_length": false,
+"layer": "",
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": true,
+"player": "Player/AnimationPlayer",
+"slice": "",
+"source": "C:/Users/theim/Desktop/game jam art/player animations.aseprite"
+}
+metadata/_aseprite_wizard_interface_config_ = {
+"layer_section": true,
+"output_section": true
+}
+metadata/_aseprite_wizard_source_file_hash_ = "0061e2b240a6c5da8bdeaa589b5c12b8"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+position = Vector2(6.70884e-07, 12.4032)
+scale = Vector2(6.48, 6.36)
+shape = SubResource("RectangleShape2D_ghn6u")
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+scale = Vector2(1.50189, 0.369756)
+zoom = Vector2(0.72, 0.72)
+position_smoothing_enabled = true
+
 [connection signal="area_entered" from="Employee" to="Player" method="_on_employee_area_entered"]
 [connection signal="body_entered" from="Employee" to="Employee" method="_on_body_entered"]
 [connection signal="newTask" from="Employee" to="Player" method="_on_employee_new_task"]
@@ -117,16 +362,20 @@ stream = ExtResource("8_4eobv")
 [connection signal="body_entered" from="Employee2" to="Employee2" method="_on_body_entered"]
 [connection signal="newTask" from="Employee2" to="Player" method="_on_employee_new_task"]
 [connection signal="taskComplete" from="Employee2" to="Player" method="_on_employee_task_complete"]
-[connection signal="area_entered" from="Cooler" to="Player" method="_on_printer_area_entered"]
+[connection signal="finished" from="Music" to="." method="_on_music_finished"]
 [connection signal="area_entered" from="Cooler" to="Cooler" method="_on_area_entered"]
-[connection signal="body_entered" from="Cooler" to="Player" method="_on_printer_body_entered"]
+[connection signal="area_entered" from="Cooler" to="Player" method="_on_printer_area_entered"]
 [connection signal="body_entered" from="Cooler" to="Cooler" method="_on_body_entered"]
-[connection signal="area_entered" from="Printer" to="Player" method="_on_printer_area_entered"]
+[connection signal="body_entered" from="Cooler" to="Player" method="_on_printer_body_entered"]
 [connection signal="area_entered" from="Printer" to="Printer" method="_on_area_entered"]
-[connection signal="body_entered" from="Printer" to="Player" method="_on_printer_body_entered"]
+[connection signal="area_entered" from="Printer" to="Player" method="_on_printer_area_entered"]
 [connection signal="body_entered" from="Printer" to="Printer" method="_on_body_entered"]
+[connection signal="body_entered" from="Printer" to="Player" method="_on_printer_body_entered"]
 [connection signal="taskGoalComplete" from="Printer" to="Employee" method="_on_task_goal_complete"]
 [connection signal="taskGoalComplete" from="Printer" to="Employee2" method="_on_task_goal_complete"]
 [connection signal="taskRemoteComplete" from="Printer" to="Employee" method="_on_task_remote_complete"]
 [connection signal="taskRemoteComplete" from="Printer" to="Employee2" method="_on_task_remote_complete"]
-[connection signal="finished" from="Music" to="." method="_on_music_finished"]
+[connection signal="linkTask" from="Player" to="Employee" method="_on_player_link_task"]
+[connection signal="linkTask" from="Player" to="Employee2" method="_on_player_link_task"]
+[connection signal="removeTask" from="Player" to="Employee" method="_on_player_remove_task"]
+[connection signal="removeTask" from="Player" to="Employee2" method="_on_player_remove_task"]
