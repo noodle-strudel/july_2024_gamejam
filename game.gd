@@ -13,6 +13,7 @@ func _process(delta):
 func _unhandled_input(event):
 	if event.is_action_pressed("pause"):
 		$CanvasLayer/GameUI/PauseMenu.show()
+		get_tree().paused = true
 
 func _on_music_finished():
 	$MusicRepeat.play()

@@ -34,6 +34,7 @@ func _on_music_value_changed(value):
 
 
 func _on_resume_button_pressed():
+	get_tree().paused = false
 	hide()
 
 
