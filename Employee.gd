@@ -96,7 +96,7 @@ func _timer_Timeout():
 		return
 	
 	# Submit warning if task unclaimed
-	if (taskRequested):
+	if (taskRequested == true && taskActive == false):
 		emit_signal("lateWarning", task)
 		_on_player_remove_task(task)	
 		return
