@@ -121,9 +121,9 @@ offset_bottom = 1080.0
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
-theme_override_constants/margin_left = 314
+theme_override_constants/margin_left = 300
 theme_override_constants/margin_top = 64
-theme_override_constants/margin_right = 324
+theme_override_constants/margin_right = 300
 theme_override_constants/margin_bottom = 64
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Settings/PanelContainer/MarginContainer"]
@@ -202,6 +202,7 @@ text = "Back"
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_g3foa")
+bus = &"Music"
 
 [node name="ClickSFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_1u644")
