@@ -76,7 +76,7 @@ func _process(delta):
 
 # Setup Task upon Claim
 func _on_employee_new_task():
-	var value = rng.randi_range(1, 3)
+	var value = rng.randi_range(1, 4)
 	
 	# Duplicate Task Checking
 	var taskInList = true
@@ -85,7 +85,7 @@ func _on_employee_new_task():
 		for i in tasks:
 			if (i.taskID == value):
 				print("Duplicate found: ", value)
-				value = rng.randi_range(1, 3)
+				value = rng.randi_range(1, 4)
 				print("New Value: ", value)
 				taskInList = true
 	
@@ -110,8 +110,9 @@ func _on_employee_new_task():
 		2:
 			newTask.taskName = "Fix Printer"
 		3:
-			# Case not set so this auto completes goal
-			get_tree().call_group("Employees", "_on_task_goal_complete", 3)
+			newTask.taskName = "Erase WhiteBoard"
+		4:
+			newTask.taskName = "Water Plant"
 					
 	# Add task to list and finish setup
 	newTask.timerObject = timer
@@ -133,7 +134,9 @@ func _on_employee_task_complete(value):
 				2:
 					score += 100
 				3: 
-					score += 50
+					score += 10
+				4:
+					score += 20
 			ui.update_score(str(score))
 			
 			var index = tasks.find(i)
