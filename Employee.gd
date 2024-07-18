@@ -42,6 +42,7 @@ func _on_body_entered(body):
 	
 	# Reset for task completion
 	if (taskCompleted):
+		$"../TaskCompleted".play()
 		emit_signal("taskComplete", task)
 		taskActive = false
 		taskRequested = false

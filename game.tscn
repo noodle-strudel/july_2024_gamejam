@@ -5,11 +5,15 @@
 [ext_resource type="Texture2D" uid="uid://8nayyx6tw5n7" path="res://player animations.png" id="3_eui5l"]
 [ext_resource type="PackedScene" uid="uid://01jtlan6ab7s" path="res://pause_menu.tscn" id="3_t8ehk"]
 [ext_resource type="Texture2D" uid="uid://bhtfxnhd5x4v5" path="res://devTexture.jpg" id="3_y0koe"]
+[ext_resource type="AudioStream" uid="uid://dcnrei4dh0w72" path="res://SFX/stepsConcept.mp3" id="4_638m3"]
 [ext_resource type="Script" path="res://Employee.gd" id="4_kna2b"]
 [ext_resource type="PackedScene" uid="uid://bij64nm8l8lic" path="res://game_ui.tscn" id="5_8u384"]
 [ext_resource type="Script" path="res://taskObject.gd" id="6_ef730"]
 [ext_resource type="AudioStream" uid="uid://bden4ex1hw444" path="res://SFX/game themes/Game.mp3" id="7_5ce1c"]
 [ext_resource type="AudioStream" uid="uid://db88odf3n051q" path="res://SFX/game themes/GameRepeat.mp3" id="8_4eobv"]
+[ext_resource type="AudioStream" uid="uid://fof7feqq11b6" path="res://SFX/Task completion.mp3" id="9_tw1qk"]
+[ext_resource type="AudioStream" uid="uid://b16telo6d6qjf" path="res://SFX/Water cooler.mp3" id="10_c8nvd"]
+[ext_resource type="AudioStream" uid="uid://bvid087xextat" path="res://SFX/Fix.mp3" id="13_vxowe"]
 [ext_resource type="Texture2D" uid="uid://vyypdnaoiexn" path="res://Assets/tilemap.png" id="10_guypu"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_guvmm"]
@@ -269,6 +273,11 @@ scale = Vector2(1.50189, 0.369756)
 zoom = Vector2(0.72, 0.72)
 position_smoothing_enabled = true
 
+[node name="Walking" type="AudioStreamPlayer2D" parent="Player"]
+stream = ExtResource("4_638m3")
+volume_db = -5.807
+bus = &"SFX"
+
 [node name="BG Test Texture" type="Sprite2D" parent="."]
 visible = false
 z_index = -1
@@ -304,17 +313,30 @@ texture = ExtResource("3_y0koe")
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_5ce1c")
+volume_db = -7.0
 bus = &"Music"
 
 [node name="MusicRepeat" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("8_4eobv")
+volume_db = -7.0
 bus = &"Music"
+
+[node name="TaskCompleted" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_tw1qk")
+volume_db = -10.558
+bus = &"SFX"
 
 [node name="Cooler" type="Area2D" parent="."]
 position = Vector2(735, 334)
 script = ExtResource("6_ef730")
 objectTaskID = 1
 metadata/_edit_group_ = true
+
+[node name="CoolerFX" type="AudioStreamPlayer2D" parent="Cooler"]
+stream = ExtResource("10_c8nvd")
+volume_db = 5.807
+attenuation = 2.37841
+bus = &"SFX"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Cooler"]
 shape = SubResource("RectangleShape2D_eqbj3")
@@ -335,6 +357,12 @@ shape = SubResource("RectangleShape2D_eqbj3")
 [node name="Sprite2D2" type="Sprite2D" parent="Printer"]
 modulate = Color(0.184652, 0.54281, 0.305821, 1)
 texture = ExtResource("3_y0koe")
+
+[node name="PrinterFX" type="AudioStreamPlayer2D" parent="Printer"]
+stream = ExtResource("13_vxowe")
+volume_db = -3.812
+attenuation = 2.37841
+bus = &"SFX"
 
 [node name="WhiteBoard" type="Area2D" parent="."]
 position = Vector2(0, -1064)

@@ -71,13 +71,15 @@ func updateAnimation():
 # Apply Movement
 func _process(delta):
 	var playerInput = get_input()
-	if playerInput == Vector2.ZERO:
+  if playerInput == Vector2.ZERO:
 		velocity = Vector2.ZERO
-	else:
+    $Walking.stop()
+  else:
 		velocity = lerp(velocity, playerInput * speed, delta * accel)
+    if not $Walking.playing:
+      $Walking.play()
 	move_and_slide()
 	updateAnimation()
-
 
 # Setup Task upon Claim
 func _on_employee_new_task():
