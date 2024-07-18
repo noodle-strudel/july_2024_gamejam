@@ -59,13 +59,13 @@ func updateAnimation():
 # Apply Movement
 func _process(delta):
 	var playerInput = get_input()
-  if playerInput == Vector2.ZERO:
+	if playerInput == Vector2.ZERO:
 		velocity = Vector2.ZERO
-    $Walking.stop()
-  else:
+		$Walking.stop()
+	else:
 		velocity = lerp(velocity, playerInput * speed, delta * accel)
-    if not $Walking.playing:
-      $Walking.play()
+		if not $Walking.playing:
+			$Walking.play()
 	move_and_slide()
 	updateAnimation()
 
@@ -137,11 +137,6 @@ func _on_employee_task_complete(value):
 					pass
 					
 			score += i.taskScore
-					score += 100
-				3: 
-					score += 10
-				4:
-					score += 20
 			ui.update_score(str(score))
 			
 			var index = tasks.find(i)

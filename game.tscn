@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://cwwig1f1cr45b"]
+[gd_scene load_steps=39 format=3 uid="uid://cwwig1f1cr45b"]
 
 [ext_resource type="Script" path="res://game.gd" id="1_iju5o"]
 [ext_resource type="Script" path="res://playerScript.gd" id="1_nuuqp"]
@@ -15,8 +15,8 @@
 [ext_resource type="Texture2D" uid="uid://ct3ltxd0h8s7h" path="res://printer.png" id="9_0sob1"]
 [ext_resource type="AudioStream" uid="uid://fof7feqq11b6" path="res://SFX/Task completion.mp3" id="9_tw1qk"]
 [ext_resource type="AudioStream" uid="uid://b16telo6d6qjf" path="res://SFX/Water cooler.mp3" id="10_c8nvd"]
-[ext_resource type="AudioStream" uid="uid://bvid087xextat" path="res://SFX/Fix.mp3" id="13_vxowe"]
 [ext_resource type="Texture2D" uid="uid://vyypdnaoiexn" path="res://Assets/tilemap.png" id="10_guypu"]
+[ext_resource type="AudioStream" uid="uid://bvid087xextat" path="res://SFX/Fix.mp3" id="13_vxowe"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_guvmm"]
 texture = ExtResource("10_guypu")
@@ -120,109 +120,8 @@ uv_clipping = true
 physics_layer_0/collision_layer = 2
 sources/3 = SubResource("TileSetAtlasSource_guvmm")
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_eqbj3"]
-size = Vector2(237, 158.098)
-
-[sub_resource type="Animation" id="Animation_l2pab"]
-length = 0.1
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("../Sprite2D:visible")
-tracks/0/interp = 1
-tracks/0/loop_wrap = false
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("../Sprite2D:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = false
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_dcykq"]
-_data = {
-"default": SubResource("Animation_l2pab")
-}
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_otmab"]
-size = Vector2(125.342, 170.967)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_66hej"]
-size = Vector2(239, 169.098)
-
-[sub_resource type="Animation" id="Animation_d6sjp"]
-length = 2.025
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D2:visible")
-tracks/0/interp = 1
-tracks/0/loop_wrap = false
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D2:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = false
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.175, 0.25, 0.325, 0.4, 0.475, 0.625, 0.825, 1.025, 1.225, 1.625),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 7, 9, 10]
-}
-
-[sub_resource type="Animation" id="Animation_85rn2"]
-length = 1.925
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D2:visible")
-tracks/0/interp = 1
-tracks/0/loop_wrap = false
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D2:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = false
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.075, 0.15, 0.225, 0.3, 0.375, 0.525, 0.725, 0.925, 1.125, 1.525),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [1, 2, 3, 4, 5, 6, 7, 8, 7, 9, 10]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_3gqov"]
-_data = {
-"default": SubResource("Animation_d6sjp"),
-"print": SubResource("Animation_85rn2")
-}
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ghn6u"]
+size = Vector2(11.3868, 5.0547)
 
 [sub_resource type="Animation" id="Animation_jjcio"]
 length = 0.001
@@ -462,8 +361,109 @@ _data = {
 "right walk": SubResource("Animation_0rlio")
 }
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ghn6u"]
-size = Vector2(11.3868, 5.0547)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eqbj3"]
+size = Vector2(237, 158.098)
+
+[sub_resource type="Animation" id="Animation_l2pab"]
+length = 0.1
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Sprite2D:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Sprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = false
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dcykq"]
+_data = {
+"default": SubResource("Animation_l2pab")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_otmab"]
+size = Vector2(125.342, 170.967)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_66hej"]
+size = Vector2(239, 169.098)
+
+[sub_resource type="Animation" id="Animation_d6sjp"]
+length = 2.025
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D2:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D2:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = false
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.175, 0.25, 0.325, 0.4, 0.475, 0.625, 0.825, 1.025, 1.225, 1.625),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 7, 9, 10]
+}
+
+[sub_resource type="Animation" id="Animation_85rn2"]
+length = 1.925
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D2:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D2:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = false
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.075, 0.15, 0.225, 0.3, 0.375, 0.525, 0.725, 0.925, 1.125, 1.525),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [1, 2, 3, 4, 5, 6, 7, 8, 7, 9, 10]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3gqov"]
+_data = {
+"default": SubResource("Animation_d6sjp"),
+"print": SubResource("Animation_85rn2")
+}
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_iju5o")
@@ -537,15 +537,41 @@ position = Vector2(6.70884e-07, 12.4032)
 scale = Vector2(6.48, 6.36)
 shape = SubResource("RectangleShape2D_ghn6u")
 
-[node name="Camera2D2" type="Camera2D" parent="Player"]
-scale = Vector2(1.50189, 0.369756)
-zoom = Vector2(0.72, 0.72)
-position_smoothing_enabled = true
-
 [node name="Walking" type="AudioStreamPlayer2D" parent="Player"]
 stream = ExtResource("4_638m3")
 volume_db = -5.807
 bus = &"SFX"
+
+[node name="Sprite2D2" type="Sprite2D" parent="Player"]
+visibility_layer = 519
+texture_filter = 1
+scale = Vector2(6.056, 6.294)
+texture = ExtResource("3_eui5l")
+hframes = 6
+vframes = 6
+frame = 7
+metadata/_aseprite_wizard_config_ = {
+"i_mode": -1,
+"keep_anim_length": false,
+"layer": "",
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": true,
+"player": "Player/AnimationPlayer",
+"slice": "",
+"source": "C:/Users/theim/Desktop/game jam art/player animations.aseprite"
+}
+metadata/_aseprite_wizard_interface_config_ = {
+"layer_section": true,
+"output_section": true
+}
+metadata/_aseprite_wizard_source_file_hash_ = "8f696f9714a1f42f4602f6e7f01e3845"
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Player"]
+position = Vector2(6.70884e-07, 72.3325)
+scale = Vector2(6.48, 6.36)
+shape = SubResource("RectangleShape2D_ghn6u")
 
 [node name="BG Test Texture" type="Sprite2D" parent="."]
 visible = false
@@ -581,7 +607,6 @@ libraries = {
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Employee2"]
 position = Vector2(-18.3772, 56.8087)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_otmab")
 
 [node name="Sprite2D" type="Sprite2D" parent="Employee2"]
@@ -605,7 +630,7 @@ metadata/_aseprite_wizard_interface_config_ = {
 "layer_section": true
 }
 
-[node name="Sprite2D" type="Sprite2D" parent="Employee2"]
+[node name="Sprite2D2" type="Sprite2D" parent="Employee2"]
 modulate = Color(0.85368, 0.108742, 0, 1)
 texture = ExtResource("3_y0koe")
 
@@ -685,41 +710,6 @@ bus = &"SFX"
 position = Vector2(-4, -3.5)
 shape = SubResource("RectangleShape2D_eqbj3")
 
-[node name="Player" type="CharacterBody2D" parent="."]
-scale = Vector2(1.59921, 1.36868)
-script = ExtResource("1_nuuqp")
-
-[node name="Sprite2D" type="Sprite2D" parent="Player"]
-visibility_layer = 519
-texture_filter = 1
-scale = Vector2(6.056, 6.294)
-texture = ExtResource("3_eui5l")
-hframes = 6
-vframes = 6
-frame = 7
-metadata/_aseprite_wizard_config_ = {
-"i_mode": -1,
-"keep_anim_length": false,
-"layer": "",
-"o_ex_p": "",
-"o_folder": "",
-"o_name": "",
-"only_visible": true,
-"player": "Player/AnimationPlayer",
-"slice": "",
-"source": "C:/Users/theim/Desktop/game jam art/player animations.aseprite"
-}
-metadata/_aseprite_wizard_interface_config_ = {
-"layer_section": true,
-"output_section": true
-}
-metadata/_aseprite_wizard_source_file_hash_ = "8f696f9714a1f42f4602f6e7f01e3845"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
-position = Vector2(6.70884e-07, 72.3325)
-scale = Vector2(6.48, 6.36)
-shape = SubResource("RectangleShape2D_ghn6u")
-
 [node name="WhiteBoard" type="Area2D" parent="."]
 position = Vector2(0, -1064)
 script = ExtResource("6_ef730")
@@ -731,7 +721,6 @@ shape = SubResource("RectangleShape2D_eqbj3")
 
 [node name="Sprite2D2" type="Sprite2D" parent="WhiteBoard"]
 texture = ExtResource("3_y0koe")
-
 
 [node name="Plant" type="Area2D" parent="."]
 position = Vector2(-1064, -936)
@@ -784,11 +773,6 @@ value = -3.0
 [connection signal="newTask" from="Employee2" to="Player" method="_on_employee_new_task"]
 [connection signal="taskComplete" from="Employee2" to="Player" method="_on_employee_task_complete"]
 [connection signal="finished" from="Music" to="." method="_on_music_finished"]
-[connection signal="area_entered" from="Printer" to="Printer" method="_on_area_entered"]
-[connection signal="area_entered" from="Cooler" to="Player" method="_on_printer_area_entered"]
-[connection signal="area_entered" from="Cooler" to="Cooler" method="_on_area_entered"]
-[connection signal="body_entered" from="Cooler" to="Player" method="_on_printer_body_entered"]
-[connection signal="body_entered" from="Cooler" to="Cooler" method="_on_body_entered"]
 [connection signal="area_entered" from="Printer" to="Player" method="_on_printer_area_entered"]
 [connection signal="area_entered" from="Printer" to="Printer" method="_on_area_entered"]
 [connection signal="body_entered" from="Printer" to="Player" method="_on_printer_body_entered"]
@@ -797,6 +781,10 @@ value = -3.0
 [connection signal="taskGoalComplete" from="Printer" to="Employee2" method="_on_task_goal_complete"]
 [connection signal="taskRemoteComplete" from="Printer" to="Employee" method="_on_task_remote_complete"]
 [connection signal="taskRemoteComplete" from="Printer" to="Employee2" method="_on_task_remote_complete"]
+[connection signal="area_entered" from="Cooler" to="Player" method="_on_printer_area_entered"]
+[connection signal="area_entered" from="Cooler" to="Cooler" method="_on_area_entered"]
+[connection signal="body_entered" from="Cooler" to="Player" method="_on_printer_body_entered"]
+[connection signal="body_entered" from="Cooler" to="Cooler" method="_on_body_entered"]
 [connection signal="area_entered" from="WhiteBoard" to="Player" method="_on_printer_area_entered"]
 [connection signal="area_entered" from="WhiteBoard" to="WhiteBoard" method="_on_area_entered"]
 [connection signal="body_entered" from="WhiteBoard" to="Player" method="_on_printer_body_entered"]
