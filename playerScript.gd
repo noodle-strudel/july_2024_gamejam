@@ -33,8 +33,12 @@ func get_input():
 func _process(delta):
 	var playerInput = get_input()
 	velocity = lerp(velocity, playerInput * speed, delta * accel)
+	if playerInput.length() > 0:
+		if not $Walking.playing:
+			$Walking.play()
+	else:
+			$Walking.stop()
 	move_and_slide()
-
 
 # Setup Task upon Claim
 func _on_employee_new_task():
