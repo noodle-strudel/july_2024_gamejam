@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://cwwig1f1cr45b"]
+[gd_scene load_steps=27 format=3 uid="uid://cwwig1f1cr45b"]
 
 [ext_resource type="Script" path="res://game.gd" id="1_iju5o"]
 [ext_resource type="Script" path="res://playerScript.gd" id="1_nuuqp"]
@@ -13,29 +13,54 @@
 [ext_resource type="AudioStream" uid="uid://db88odf3n051q" path="res://SFX/game themes/GameRepeat.mp3" id="8_4eobv"]
 [ext_resource type="AudioStream" uid="uid://fof7feqq11b6" path="res://SFX/Task completion.mp3" id="9_tw1qk"]
 [ext_resource type="AudioStream" uid="uid://b16telo6d6qjf" path="res://SFX/Water cooler.mp3" id="10_c8nvd"]
-[ext_resource type="AudioStream" uid="uid://bvid087xextat" path="res://SFX/Fix.mp3" id="13_vxowe"]
 [ext_resource type="Texture2D" uid="uid://vyypdnaoiexn" path="res://Assets/tilemap.png" id="10_guypu"]
+[ext_resource type="AudioStream" uid="uid://bvid087xextat" path="res://SFX/Fix.mp3" id="13_vxowe"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_guvmm"]
 texture = ExtResource("10_guypu")
 use_texture_padding = false
 0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
 1:0/0 = 0
+1:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:0/0/physics_layer_0/angular_velocity = 0.0
 2:0/0 = 0
+2:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:0/0/physics_layer_0/angular_velocity = 0.0
 3:0/0 = 0
+3:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+3:0/0/physics_layer_0/angular_velocity = 0.0
 4:0/0 = 0
+4:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+4:0/0/physics_layer_0/angular_velocity = 0.0
 4:1/0 = 0
+4:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+4:1/0/physics_layer_0/angular_velocity = 0.0
 4:2/0 = 0
+4:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+4:2/0/physics_layer_0/angular_velocity = 0.0
 5:2/0 = 0
+5:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+5:2/0/physics_layer_0/angular_velocity = 0.0
 4:3/0 = 0
+4:3/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+4:3/0/physics_layer_0/angular_velocity = 0.0
 0:6/size_in_atlas = Vector2i(4, 1)
 0:6/0 = 0
+0:6/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:6/0/physics_layer_0/angular_velocity = 0.0
 0:3/size_in_atlas = Vector2i(4, 2)
 0:3/0 = 0
+0:3/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:3/0/physics_layer_0/angular_velocity = 0.0
 0:1/size_in_atlas = Vector2i(4, 2)
 0:1/0 = 0
+0:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:1/0/physics_layer_0/angular_velocity = 0.0
 
 [sub_resource type="TileSet" id="TileSet_21p80"]
+physics_layer_0/collision_layer = 2
 sources/3 = SubResource("TileSetAtlasSource_guvmm")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ghn6u"]
