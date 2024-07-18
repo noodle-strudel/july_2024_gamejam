@@ -16,9 +16,11 @@ func _on_body_entered(body):
 		1: 
 			get_tree().call_group("Employees", "_on_task_goal_complete", objectTaskID)
 			print("Bring back water")
+			$CoolerFX.play()
 		2:
 			get_tree().call_group("Employees", "_on_task_remote_complete", objectTaskID)
 			print("Printer Fixed")
+			$"../Printer/PrinterFX".play()
 		3:
 			get_tree().call_group("Employees", "_on_task_remote_complete", objectTaskID)
 			print("Erased Whiteboard")
