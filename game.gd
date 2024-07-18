@@ -5,10 +5,15 @@ extends Node2D
 func _ready():
 	$Music.play()
 
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
 
+func _unhandled_input(event):
+	if event.is_action_pressed("pause"):
+		$CanvasLayer/GameUI/PauseMenu.show()
+		get_tree().paused = true
 
 func _on_music_finished():
 	$MusicRepeat.play()
