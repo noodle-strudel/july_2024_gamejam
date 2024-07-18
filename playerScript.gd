@@ -4,6 +4,7 @@ signal removeTask(value)
 
 # Var Init
 @onready var ui := $"../CanvasLayer/GameUI"
+@onready var animations = $AnimationPlayer
 
 # Exported values for easy editing
 @export var speed = 600.0
@@ -33,12 +34,49 @@ func get_input():
 	input.y = Input.get_action_strength("down") - Input.get_action_strength("up")
 	return input.normalized()
 
-
+#updates movement animation
+func updateAnimation():
+	"""
+	if velocity.length() == 0:
+		animations.stop()
+		animations.play("idle")
+	else:
+		var direction = "front"
+		if velocity.x < 0: direction = "left"
+		elif velocity.x > 0: direction = "right"
+		elif velocity.y < 0: direction = "back"
+	
+		animations.play(direction + " walk")
+	"""
+	if velocity.length() != 0:
+		var direction = ""
+		# Compare absolute values of x and y velocities
+		if abs(velocity.x) > abs(velocity.y):
+			# More horizontal movement
+			if velocity.x < 0:
+				direction = "left"
+			else:
+				direction = "right"
+		else:
+			# More vertical movement
+			if velocity.y < 0:
+				direction = "back"
+			else:
+				direction = "front"
+		
+		if direction != "":
+			animations.play(direction + " walk")
+	else:
+		animations.play("idle")
 # Apply Movement
 func _process(delta):
 	var playerInput = get_input()
-	velocity = lerp(velocity, playerInput * speed, delta * accel)
+	if playerInput == Vector2.ZERO:
+		velocity = Vector2.ZERO
+	else:
+		velocity = lerp(velocity, playerInput * speed, delta * accel)
 	move_and_slide()
+	updateAnimation()
 
 
 # Setup Task upon Claim
@@ -82,9 +120,9 @@ func _on_employee_new_task():
 			newTask.taskName = "Fix Printer"
 			newTask.taskScore = 100
 		3:
-			# Case not set so this auto completes goal
-			newTask.taskScore = 10
-			get_tree().call_group("Employees", "_on_task_goal_complete", 3)
+			newTask.taskName = "Erase WhiteBoard"
+		4:
+			newTask.taskName = "Water Plant"
 					
 	# Add task to list and finish setup
 	newTask.timerObject = timer
@@ -109,6 +147,13 @@ func _on_employee_task_complete(value):
 					pass
 					
 			score += i.taskScore
+					score += 100
+				3: 
+					score += 10
+				4:
+					score += 20
+			ui.update_score(str(score))
+			
 			var index = tasks.find(i)
 			ui.remove_task(tasks[index].taskID)
 			tasks[index].timerObject.queue_free()
@@ -125,6 +170,8 @@ func _timer_Timeout():
 			taskCount -= 1
 			print("Timeout time left: ", i.timerObject.time_left, " ID ", i.taskID)
 			emit_signal("removeTask", i.taskID)
+	
+	ui.add_warning(warnings)
 	warnings += 1
 	print("Warnings: ", warnings)
 
