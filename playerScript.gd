@@ -4,9 +4,14 @@ signal removeTask(value)
 
 # Var Init
 @onready var ui := $"../CanvasLayer/GameUI"
+@onready var animations = $AnimationPlayer
 
-var speed = 600.0
-var accel = 5
+# Exported values for easy editing
+@export var speed = 600.0
+@export var accel = 5
+@export var totalTaskCount = 3
+@export var fixTaskTimeLimit = 20
+
 var rng = RandomNumberGenerator.new()
 var tasks : Array[Task] = []
 var taskCount = 0
@@ -20,6 +25,7 @@ class Task:
 	var timerObject : Timer
 	var taskID : int
 	var taskGoal : int
+	var taskScore : int
 
 
 # Movement Input
@@ -28,21 +34,56 @@ func get_input():
 	input.y = Input.get_action_strength("down") - Input.get_action_strength("up")
 	return input.normalized()
 
-
+#updates movement animation
+func updateAnimation():
+	"""
+	if velocity.length() == 0:
+		animations.stop()
+		animations.play("idle")
+	else:
+		var direction = "front"
+		if velocity.x < 0: direction = "left"
+		elif velocity.x > 0: direction = "right"
+		elif velocity.y < 0: direction = "back"
+	
+		animations.play(direction + " walk")
+	"""
+	if velocity.length() != 0:
+		var direction = ""
+		# Compare absolute values of x and y velocities
+		if abs(velocity.x) > abs(velocity.y):
+			# More horizontal movement
+			if velocity.x < 0:
+				direction = "left"
+			else:
+				direction = "right"
+		else:
+			# More vertical movement
+			if velocity.y < 0:
+				direction = "back"
+			else:
+				direction = "front"
+		
+		if direction != "":
+			animations.play(direction + " walk")
+	else:
+		animations.play("idle")
 # Apply Movement
 func _process(delta):
 	var playerInput = get_input()
-	velocity = lerp(velocity, playerInput * speed, delta * accel)
-	if playerInput.length() > 0:
-		if not $Walking.playing:
-			$Walking.play()
-	else:
-			$Walking.stop()
+  if playerInput == Vector2.ZERO:
+		velocity = Vector2.ZERO
+    $Walking.stop()
+  else:
+		velocity = lerp(velocity, playerInput * speed, delta * accel)
+    if not $Walking.playing:
+      $Walking.play()
 	move_and_slide()
+	updateAnimation()
 
 # Setup Task upon Claim
 func _on_employee_new_task():
-	var value = rng.randi_range(1, 3)
+	var value = rng.randi_range(1, totalTaskCount)
 	
 	# Duplicate Task Checking
 	var taskInList = true
@@ -51,7 +92,7 @@ func _on_employee_new_task():
 		for i in tasks:
 			if (i.taskID == value):
 				print("Duplicate found: ", value)
-				value = rng.randi_range(1, 3)
+				value = rng.randi_range(1, totalTaskCount)
 				print("New Value: ", value)
 				taskInList = true
 	
@@ -63,21 +104,27 @@ func _on_employee_new_task():
 	add_child(timer)
 	timer.one_shot = true
 	timer.autostart = true
-	timer.wait_time = 20.0
+	timer.wait_time = fixTaskTimeLimit
 	timer.timeout.connect(_timer_Timeout)
 	timer.start()
 	
 	# Specific Task Setup
 	var newTask = Task.new()
 
+	# If your making a new task put all the information in THIS match case.
+	# If your task has any specific effects on completion put them in the
+	# Match case in the "_on_employee_task_complete" function
 	match value:
 		1:
 			newTask.taskName = "Get and Bring water"
+			newTask.taskScore = 50
 		2:
 			newTask.taskName = "Fix Printer"
+			newTask.taskScore = 100
 		3:
-			# Case not set so this auto completes goal
-			get_tree().call_group("Employees", "_on_task_goal_complete", 3)
+			newTask.taskName = "Erase WhiteBoard"
+		4:
+			newTask.taskName = "Water Plant"
 					
 	# Add task to list and finish setup
 	newTask.timerObject = timer
@@ -92,17 +139,26 @@ func _on_employee_task_complete(value):
 	for i in tasks:
 		if (i.taskID == value):
 			# General effects for task completion go here
-			# Specific Task effects go inside match case
+			# If there are any task specific completion effect put them inside respective match case
 			match value:
 				1:
-					score += 10
+					pass
 				2:
+					pass
+				3:
+					pass
+					
+			score += i.taskScore
 					score += 100
 				3: 
-					score += 50
-
+					score += 10
+				4:
+					score += 20
+			ui.update_score(str(score))
+			
 			var index = tasks.find(i)
 			ui.remove_task(tasks[index].taskID)
+			tasks[index].timerObject.queue_free()
 			tasks.remove_at(index)
 			taskCount -= 1
 
@@ -116,5 +172,18 @@ func _timer_Timeout():
 			taskCount -= 1
 			print("Timeout time left: ", i.timerObject.time_left, " ID ", i.taskID)
 			emit_signal("removeTask", i.taskID)
+	
+	ui.add_warning(warnings)
+	warnings += 1
+	print("Warnings: ", warnings)
+
+# If player doesnt claim task in time
+func _on_employee_late_warning(value):
+	for i in tasks:
+		if (i.taskID == value):
+			var index = tasks.find(i)
+			ui.remove_task(tasks[index].taskID)
+			tasks.remove_at(index)
+			taskCount -= 1
 	warnings += 1
 	print("Warnings: ", warnings)

@@ -1,0 +1,128 @@
+[gd_scene load_steps=4 format=3 uid="uid://01jtlan6ab7s"]
+
+[ext_resource type="Theme" uid="uid://bpxh7lh817tql" path="res://themes/ui.tres" id="1_ub7xj"]
+[ext_resource type="Script" path="res://pause_menu.gd" id="2_kn37s"]
+[ext_resource type="AudioStream" uid="uid://dnnwqt7uagwgf" path="res://SFX/click.mp3" id="3_apste"]
+
+[node name="PauseMenu" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_ub7xj")
+script = ExtResource("2_kn37s")
+
+[node name="Settings" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="Settings"]
+layout_mode = 2
+offset_right = 1920.0
+offset_bottom = 1080.0
+
+[node name="MarginContainer" type="MarginContainer" parent="Settings/PanelContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_constants/margin_left = 300
+theme_override_constants/margin_top = 64
+theme_override_constants/margin_right = 300
+theme_override_constants/margin_bottom = 64
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Settings/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="VolumeLabel" type="RichTextLabel" parent="Settings/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Volume"
+fit_content = true
+
+[node name="Volume" type="HSlider" parent="Settings/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+max_value = 1.0
+step = 0.001
+value = 1.0
+
+[node name="SFXLabel" type="RichTextLabel" parent="Settings/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Sound Effects"
+fit_content = true
+
+[node name="SFX" type="HSlider" parent="Settings/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+max_value = 1.0
+step = 0.001
+value = 1.0
+
+[node name="MusicLabel" type="RichTextLabel" parent="Settings/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Music"
+fit_content = true
+
+[node name="Music" type="HSlider" parent="Settings/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+max_value = 1.0
+step = 0.001
+value = 1.0
+
+[node name="ResolutionLabel" type="RichTextLabel" parent="Settings/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Resolution"
+fit_content = true
+
+[node name="Resolution" type="OptionButton" parent="Settings/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+item_count = 4
+selected = 1
+popup/item_0/text = "2560x1440"
+popup/item_0/id = 0
+popup/item_1/text = "1920x1080"
+popup/item_1/id = 1
+popup/item_2/text = "1366x768"
+popup/item_2/id = 2
+popup/item_3/text = "1280x720"
+popup/item_3/id = 3
+
+[node name="DisplayLabel" type="RichTextLabel" parent="Settings/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Display"
+fit_content = true
+
+[node name="Display" type="OptionButton" parent="Settings/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+item_count = 3
+selected = 0
+popup/item_0/text = "Windowed"
+popup/item_0/id = 0
+popup/item_1/text = "Borderless Windowed"
+popup/item_1/id = 1
+popup/item_2/text = "Fullscreen"
+popup/item_2/id = 2
+
+[node name="ResumeButton" type="Button" parent="Settings/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Resume"
+
+[node name="MainMenuButton" type="Button" parent="Settings/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Main Menu"
+
+[node name="ClickSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_apste")
+bus = &"SFX"
+
+[connection signal="value_changed" from="Settings/PanelContainer/MarginContainer/VBoxContainer/Volume" to="." method="_on_volume_value_changed"]
+[connection signal="value_changed" from="Settings/PanelContainer/MarginContainer/VBoxContainer/SFX" to="." method="_on_sfx_value_changed"]
+[connection signal="value_changed" from="Settings/PanelContainer/MarginContainer/VBoxContainer/Music" to="." method="_on_music_value_changed"]
+[connection signal="item_selected" from="Settings/PanelContainer/MarginContainer/VBoxContainer/Resolution" to="." method="_on_resolution_item_selected"]
+[connection signal="item_selected" from="Settings/PanelContainer/MarginContainer/VBoxContainer/Display" to="." method="_on_display_item_selected"]
+[connection signal="pressed" from="Settings/PanelContainer/MarginContainer/VBoxContainer/ResumeButton" to="." method="_on_resume_button_pressed"]
+[connection signal="pressed" from="Settings/PanelContainer/MarginContainer/VBoxContainer/MainMenuButton" to="." method="_on_main_menu_button_pressed"]
