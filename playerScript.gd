@@ -31,18 +31,6 @@ func get_input():
 
 #updates movement animation
 func updateAnimation():
-	"""
-	if velocity.length() == 0:
-		animations.stop()
-		animations.play("idle")
-	else:
-		var direction = "front"
-		if velocity.x < 0: direction = "left"
-		elif velocity.x > 0: direction = "right"
-		elif velocity.y < 0: direction = "back"
-	
-		animations.play(direction + " walk")
-	"""
 	if velocity.length() != 0:
 		var direction = ""
 		# Compare absolute values of x and y velocities
