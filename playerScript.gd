@@ -5,8 +5,12 @@ signal removeTask(value)
 # Var Init
 @onready var ui := $"../CanvasLayer/GameUI"
 
-var speed = 600.0
-var accel = 5
+# Exported values for easy editing
+@export var speed = 600.0
+@export var accel = 5
+@export var totalTaskCount = 3
+@export var fixTaskTimeLimit = 20
+
 var rng = RandomNumberGenerator.new()
 var tasks : Array[Task] = []
 var taskCount = 0
@@ -20,6 +24,7 @@ class Task:
 	var timerObject : Timer
 	var taskID : int
 	var taskGoal : int
+	var taskScore : int
 
 
 # Movement Input
@@ -38,7 +43,7 @@ func _process(delta):
 
 # Setup Task upon Claim
 func _on_employee_new_task():
-	var value = rng.randi_range(1, 3)
+	var value = rng.randi_range(1, totalTaskCount)
 	
 	# Duplicate Task Checking
 	var taskInList = true
@@ -47,7 +52,7 @@ func _on_employee_new_task():
 		for i in tasks:
 			if (i.taskID == value):
 				print("Duplicate found: ", value)
-				value = rng.randi_range(1, 3)
+				value = rng.randi_range(1, totalTaskCount)
 				print("New Value: ", value)
 				taskInList = true
 	
@@ -59,20 +64,26 @@ func _on_employee_new_task():
 	add_child(timer)
 	timer.one_shot = true
 	timer.autostart = true
-	timer.wait_time = 20.0
+	timer.wait_time = fixTaskTimeLimit
 	timer.timeout.connect(_timer_Timeout)
 	timer.start()
 	
 	# Specific Task Setup
 	var newTask = Task.new()
 
+	# If your making a new task put all the information in THIS match case.
+	# If your task has any specific effects on completion put them in the
+	# Match case in the "_on_employee_task_complete" function
 	match value:
 		1:
 			newTask.taskName = "Get and Bring water"
+			newTask.taskScore = 50
 		2:
 			newTask.taskName = "Fix Printer"
+			newTask.taskScore = 100
 		3:
 			# Case not set so this auto completes goal
+			newTask.taskScore = 10
 			get_tree().call_group("Employees", "_on_task_goal_complete", 3)
 					
 	# Add task to list and finish setup
@@ -88,17 +99,19 @@ func _on_employee_task_complete(value):
 	for i in tasks:
 		if (i.taskID == value):
 			# General effects for task completion go here
-			# Specific Task effects go inside match case
+			# If there are any task specific completion effect put them inside respective match case
 			match value:
 				1:
-					score += 10
+					pass
 				2:
-					score += 100
-				3: 
-					score += 50
-
+					pass
+				3:
+					pass
+					
+			score += i.taskScore
 			var index = tasks.find(i)
 			ui.remove_task(tasks[index].taskID)
+			tasks[index].timerObject.queue_free()
 			tasks.remove_at(index)
 			taskCount -= 1
 
@@ -112,5 +125,16 @@ func _timer_Timeout():
 			taskCount -= 1
 			print("Timeout time left: ", i.timerObject.time_left, " ID ", i.taskID)
 			emit_signal("removeTask", i.taskID)
+	warnings += 1
+	print("Warnings: ", warnings)
+
+# If player doesnt claim task in time
+func _on_employee_late_warning(value):
+	for i in tasks:
+		if (i.taskID == value):
+			var index = tasks.find(i)
+			ui.remove_task(tasks[index].taskID)
+			tasks.remove_at(index)
+			taskCount -= 1
 	warnings += 1
 	print("Warnings: ", warnings)
