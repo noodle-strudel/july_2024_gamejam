@@ -25,9 +25,14 @@ func _ready():
 	timer.autostart = false
 	timer.timeout.connect(_timer_Timeout)
 	
-	# Connect Signals to Player
+	# Connect Employees to Player
 	%Player.linkTask.connect(_on_player_link_task)
 	%Player.removeTask.connect(_on_player_remove_task)
+	
+	# Connect Objects to Employees
+	for object in get_tree().get_nodes_in_group("TaskObjects"):
+		object.taskGoalComplete.connect(_on_task_goal_complete)
+		object.taskRemoteComplete.connect(_on_task_remote_complete)
 	
 func _process(delta):
 	# Timer Start / Restart
@@ -75,8 +80,7 @@ func _on_player_remove_task(value):
 # Call when goal is complete but need to return to Employee
 func _on_task_goal_complete(value):
 	if (value == task):
-		taskCompleted = true
-		
+		taskCompleted = true	
 		
 # Call when task is completed away from employee
 func _on_task_remote_complete(value):

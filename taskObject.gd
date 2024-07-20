@@ -8,7 +8,6 @@ signal taskRemoteComplete(value)
 @export var objectTaskID = 0
 
 var player : Node
-var value
 
 func _ready():
 	%Player.taskInList.connect(_on_task_in_list)

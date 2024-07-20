@@ -70,6 +70,7 @@ func updateAnimation():
 		animations.play("idle")
 # Apply Movement
 func _process(delta):
+	# Movement Calculation And Animation trigger
 	var playerInput = get_input()
 	if playerInput == Vector2.ZERO:
 		velocity = Vector2.ZERO
