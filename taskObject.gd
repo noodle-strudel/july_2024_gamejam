@@ -3,11 +3,14 @@ signal taskGoalComplete(value)
 signal taskRemoteComplete(value)
 
 @onready var plant_timer = $"../Plant/PlantTimer"
+@onready var microwave_timer = $"../Microwave/MicrowaveTimer"
 @onready var plant_control = $"../Plant/PlantControl"
 @onready var plant_progress = $"../Plant/PlantControl/ProgressBar"
 @export var objectTaskID = 0
 
 var player : Node
+var microwaveStarted = false
+var microwaveReady = false
 
 # Connect Signals
 func _ready():
@@ -41,6 +44,15 @@ func _on_task_in_list(value):
 				plant_timer.start()
 				plant_control.show()
 				print("Watering Plant...")
+			5:
+				if (microwaveStarted == false && microwaveReady == false):
+					microwave_timer.start()
+					microwaveStarted = true
+					print("Microwave Started")
+				if (microwaveReady == true):
+					get_tree().call_group("Employees", "_on_task_goal_complete", objectTaskID)
+					microwaveReady = false
+					
 			_: # Error Catching
 				print("Invalid Task Object: ", objectTaskID)
 	
@@ -57,3 +69,9 @@ func _on_plant_timer_timeout():
 	get_tree().call_group("Employees", "_on_task_remote_complete", objectTaskID)
 	plant_control.hide()
 	print("Plant Watered")
+
+# Microwave Finished Heating Timer
+func _on_microwave_timer_timeout():
+	microwaveStarted = false
+	microwaveReady = true
+	print("Microwave Finished")

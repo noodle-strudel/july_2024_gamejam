@@ -126,8 +126,13 @@ func _on_employee_new_task():
 			newTask.taskScore = 100
 		3:
 			newTask.taskName = "Erase WhiteBoard"
+			newTask.taskScore = 50
 		4:
 			newTask.taskName = "Water Plant"
+			newTask.taskScore = 75
+		5:
+			newTask.taskName = "Microwave Lunch"
+			newTask.taskScore = 100
 					
 	# Add task to list and finish setup
 	newTask.timerObject = timer

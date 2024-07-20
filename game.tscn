@@ -218,7 +218,7 @@ layer_1/tile_data = PackedInt32Array(-458762, 262147, 3, -458761, 262147, 3, -45
 unique_name_in_owner = true
 scale = Vector2(1.59921, 1.36868)
 script = ExtResource("1_nuuqp")
-totalTaskCount = 4
+totalTaskCount = 5
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
@@ -326,8 +326,25 @@ shape = SubResource("RectangleShape2D_eqbj3")
 modulate = Color(0.508296, 0.473833, 0, 1)
 texture = ExtResource("3_y0koe")
 
+[node name="Microwave" type="Area2D" parent="." groups=["TaskObjects"]]
+position = Vector2(164, 662)
+script = ExtResource("6_ef730")
+objectTaskID = 5
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Microwave"]
+shape = SubResource("RectangleShape2D_eqbj3")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Microwave"]
+modulate = Color(0.690071, 0.00202669, 0.882053, 1)
+texture = ExtResource("3_y0koe")
+
+[node name="MicrowaveTimer" type="Timer" parent="Microwave"]
+wait_time = 10.0
+one_shot = true
+
 [node name="Printer" type="Area2D" parent="." groups=["TaskObjects"]]
-position = Vector2(662, -356)
+position = Vector2(648, -351)
 script = ExtResource("6_ef730")
 objectTaskID = 2
 metadata/_edit_group_ = true
@@ -402,6 +419,11 @@ value = -3.0
 [connection signal="area_entered" from="Cooler" to="Cooler" method="_on_area_entered"]
 [connection signal="body_entered" from="Cooler" to="Player" method="_on_printer_body_entered"]
 [connection signal="body_entered" from="Cooler" to="Cooler" method="_on_body_entered"]
+[connection signal="area_entered" from="Microwave" to="Player" method="_on_printer_area_entered"]
+[connection signal="area_entered" from="Microwave" to="Microwave" method="_on_area_entered"]
+[connection signal="body_entered" from="Microwave" to="Player" method="_on_printer_body_entered"]
+[connection signal="body_entered" from="Microwave" to="Microwave" method="_on_body_entered"]
+[connection signal="timeout" from="Microwave/MicrowaveTimer" to="Microwave" method="_on_microwave_timer_timeout"]
 [connection signal="area_entered" from="Printer" to="Player" method="_on_printer_area_entered"]
 [connection signal="area_entered" from="Printer" to="Printer" method="_on_area_entered"]
 [connection signal="body_entered" from="Printer" to="Player" method="_on_printer_body_entered"]
