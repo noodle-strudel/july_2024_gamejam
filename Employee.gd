@@ -41,7 +41,7 @@ func _ready():
 func _process(delta):
 	if (taskRequested == false && timerStarted == false):
 		timer.start(rng.randi_range(minTaskAppearTime, maxTaskAppearTime))
-		print(timer.wait_time)
+		print("Wait time for next task: ",timer.wait_time)
 		timerStarted = true
 	if timer.time_left < 10 && taskRequested:
 		$"../Music".pitch_scale = 1.5
@@ -65,12 +65,8 @@ func _on_body_entered(body):
 		var random_index = randi() % songs.size()
 		var random_number = randi() % 4 + 1
 		play_song(songs[random_index])
+		return
 		
-func play_song(song):
-	var audio_player = $VoiceFX
-	audio_player.stream = song
-	audio_player.play()
-	
 	# Reset for task completion
 	if (taskCompleted):
 		$"../TaskCompleted".play()
@@ -92,10 +88,18 @@ func play_song(song):
 	elif (!taskRequested):
 		print("No Task Yet")
 
+
+func play_song(song):
+	var audio_player = $VoiceFX
+	audio_player.stream = song
+	audio_player.play()
+
+
 # After starting task get corrected value and set internally
 func _on_player_link_task(value):
 	if (task == 0 && taskActive == true):
 		task = value
+
 
 # Task Failing remove from Employee
 func _on_player_remove_task(value):
