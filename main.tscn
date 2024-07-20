@@ -245,10 +245,10 @@ autowrap_mode = 0
 
 [node name="Credits" type="RichTextLabel" parent="Credits/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "- Lead Programmer
-- Music and SFX producer
-- Lead artist
-- UI and Assistant PRogrammer"
+text = "MrSqueeg - Lead Programmer
+palnex - Music and SFX producer
+Corggae - Lead artist
+noodle- UI and Assistant Programmer"
 fit_content = true
 autowrap_mode = 0
 
