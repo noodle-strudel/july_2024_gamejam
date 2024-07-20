@@ -36,18 +36,6 @@ func get_input():
 
 #updates movement animation
 func updateAnimation():
-	"""
-	if velocity.length() == 0:
-		animations.stop()
-		animations.play("idle")
-	else:
-		var direction = "front"
-		if velocity.x < 0: direction = "left"
-		elif velocity.x > 0: direction = "right"
-		elif velocity.y < 0: direction = "back"
-	
-		animations.play(direction + " walk")
-	"""
 	if velocity.length() != 0:
 		var direction = ""
 		# Compare absolute values of x and y velocities
@@ -74,12 +62,14 @@ func _process(delta):
 	var playerInput = get_input()
 	if playerInput == Vector2.ZERO:
 		velocity = Vector2.ZERO
+		$Walking.stop()
 	else:
 		velocity = lerp(velocity, playerInput * speed, delta * accel)
+		if not $Walking.playing:
+			$Walking.play()
 	move_and_slide()
 	updateAnimation()
 
-# ---------------------------------------------------------
 # Setup Task upon Claim
 # GO TO THIS FUNCTION WHEN ADDING TASK INFORMATION
 # ---------------------------------------------------------

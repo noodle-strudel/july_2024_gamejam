@@ -3,6 +3,9 @@ extends Control
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	get_tree().paused = false
+	$Settings/PanelContainer/MarginContainer/VBoxContainer/Volume.value = 0.75
+	$Settings/PanelContainer/MarginContainer/VBoxContainer/SFX.value = 0.5
+	$Settings/PanelContainer/MarginContainer/VBoxContainer/Music.value = 0.35
 	$Settings/PanelContainer/MarginContainer/VBoxContainer/Volume.value = GameSettings.master_vol
 	$Settings/PanelContainer/MarginContainer/VBoxContainer/SFX.value = GameSettings.sfx_vol
 	$Settings/PanelContainer/MarginContainer/VBoxContainer/Music.value = GameSettings.music_vol
