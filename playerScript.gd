@@ -1,6 +1,7 @@
 extends CharacterBody2D
 signal linkTask(value)
 signal removeTask(value)
+signal loseGame(value)
 signal taskInList(value)
 
 # Var Init
@@ -152,7 +153,7 @@ func _on_employee_task_complete(value):
 			score += i.taskScore
 
 			ui.update_score(str(score))
-			
+			$"../TaskCompleted".play()
 			var index = tasks.find(i)
 			ui.remove_task(tasks[index].taskID)
 			tasks[index].timerObject.queue_free()
@@ -172,6 +173,8 @@ func _timer_Timeout():
 	
 	ui.add_warning(warnings)
 	warnings += 1
+	if warnings >= 3:
+		emit_signal("loseGame", score)
 	print("Warnings: ", warnings)
 
 # If player doesnt claim task in time
@@ -182,7 +185,11 @@ func _on_employee_late_warning(value):
 			ui.remove_task(tasks[index].taskID)
 			tasks.remove_at(index)
 			taskCount -= 1
+	
+	ui.add_warning(warnings)
 	warnings += 1
+	if warnings >= 3:
+		emit_signal("loseGame", score)
 	print("Warnings: ", warnings)
 
 # Check if taskObject's required task is active
