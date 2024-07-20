@@ -79,7 +79,10 @@ func _process(delta):
 	move_and_slide()
 	updateAnimation()
 
+# ---------------------------------------------------------
 # Setup Task upon Claim
+# GO TO THIS FUNCTION WHEN ADDING TASK INFORMATION
+# ---------------------------------------------------------
 func _on_employee_new_task():
 	var value = rng.randi_range(1, totalTaskCount)
 	
@@ -109,9 +112,11 @@ func _on_employee_new_task():
 	# Specific Task Setup
 	var newTask = Task.new()
 
+	# -----------------------------------------------------------------------
 	# If your making a new task put all the information in THIS match case.
 	# If your task has any specific effects on completion put them in the
 	# Match case in the "_on_employee_task_complete" function
+	# -----------------------------------------------------------------------
 	match value:
 		1:
 			newTask.taskName = "Get and Bring water"
@@ -132,6 +137,7 @@ func _on_employee_new_task():
 	taskCount += 1
 
 # Find task to remove on completion and grant score
+# --- Any Task Specific Completion effects go here ---
 func _on_employee_task_complete(value):
 	for i in tasks:
 		if (i.taskID == value):

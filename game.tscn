@@ -218,7 +218,7 @@ layer_1/tile_data = PackedInt32Array(-458762, 262147, 3, -458761, 262147, 3, -45
 unique_name_in_owner = true
 scale = Vector2(1.59921, 1.36868)
 script = ExtResource("1_nuuqp")
-totalTaskCount = 2
+totalTaskCount = 4
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]

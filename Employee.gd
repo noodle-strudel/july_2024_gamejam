@@ -18,6 +18,7 @@ var timer : Timer = Timer.new()
 @export var minTaskAppearTime = 5
 @export var maxTaskAppearTime = 20
 
+# Employee Timer and Signal Setup
 func _ready():
 	# Timer Setup
 	add_child(timer)
@@ -33,9 +34,9 @@ func _ready():
 	for object in get_tree().get_nodes_in_group("TaskObjects"):
 		object.taskGoalComplete.connect(_on_task_goal_complete)
 		object.taskRemoteComplete.connect(_on_task_remote_complete)
-	
+		
+# Timer Start / Restart
 func _process(delta):
-	# Timer Start / Restart
 	if (taskRequested == false && timerStarted == false):
 		timer.start(rng.randi_range(minTaskAppearTime, maxTaskAppearTime))
 		print(timer.wait_time)
