@@ -6,6 +6,7 @@ signal taskRemoteComplete(value)
 @onready var plant_control = $"../Plant/PlantControl"
 @onready var plant_progress = $"../Plant/PlantControl/ProgressBar"
 @export var objectTaskID = 0
+@onready var animations = $AnimationPlayer
 
 func _physics_process(delta):
 	plant_progress.value = -plant_timer.time_left
@@ -20,9 +21,11 @@ func _on_body_entered(body):
 		2:
 			get_tree().call_group("Employees", "_on_task_remote_complete", objectTaskID)
 			print("Printer Fixed")
+			animations.play("print")
 			$"../Printer/PrinterFX".play()
 		3:
 			get_tree().call_group("Employees", "_on_task_remote_complete", objectTaskID)
+			animations.play("erase")
 			print("Erased Whiteboard")
 		4:
 			plant_timer.start()

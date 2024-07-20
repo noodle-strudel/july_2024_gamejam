@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cc33h352nhqt2"
-path="res://.godot/imported/player animations.png-2e3e4f518b86d5d3104b8dd2de8a0abc.ctex"
+uid="uid://c4urenv6yn83"
+path="res://.godot/imported/water cooler.png-e9b49a2850f96201a0cafed9098c7995.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://player animations.png"
-dest_files=["res://.godot/imported/player animations.png-2e3e4f518b86d5d3104b8dd2de8a0abc.ctex"]
+source_file="res://Assets/water cooler.png"
+dest_files=["res://.godot/imported/water cooler.png-e9b49a2850f96201a0cafed9098c7995.ctex"]
 
 [params]
 
