@@ -1,9 +1,11 @@
 extends CharacterBody2D
 signal linkTask(value)
 signal removeTask(value)
+signal taskInList(value)
 
 # Var Init
 @onready var ui := $"../CanvasLayer/GameUI"
+@onready var animations = $AnimationPlayer
 
 # Exported values for easy editing
 @export var speed = 600.0
@@ -26,20 +28,55 @@ class Task:
 	var taskGoal : int
 	var taskScore : int
 
-
 # Movement Input
 func get_input():
 	input.x = Input.get_action_strength("right") - Input.get_action_strength("left")
 	input.y = Input.get_action_strength("down") - Input.get_action_strength("up")
 	return input.normalized()
 
-
+#updates movement animation
+func updateAnimation():
+	"""
+	if velocity.length() == 0:
+		animations.stop()
+		animations.play("idle")
+	else:
+		var direction = "front"
+		if velocity.x < 0: direction = "left"
+		elif velocity.x > 0: direction = "right"
+		elif velocity.y < 0: direction = "back"
+	
+		animations.play(direction + " walk")
+	"""
+	if velocity.length() != 0:
+		var direction = ""
+		# Compare absolute values of x and y velocities
+		if abs(velocity.x) > abs(velocity.y):
+			# More horizontal movement
+			if velocity.x < 0:
+				direction = "left"
+			else:
+				direction = "right"
+		else:
+			# More vertical movement
+			if velocity.y < 0:
+				direction = "back"
+			else:
+				direction = "front"
+		
+		if direction != "":
+			animations.play(direction + " walk")
+	else:
+		animations.play("idle")
 # Apply Movement
 func _process(delta):
 	var playerInput = get_input()
-	velocity = lerp(velocity, playerInput * speed, delta * accel)
+	if playerInput == Vector2.ZERO:
+		velocity = Vector2.ZERO
+	else:
+		velocity = lerp(velocity, playerInput * speed, delta * accel)
 	move_and_slide()
-
+	updateAnimation()
 
 # Setup Task upon Claim
 func _on_employee_new_task():
@@ -82,9 +119,9 @@ func _on_employee_new_task():
 			newTask.taskName = "Fix Printer"
 			newTask.taskScore = 100
 		3:
-			# Case not set so this auto completes goal
-			newTask.taskScore = 10
-			get_tree().call_group("Employees", "_on_task_goal_complete", 3)
+			newTask.taskName = "Erase WhiteBoard"
+		4:
+			newTask.taskName = "Water Plant"
 					
 	# Add task to list and finish setup
 	newTask.timerObject = timer
@@ -92,7 +129,6 @@ func _on_employee_new_task():
 	tasks.append(newTask)
 	ui.create_task(newTask.taskName, newTask.timerObject.wait_time, newTask.taskID)
 	taskCount += 1
-
 
 # Find task to remove on completion and grant score
 func _on_employee_task_complete(value):
@@ -109,6 +145,9 @@ func _on_employee_task_complete(value):
 					pass
 					
 			score += i.taskScore
+
+			ui.update_score(str(score))
+			
 			var index = tasks.find(i)
 			ui.remove_task(tasks[index].taskID)
 			tasks[index].timerObject.queue_free()
@@ -125,6 +164,8 @@ func _timer_Timeout():
 			taskCount -= 1
 			print("Timeout time left: ", i.timerObject.time_left, " ID ", i.taskID)
 			emit_signal("removeTask", i.taskID)
+	
+	ui.add_warning(warnings)
 	warnings += 1
 	print("Warnings: ", warnings)
 
@@ -138,3 +179,13 @@ func _on_employee_late_warning(value):
 			taskCount -= 1
 	warnings += 1
 	print("Warnings: ", warnings)
+
+# Check if taskObject's required task is active
+func _on_checkTaskInList(value):
+	for i in tasks:
+		if (i.taskID == value):
+			emit_signal("taskInList", value)
+			return
+			
+	print("Object not in list")
+			

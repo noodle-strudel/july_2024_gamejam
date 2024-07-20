@@ -25,6 +25,10 @@ func _ready():
 	timer.autostart = false
 	timer.timeout.connect(_timer_Timeout)
 	
+	# Connect Signals to Player
+	%Player.linkTask.connect(_on_player_link_task)
+	%Player.removeTask.connect(_on_player_remove_task)
+	
 func _process(delta):
 	# Timer Start / Restart
 	if (taskRequested == false && timerStarted == false):
