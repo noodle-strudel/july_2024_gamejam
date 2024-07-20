@@ -11,8 +11,17 @@ func _ready():
 func _process(delta):
 	pass
 
+
 func _unhandled_input(event):
-	if event.is_action_pressed("pause"):
+	if event.is_action_pressed("pause") && get_tree().paused == false:
 		$CanvasLayer/GameUI/PauseMenu.show()
 		get_tree().paused = true
 
+func _on_music_finished():
+	$MusicRepeat.play()
+
+
+func _on_player_lose_game(value):
+	get_tree().paused = true
+	$CanvasLayer/GameUI/LoseScreen.update_score(value)
+	$CanvasLayer/GameUI/LoseScreen.show()

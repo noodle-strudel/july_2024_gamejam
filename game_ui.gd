@@ -36,4 +36,7 @@ func update_score(value : String):
 # Update the warnings shown in the UI
 func add_warning(num):
 	# unhides the corresponding warning, given a number between 0-2 (3 unique warnings in total)
-	warning_container.get_child(num).show()
+	if num > 2:
+		print("ERROR: Somehow the number of warnings is above 3...")
+	else:
+		warning_container.get_child(num).show()
