@@ -43,6 +43,11 @@ func _process(delta):
 		timer.start(rng.randi_range(minTaskAppearTime, maxTaskAppearTime))
 		print(timer.wait_time)
 		timerStarted = true
+	if timer.time_left < 10 && taskRequested:
+		$"../Music".pitch_scale = 1.5
+		var pitch_shift = AudioServer.get_bus_effect(AudioServer.get_bus_index("Music"), 0)
+		pitch_shift.pitch_scale = 1/1.5
+		
 		
 # Run if player collides with employee
 func _on_body_entered(body):
@@ -51,7 +56,20 @@ func _on_body_entered(body):
 		notif.hide()
 		taskActive = true
 		emit_signal("newTask")
-		return
+		#Randomize sounds of employee
+		var song1 = preload("res://SFX/voices/employee1.mp3")
+		var song2 = preload("res://SFX/voices/employee2.mp3")
+		var song3 = preload("res://SFX/voices/employee3.mp3")
+		var song4 = preload("res://SFX/voices/employee4.mp3")
+		var songs = [song1, song2, song3, song4]
+		var random_index = randi() % songs.size()
+		var random_number = randi() % 4 + 1
+		play_song(songs[random_index])
+		
+func play_song(song):
+	var audio_player = $VoiceFX
+	audio_player.stream = song
+	audio_player.play()
 	
 	# Reset for task completion
 	if (taskCompleted):
@@ -62,7 +80,12 @@ func _on_body_entered(body):
 		task = 0
 		print("Task Completed")
 		taskCompleted = false
+		#Reset music speed to normal
+		$"../Music".pitch_scale = 1
+		var pitch_shift = AudioServer.get_bus_effect(AudioServer.get_bus_index("Music"), 0)
+		pitch_shift.pitch_scale = 1
 		return
+		
 	# Debug Purposes
 	elif (taskActive):
 		print("Not Complete")
@@ -106,9 +129,8 @@ func _timer_Timeout():
 		taskRequested = true
 		timerStarted = false
 		timer.start(claimTaskTime)
-		print("Starting warning timer")
 		return
-	
+		print("Starting warning timer")
 	# Submit warning if task unclaimed
 	if (taskRequested):
 		notif.hide()

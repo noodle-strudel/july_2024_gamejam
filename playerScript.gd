@@ -176,6 +176,7 @@ func _timer_Timeout():
 	if warnings >= 3:
 		emit_signal("loseGame", score)
 	print("Warnings: ", warnings)
+	boss_play(warnings)
 
 # If player doesnt claim task in time
 func _on_employee_late_warning(value):
@@ -191,6 +192,24 @@ func _on_employee_late_warning(value):
 	if warnings >= 3:
 		emit_signal("loseGame", score)
 	print("Warnings: ", warnings)
+	boss_play(warnings)
+
+func boss_play(warnings):
+	var song1 = preload("res://SFX/voices/boss1.mp3")
+	var song2 = preload("res://SFX/voices/boss2.mp3")
+	var song3 = preload("res://SFX/voices/boss3.mp3")
+	var song4 = preload("res://SFX/voices/boss4.mp3")
+	var audio_player = $"../Boss"
+	match warnings:
+		1:
+			audio_player.stream = song2
+			audio_player.play()
+		2:
+			audio_player.stream = song4
+			audio_player.play()
+		3:
+			audio_player.stream = song1
+			audio_player.play()
 
 # Check if taskObject's required task is active
 func _on_checkTaskInList(value):
