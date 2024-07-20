@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cc33h352nhqt2"
-path="res://.godot/imported/player animations.png-2e3e4f518b86d5d3104b8dd2de8a0abc.ctex"
+uid="uid://bqxcxvesomkbn"
+path="res://.godot/imported/elevator.png-679a72f51aa00e92daf4d71a643a8565.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://player animations.png"
-dest_files=["res://.godot/imported/player animations.png-2e3e4f518b86d5d3104b8dd2de8a0abc.ctex"]
+source_file="res://Assets/elevator.png"
+dest_files=["res://.godot/imported/elevator.png-679a72f51aa00e92daf4d71a643a8565.ctex"]
 
 [params]
 

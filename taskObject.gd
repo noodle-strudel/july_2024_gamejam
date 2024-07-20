@@ -7,6 +7,7 @@ signal taskRemoteComplete(value)
 @onready var plant_control = $"../Plant/PlantControl"
 @onready var plant_progress = $"../Plant/PlantControl/ProgressBar"
 @export var objectTaskID = 0
+@onready var animations = $AnimationPlayer
 
 var player : Node
 var microwaveStarted = false
@@ -23,6 +24,28 @@ func _physics_process(delta):
 # Tell Player to check if task is in list
 func _on_body_entered(body):
 	%Player._on_checkTaskInList(objectTaskID)
+	print("\nCollided\n")
+	match objectTaskID:
+		1: 
+			get_tree().call_group("Employees", "_on_task_goal_complete", objectTaskID)
+			print("Bring back water")
+			$CoolerFX.play()
+		2:
+			get_tree().call_group("Employees", "_on_task_remote_complete", objectTaskID)
+			print("Printer Fixed")
+			animations.play("print")
+			$"../Printer/PrinterFX".play()
+		3:
+			get_tree().call_group("Employees", "_on_task_remote_complete", objectTaskID)
+			animations.play("erase")
+			print("Erased Whiteboard")
+		4:
+			plant_timer.start()
+			plant_control.show()
+			print("Watering Plant...")
+		_:
+			print("Invalid Task Object: ", objectTaskID)
+
 
 # --------------------------------------------
 # Trigger TaskObject Effects 
