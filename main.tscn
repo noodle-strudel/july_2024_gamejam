@@ -8,7 +8,6 @@
 
 [sub_resource type="Animation" id="Animation_36032"]
 length = 14.9
-loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
