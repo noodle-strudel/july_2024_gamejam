@@ -114,6 +114,9 @@ func _on_employee_new_task():
 
 	# -----------------------------------------------------------------------
 	# If your making a new task put all the information in THIS match case.
+	# If any task specific effects / value changes such as timer length change
+	# In specific match case
+	
 	# If your task has any specific effects on completion put them in the
 	# Match case in the "_on_employee_task_complete" function
 	# -----------------------------------------------------------------------

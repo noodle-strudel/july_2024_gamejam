@@ -44,7 +44,7 @@ func _on_task_in_list(value):
 				plant_timer.start()
 				plant_control.show()
 				print("Watering Plant...")
-			5:
+			5: # Microwave
 				if (microwaveStarted == false && microwaveReady == false):
 					microwave_timer.start()
 					microwaveStarted = true
