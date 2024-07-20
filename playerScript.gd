@@ -1,7 +1,7 @@
 extends CharacterBody2D
 signal linkTask(value)
 signal removeTask(value)
-
+signal loseGame(value)
 # Var Init
 @onready var ui := $"../CanvasLayer/GameUI"
 @onready var animations = $AnimationPlayer
@@ -158,6 +158,8 @@ func _timer_Timeout():
 	
 	ui.add_warning(warnings)
 	warnings += 1
+	if warnings >= 3:
+		emit_signal("loseGame", score)
 	print("Warnings: ", warnings)
 
 # If player doesnt claim task in time
@@ -168,5 +170,9 @@ func _on_employee_late_warning(value):
 			ui.remove_task(tasks[index].taskID)
 			tasks.remove_at(index)
 			taskCount -= 1
+	
+	ui.add_warning(warnings)
 	warnings += 1
+	if warnings >= 3:
+		emit_signal("loseGame", score)
 	print("Warnings: ", warnings)

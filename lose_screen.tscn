@@ -1,8 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://dyojf0usew7tb"]
+[gd_scene load_steps=3 format=3 uid="uid://dyojf0usew7tb"]
 
 [ext_resource type="Theme" uid="uid://bpxh7lh817tql" path="res://themes/ui.tres" id="1_e0jto"]
+[ext_resource type="Script" path="res://lose_screen.gd" id="2_5p5uc"]
 
 [node name="LoseScreen" type="Control"]
+process_mode = 3
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -10,6 +12,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_e0jto")
+script = ExtResource("2_5p5uc")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 1
@@ -47,7 +50,7 @@ text = "Your score was "
 fit_content = true
 autowrap_mode = 0
 
-[node name="RichTextLabel" type="RichTextLabel" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="Score" type="RichTextLabel" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/normal_font_size = 32
 text = "0"
@@ -67,3 +70,6 @@ text = "Restart"
 [node name="MainMenuButton" type="Button" parent="PanelContainer/MarginContainer/CenterContainer/VBoxContainer"]
 layout_mode = 2
 text = "Main Menu"
+
+[connection signal="pressed" from="PanelContainer/MarginContainer/CenterContainer/VBoxContainer/RestartButton" to="." method="_on_restart_button_pressed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/CenterContainer/VBoxContainer/MainMenuButton" to="." method="_on_main_menu_button_pressed"]

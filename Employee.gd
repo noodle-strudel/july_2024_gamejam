@@ -18,6 +18,8 @@ var timer : Timer = Timer.new()
 @export var minTaskAppearTime = 5
 @export var maxTaskAppearTime = 20
 
+@onready var notif = $"notification"
+
 func _ready():
 	# Timer Setup
 	add_child(timer)
@@ -36,6 +38,7 @@ func _process(delta):
 func _on_body_entered(body):
 	# See if task is requested from player and start
 	if (taskActive == false && taskRequested == true):
+		notif.hide()
 		taskActive = true
 		emit_signal("newTask")
 		return
@@ -90,6 +93,7 @@ func _timer_Timeout():
 	print("Timer Finished")
 	# Request taks from player and start warning timer
 	if (!taskRequested):
+		notif.show()
 		taskRequested = true
 		timerStarted = false
 		timer.start(claimTaskTime)
@@ -98,6 +102,7 @@ func _timer_Timeout():
 	
 	# Submit warning if task unclaimed
 	if (taskRequested):
+		notif.hide()
 		emit_signal("lateWarning", task)
 		_on_player_remove_task(task)	
 		return
