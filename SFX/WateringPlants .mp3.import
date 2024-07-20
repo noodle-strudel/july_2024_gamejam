@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cca5b66vgf0c3"
+path="res://.godot/imported/WateringPlants .mp3-3dd6a819d37dc7fd98560a3e7f51f256.mp3str"
+
+[deps]
+
+source_file="res://SFX/WateringPlants .mp3"
+dest_files=["res://.godot/imported/WateringPlants .mp3-3dd6a819d37dc7fd98560a3e7f51f256.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

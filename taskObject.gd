@@ -24,10 +24,12 @@ func _on_body_entered(body):
 		3:
 			get_tree().call_group("Employees", "_on_task_remote_complete", objectTaskID)
 			print("Erased Whiteboard")
+			$"../WhiteBoard/WhiteBoardFX".play()
 		4:
 			plant_timer.start()
 			plant_control.show()
 			print("Watering Plant...")
+			$"../Plant/PlantFX".play()
 		_:
 			print("Invalid Task Object: ", objectTaskID)
 
