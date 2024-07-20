@@ -1325,8 +1325,12 @@ libraries = {
 autoplay = "type"
 
 [node name="Player" type="CharacterBody2D" parent="."]
+unique_name_in_owner = true
+scale = Vector2(1.59921, 1.36868)
 collision_layer = 3
 script = ExtResource("1_nuuqp")
+totalTaskCount = 5
+metadata/_edit_group_ = true
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 scale = Vector2(1.50189, 0.369756)
@@ -1483,6 +1487,57 @@ libraries = {
 "": SubResource("AnimationLibrary_3gqov")
 }
 
+[node name="Cooler" type="Area2D" parent="." groups=["TaskObjects"]]
+position = Vector2(735, 334)
+script = ExtResource("6_ef730")
+objectTaskID = 1
+metadata/_edit_group_ = true
+
+[node name="CoolerFX" type="AudioStreamPlayer2D" parent="Cooler"]
+stream = ExtResource("10_c8nvd")
+volume_db = 5.807
+attenuation = 2.37841
+bus = &"SFX"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Cooler"]
+position = Vector2(-4, -3.5)
+shape = SubResource("RectangleShape2D_eqbj3")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Cooler"]
+modulate = Color(0.508296, 0.473833, 0, 1)
+texture = ExtResource("3_y0koe")
+
+[node name="Microwave" type="Area2D" parent="." groups=["TaskObjects"]]
+position = Vector2(164, 662)
+script = ExtResource("6_ef730")
+objectTaskID = 5
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Microwave"]
+shape = SubResource("RectangleShape2D_eqbj3")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Microwave"]
+modulate = Color(0.690071, 0.00202669, 0.882053, 1)
+texture = ExtResource("3_y0koe")
+
+[node name="MicrowaveTimer" type="Timer" parent="Microwave"]
+wait_time = 10.0
+one_shot = true
+
+[node name="Printer" type="Area2D" parent="." groups=["TaskObjects"]]
+position = Vector2(648, -351)
+[node name="WhiteBoard" type="Area2D" parent="."]
+position = Vector2(0, -1064)
+script = ExtResource("6_ef730")
+objectTaskID = 3
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WhiteBoard"]
+shape = SubResource("RectangleShape2D_eqbj3")
+
+[node name="Sprite2D2" type="Sprite2D" parent="WhiteBoard"]
+texture = ExtResource("3_y0koe")
+
 [node name="Plant" type="Area2D" parent="."]
 position = Vector2(462, -139)
 script = ExtResource("6_ef730")
@@ -1509,6 +1564,31 @@ metadata/_aseprite_wizard_config_ = {
 "source": "C:/Users/theim/Desktop/game jam art/plant1.aseprite"
 }
 metadata/_aseprite_wizard_source_file_hash_ = "6ff3bd84f8c0309bbce8530fc7595868"
+
+[node name="WhiteBoard" type="Area2D" parent="." groups=["TaskObjects"]]
+position = Vector2(0, -1064)
+script = ExtResource("6_ef730")
+objectTaskID = 3
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WhiteBoard"]
+shape = SubResource("RectangleShape2D_eqbj3")
+
+[node name="Sprite2D2" type="Sprite2D" parent="WhiteBoard"]
+texture = ExtResource("3_y0koe")
+
+[node name="Plant" type="Area2D" parent="." groups=["TaskObjects"]]
+position = Vector2(-1064, -936)
+script = ExtResource("6_ef730")
+objectTaskID = 4
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Plant"]
+shape = SubResource("RectangleShape2D_eqbj3")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Plant"]
+modulate = Color(0.184652, 0.54281, 0.305821, 1)
+texture = ExtResource("3_y0koe")
 
 [node name="PlantTimer" type="Timer" parent="Plant"]
 wait_time = 3.0
@@ -1763,6 +1843,12 @@ libraries = {
 [connection signal="lateWarning" from="Employee2" to="Player" method="_on_employee_late_warning"]
 [connection signal="newTask" from="Employee2" to="Player" method="_on_employee_new_task"]
 [connection signal="taskComplete" from="Employee2" to="Player" method="_on_employee_task_complete"]
+[connection signal="finished" from="Music" to="." method="_on_music_finished"]
+[connection signal="area_entered" from="Microwave" to="Player" method="_on_printer_area_entered"]
+[connection signal="area_entered" from="Microwave" to="Microwave" method="_on_area_entered"]
+[connection signal="body_entered" from="Microwave" to="Player" method="_on_printer_body_entered"]
+[connection signal="body_entered" from="Microwave" to="Microwave" method="_on_body_entered"]
+[connection signal="timeout" from="Microwave/MicrowaveTimer" to="Microwave" method="_on_microwave_timer_timeout"]
 [connection signal="area_entered" from="Printer" to="Player" method="_on_printer_area_entered"]
 [connection signal="area_entered" from="Printer" to="Printer" method="_on_area_entered"]
 [connection signal="body_entered" from="Printer" to="Player" method="_on_printer_body_entered"]

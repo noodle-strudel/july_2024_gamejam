@@ -1,6 +1,7 @@
 extends CharacterBody2D
 signal linkTask(value)
 signal removeTask(value)
+signal taskInList(value)
 
 # Var Init
 @onready var ui := $"../CanvasLayer/GameUI"
@@ -26,7 +27,6 @@ class Task:
 	var taskID : int
 	var taskGoal : int
 	var taskScore : int
-
 
 # Movement Input
 func get_input():
@@ -58,6 +58,7 @@ func updateAnimation():
 		animations.play("idle")
 # Apply Movement
 func _process(delta):
+	# Movement Calculation And Animation trigger
 	var playerInput = get_input()
 	if playerInput == Vector2.ZERO:
 		velocity = Vector2.ZERO
@@ -70,6 +71,8 @@ func _process(delta):
 	updateAnimation()
 
 # Setup Task upon Claim
+# GO TO THIS FUNCTION WHEN ADDING TASK INFORMATION
+# ---------------------------------------------------------
 func _on_employee_new_task():
 	var value = rng.randi_range(1, totalTaskCount)
 	
@@ -99,9 +102,14 @@ func _on_employee_new_task():
 	# Specific Task Setup
 	var newTask = Task.new()
 
+	# -----------------------------------------------------------------------
 	# If your making a new task put all the information in THIS match case.
+	# If any task specific effects / value changes such as timer length change
+	# In specific match case
+	
 	# If your task has any specific effects on completion put them in the
 	# Match case in the "_on_employee_task_complete" function
+	# -----------------------------------------------------------------------
 	match value:
 		1:
 			newTask.taskName = "Get and Bring water"
@@ -111,8 +119,13 @@ func _on_employee_new_task():
 			newTask.taskScore = 100
 		3:
 			newTask.taskName = "Erase WhiteBoard"
+			newTask.taskScore = 50
 		4:
 			newTask.taskName = "Water Plant"
+			newTask.taskScore = 75
+		5:
+			newTask.taskName = "Microwave Lunch"
+			newTask.taskScore = 100
 					
 	# Add task to list and finish setup
 	newTask.timerObject = timer
@@ -121,8 +134,8 @@ func _on_employee_new_task():
 	ui.create_task(newTask.taskName, newTask.timerObject.wait_time, newTask.taskID)
 	taskCount += 1
 
-
 # Find task to remove on completion and grant score
+# --- Any Task Specific Completion effects go here ---
 func _on_employee_task_complete(value):
 	for i in tasks:
 		if (i.taskID == value):
@@ -137,6 +150,7 @@ func _on_employee_task_complete(value):
 					pass
 					
 			score += i.taskScore
+
 			ui.update_score(str(score))
 			
 			var index = tasks.find(i)
@@ -170,3 +184,13 @@ func _on_employee_late_warning(value):
 			taskCount -= 1
 	warnings += 1
 	print("Warnings: ", warnings)
+
+# Check if taskObject's required task is active
+func _on_checkTaskInList(value):
+	for i in tasks:
+		if (i.taskID == value):
+			emit_signal("taskInList", value)
+			return
+			
+	print("Object not in list")
+			
