@@ -25,5 +25,8 @@ func init_task(new_name, new_time, new_id):
 func get_id() -> int:
 	return id
 
+func get_task_name() -> String:
+	return $IndivTaskContainer/TaskLabel.text
+
 func _on_timer_timeout():
 	timer_on = false
