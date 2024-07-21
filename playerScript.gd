@@ -104,7 +104,6 @@ func _on_employee_new_task():
 	timer.wait_time = fixTaskTimeLimit
 	timer.timeout.connect(_timer_Timeout)
 	
-	
 	# Specific Task Setup
 	var newTask = Task.new()
 
@@ -233,19 +232,23 @@ func _on_checkTaskInList(value):
 # Progressive Task Chaos System
 func taskIncrement():
 	activeTaskCount = requestedTasks + len(tasks)
-	if (tasksCompleted < 6 && activeTaskCount > 2):
+	if (len(tasks) >= totalTaskCount):
 		emit_signal("linkTask", 0)
 		requestedTasks -= 1
 		return
-	elif (tasksCompleted < 10 && activeTaskCount > 4):
+	if (tasksCompleted < 6 && activeTaskCount >= 2):
 		emit_signal("linkTask", 0)
 		requestedTasks -= 1
 		return
-	elif (tasksCompleted < 14 && activeTaskCount > 7):
+	elif (tasksCompleted < 10 && activeTaskCount >= 4):
 		emit_signal("linkTask", 0)
 		requestedTasks -= 1
 		return
-	elif (tasksCompleted < 20 && activeTaskCount > 10):
+	elif (tasksCompleted < 14 && activeTaskCount >= 7):
+		emit_signal("linkTask", 0)
+		requestedTasks -= 1
+		return
+	elif (tasksCompleted < 20 && activeTaskCount >= 10):
 		emit_signal("linkTask", 0)
 		requestedTasks -= 1
 		return
