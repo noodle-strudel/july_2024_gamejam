@@ -1,8 +1,6 @@
 extends CharacterBody2D
 signal linkTask(value)
 signal removeTask(value)
-signal loseGame(value)
-signal taskInList(value)
 
 # Var Init
 @onready var ui := $"../CanvasLayer/GameUI"
@@ -28,6 +26,7 @@ class Task:
 	var taskID : int
 	var taskGoal : int
 	var taskScore : int
+
 
 # Movement Input
 func get_input():
@@ -59,7 +58,6 @@ func updateAnimation():
 		animations.play("idle")
 # Apply Movement
 func _process(delta):
-	# Movement Calculation And Animation trigger
 	var playerInput = get_input()
 	if playerInput == Vector2.ZERO:
 		velocity = Vector2.ZERO
@@ -72,8 +70,6 @@ func _process(delta):
 	updateAnimation()
 
 # Setup Task upon Claim
-# GO TO THIS FUNCTION WHEN ADDING TASK INFORMATION
-# ---------------------------------------------------------
 func _on_employee_new_task():
 	var value = rng.randi_range(1, totalTaskCount)
 	
@@ -103,14 +99,9 @@ func _on_employee_new_task():
 	# Specific Task Setup
 	var newTask = Task.new()
 
-	# -----------------------------------------------------------------------
 	# If your making a new task put all the information in THIS match case.
-	# If any task specific effects / value changes such as timer length change
-	# In specific match case
-	
 	# If your task has any specific effects on completion put them in the
 	# Match case in the "_on_employee_task_complete" function
-	# -----------------------------------------------------------------------
 	match value:
 		1:
 			newTask.taskName = "Get and Bring water"
@@ -120,13 +111,8 @@ func _on_employee_new_task():
 			newTask.taskScore = 100
 		3:
 			newTask.taskName = "Erase WhiteBoard"
-			newTask.taskScore = 50
 		4:
 			newTask.taskName = "Water Plant"
-			newTask.taskScore = 75
-		5:
-			newTask.taskName = "Microwave Lunch"
-			newTask.taskScore = 100
 					
 	# Add task to list and finish setup
 	newTask.timerObject = timer
@@ -135,8 +121,8 @@ func _on_employee_new_task():
 	ui.create_task(newTask.taskName, newTask.timerObject.wait_time, newTask.taskID)
 	taskCount += 1
 
+
 # Find task to remove on completion and grant score
-# --- Any Task Specific Completion effects go here ---
 func _on_employee_task_complete(value):
 	for i in tasks:
 		if (i.taskID == value):
@@ -151,9 +137,8 @@ func _on_employee_task_complete(value):
 					pass
 					
 			score += i.taskScore
-
 			ui.update_score(str(score))
-			$"../TaskCompleted".play()
+			
 			var index = tasks.find(i)
 			ui.remove_task(tasks[index].taskID)
 			tasks[index].timerObject.queue_free()
@@ -173,10 +158,7 @@ func _timer_Timeout():
 	
 	ui.add_warning(warnings)
 	warnings += 1
-	if warnings >= 3:
-		emit_signal("loseGame", score)
 	print("Warnings: ", warnings)
-	boss_play(warnings)
 
 # If player doesnt claim task in time
 func _on_employee_late_warning(value):
@@ -186,37 +168,5 @@ func _on_employee_late_warning(value):
 			ui.remove_task(tasks[index].taskID)
 			tasks.remove_at(index)
 			taskCount -= 1
-	
-	ui.add_warning(warnings)
 	warnings += 1
-	if warnings >= 3:
-		emit_signal("loseGame", score)
 	print("Warnings: ", warnings)
-	boss_play(warnings)
-
-func boss_play(warnings):
-	var song1 = preload("res://SFX/voices/boss1.mp3")
-	var song2 = preload("res://SFX/voices/boss2.mp3")
-	var song3 = preload("res://SFX/voices/boss3.mp3")
-	var song4 = preload("res://SFX/voices/boss4.mp3")
-	var audio_player = $"../Boss"
-	match warnings:
-		1:
-			audio_player.stream = song2
-			audio_player.play()
-		2:
-			audio_player.stream = song4
-			audio_player.play()
-		3:
-			audio_player.stream = song1
-			audio_player.play()
-
-# Check if taskObject's required task is active
-func _on_checkTaskInList(value):
-	for i in tasks:
-		if (i.taskID == value):
-			emit_signal("taskInList", value)
-			return
-			
-	print("Object not in list")
-			
