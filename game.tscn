@@ -1331,6 +1331,7 @@ bus = &"SFX"
 position = Vector2(-309, -250)
 collision_layer = 4
 script = ExtResource("4_kna2b")
+maxTaskAppearTime = 10
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Employee"]
@@ -1411,6 +1412,7 @@ bus = &"SFX"
 [node name="Employee2" type="Area2D" parent="." groups=["Employees"]]
 position = Vector2(-307, 19)
 script = ExtResource("4_kna2b")
+maxTaskAppearTime = 10
 metadata/_edit_group_ = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Employee2"]
@@ -1485,6 +1487,7 @@ bus = &"SFX"
 [node name="Employee3" type="Area2D" parent="." groups=["Employees"]]
 position = Vector2(-299, 283)
 script = ExtResource("4_kna2b")
+maxTaskAppearTime = 10
 metadata/_edit_group_ = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Employee3"]
@@ -1559,6 +1562,7 @@ bus = &"SFX"
 [node name="Employee4" type="Area2D" parent="." groups=["Employees"]]
 position = Vector2(-1107, 547)
 script = ExtResource("4_kna2b")
+maxTaskAppearTime = 10
 metadata/_edit_group_ = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Employee4"]
@@ -1627,6 +1631,89 @@ metadata/_aseprite_wizard_config_ = {
 metadata/_aseprite_wizard_source_file_hash_ = "a1fd7833e5738218342726bb30c4ecf3"
 
 [node name="VoiceFX" type="AudioStreamPlayer2D" parent="Employee4"]
+volume_db = -6.256
+bus = &"SFX"
+
+[node name="Employee5" type="Area2D" parent="." groups=["Employees"]]
+position = Vector2(-1103, -256)
+collision_layer = 4
+script = ExtResource("4_kna2b")
+maxTaskAppearTime = 10
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Employee5"]
+position = Vector2(-13, 6)
+shape = SubResource("RectangleShape2D_ri31u")
+
+[node name="Sprite2D" type="Sprite2D" parent="Employee5"]
+texture_filter = 1
+scale = Vector2(9, 9)
+texture = ExtResource("6_4mqjr")
+hframes = 2
+vframes = 2
+metadata/_aseprite_wizard_config_ = {
+"i_mode": -1,
+"keep_anim_length": false,
+"layer": "",
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"player": "Employee/AnimationPlayer",
+"slice": "",
+"source": "C:/Users/theim/Desktop/game jam art/NPC2.aseprite"
+}
+metadata/_aseprite_wizard_interface_config_ = {
+"animation_section": false,
+"layer_section": false,
+"output_section": false,
+"slice_section": false
+}
+metadata/_aseprite_wizard_source_file_hash_ = "35e0e665105af79a26085613a4cc063b"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Employee5"]
+libraries = {
+"": SubResource("AnimationLibrary_agksa")
+}
+autoplay = "type"
+
+[node name="notification" type="Node2D" parent="Employee5"]
+visible = false
+position = Vector2(306.286, 357.624)
+scale = Vector2(0.471209, 0.541035)
+
+[node name="Sprite2D" type="Sprite2D" parent="Employee5/notification"]
+texture_filter = 1
+position = Vector2(-556, -765)
+scale = Vector2(11.835, 11.835)
+texture = ExtResource("21_i33yh")
+hframes = 5
+vframes = 4
+metadata/_aseprite_wizard_config_ = {
+"i_mode": -1,
+"keep_anim_length": false,
+"layer": "",
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"player": "notification/AnimationPlayer",
+"slice": "",
+"source": "C:/Users/theim/Desktop/game jam art/notification.aseprite"
+}
+metadata/_aseprite_wizard_source_file_hash_ = "a1fd7833e5738218342726bb30c4ecf3"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Employee5/notification"]
+libraries = {
+"": SubResource("AnimationLibrary_lgsw0")
+}
+autoplay = "left"
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Employee5"]
+position = Vector2(-4.94766, -21.1004)
+shape = SubResource("RectangleShape2D_eqbj3")
+
+[node name="VoiceFX" type="AudioStreamPlayer2D" parent="Employee5"]
 volume_db = -6.256
 bus = &"SFX"
 
@@ -1846,16 +1933,6 @@ min_value = -3.0
 max_value = 0.0
 value = -3.0
 
-[node name="ProgressBar2" type="ProgressBar" parent="Plant/PlantControl"]
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_bottom = 27.0
-grow_horizontal = 2
-min_value = -3.0
-max_value = 0.0
-value = -3.0
-
 [node name="PlantFX" type="AudioStreamPlayer2D" parent="Plant"]
 stream = ExtResource("18_7gi7o")
 bus = &"SFX"
@@ -1963,6 +2040,10 @@ bus = &"SFX"
 [connection signal="lateWarning" from="Employee4" to="Player" method="_on_employee_late_warning"]
 [connection signal="newTask" from="Employee4" to="Player" method="_on_employee_new_task"]
 [connection signal="taskComplete" from="Employee4" to="Player" method="_on_employee_task_complete"]
+[connection signal="body_entered" from="Employee5" to="Employee5" method="_on_body_entered"]
+[connection signal="lateWarning" from="Employee5" to="Player" method="_on_employee_late_warning"]
+[connection signal="newTask" from="Employee5" to="Player" method="_on_employee_new_task"]
+[connection signal="taskComplete" from="Employee5" to="Player" method="_on_employee_task_complete"]
 [connection signal="finished" from="Music" to="." method="_on_music_finished"]
 [connection signal="area_entered" from="Printer" to="Printer" method="_on_area_entered"]
 [connection signal="body_entered" from="Printer" to="Printer" method="_on_body_entered"]
