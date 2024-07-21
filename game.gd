@@ -19,8 +19,7 @@ func _unhandled_input(event):
 		$CanvasLayer/GameUI/PauseMenu.show()
 		get_tree().paused = true
 
-func _on_music_finished():
-	$MusicRepeat.play()
+
 
 
 func _on_player_lose_game(value):

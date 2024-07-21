@@ -35,21 +35,26 @@ func _on_task_in_list(value):
 			1: # Cooler Task
 				get_tree().call_group("Employees", "_on_task_goal_complete", objectTaskID)
 				print("Bring back water")
+				$"../Cooler/CoolerFX".play()
 			2: # Printer Task
 				get_tree().call_group("Employees", "_on_task_remote_complete", objectTaskID)
 				print("Printer Fixed")
+				$PrinterFX.play()
 			3: # Whiteboard Task
 				get_tree().call_group("Employees", "_on_task_remote_complete", objectTaskID)
 				print("Erased Whiteboard")
+				$"../WhiteBoard/WhiteBoardFX".play()
 			4: # Water Plant
 				plant_timer.start()
 				plant_control.show()
 				print("Watering Plant...")
+				$"../Plant/PlantFX".play()
 			5: # Microwave
 				if (microwaveStarted == false && microwaveReady == false):
 					microwave_timer.start()
 					microwaveStarted = true
 					print("Microwave Started")
+					$"../Microwave/MicrowaveFX".play()
 				if (microwaveReady == true):
 					get_tree().call_group("Employees", "_on_task_goal_complete", objectTaskID)
 					microwaveReady = false
@@ -73,6 +78,8 @@ func _on_plant_timer_timeout():
 
 # Microwave Finished Heating Timer
 func _on_microwave_timer_timeout():
+	$"../Microwave/MicrowaveFX".stop()
+	$"../Microwave/MicrowaveFXend".play()
 	microwaveStarted = false
 	microwaveReady = true
 	print("Microwave Finished")
