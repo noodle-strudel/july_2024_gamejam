@@ -20,6 +20,9 @@ var taskCount = 0
 var input: Vector2
 var score = 0
 var warnings = 0
+var activeTaskCount = 0
+var tasksCompleted = 0
+var requestedTasks = 0
 
 # Task Class Setup
 class Task:
@@ -76,7 +79,7 @@ func _process(delta):
 # ---------------------------------------------------------
 func _on_employee_new_task():
 	var value = rng.randi_range(1, totalTaskCount)
-	
+		
 	# Duplicate Task Checking
 	var taskInList = true
 	while taskInList:
@@ -89,7 +92,9 @@ func _on_employee_new_task():
 				taskInList = true
 	
 	emit_signal("linkTask", value)
-	print("Task Number: ", value)
+	print("Request B4: ", requestedTasks)
+	requestedTasks -= 1
+	print("Request AFTER: ", requestedTasks)
 	
 	# Timer
 	var timer : Timer = Timer.new()
@@ -98,7 +103,7 @@ func _on_employee_new_task():
 	timer.autostart = true
 	timer.wait_time = fixTaskTimeLimit
 	timer.timeout.connect(_timer_Timeout)
-	timer.start()
+	
 	
 	# Specific Task Setup
 	var newTask = Task.new()
@@ -115,6 +120,7 @@ func _on_employee_new_task():
 		1:
 			newTask.taskName = "Get and Bring water"
 			newTask.taskScore = 50
+			timer.wait_time = 45
 		2:
 			newTask.taskName = "Fix Printer"
 			newTask.taskScore = 100
@@ -127,12 +133,15 @@ func _on_employee_new_task():
 		5:
 			newTask.taskName = "Microwave Lunch"
 			newTask.taskScore = 100
+			timer.wait_time = 45
+			
 					
 	# Add task to list and finish setup
 	newTask.timerObject = timer
 	newTask.taskID = value
 	tasks.append(newTask)
 	ui.create_task(newTask.taskName, newTask.timerObject.wait_time, newTask.taskID)
+	timer.start()
 	taskCount += 1
 
 # Find task to remove on completion and grant score
@@ -149,7 +158,8 @@ func _on_employee_task_complete(value):
 					pass
 				3:
 					pass
-					
+			
+			tasksCompleted += 1
 			score += i.taskScore
 
 			ui.update_score(str(score))
@@ -219,4 +229,25 @@ func _on_checkTaskInList(value):
 			return
 			
 	print("Object not in list")
-			
+
+# Progressive Task Chaos System
+func taskIncrement():
+	activeTaskCount = requestedTasks + len(tasks)
+	if (tasksCompleted < 6 && activeTaskCount > 2):
+		emit_signal("linkTask", 0)
+		requestedTasks -= 1
+		return
+	elif (tasksCompleted < 10 && activeTaskCount > 4):
+		emit_signal("linkTask", 0)
+		requestedTasks -= 1
+		return
+	elif (tasksCompleted < 14 && activeTaskCount > 7):
+		emit_signal("linkTask", 0)
+		requestedTasks -= 1
+		return
+	elif (tasksCompleted < 20 && activeTaskCount > 10):
+		emit_signal("linkTask", 0)
+		requestedTasks -= 1
+		return
+	
+	requestedTasks += 1
