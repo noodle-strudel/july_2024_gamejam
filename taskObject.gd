@@ -57,6 +57,7 @@ func _on_task_in_list(value):
 					microwave_timer.start()
 					microwaveStarted = true
 					print("Microwave Started")
+					$"../Microwave/MicrowaveFX".play()
 				if (microwaveReady == true):
 					get_tree().call_group("Employees", "_on_task_goal_complete", objectTaskID)
 					microwaveReady = false
@@ -80,6 +81,8 @@ func _on_plant_timer_timeout():
 
 # Microwave Finished Heating Timer
 func _on_microwave_timer_timeout():
+	$"../Microwave/MicrowaveFX".stop()
+	$"../Microwave/MicrowaveFXend".play()
 	microwaveStarted = false
 	microwaveReady = true
 	print("Microwave Finished")

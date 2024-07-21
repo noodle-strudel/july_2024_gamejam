@@ -1,0 +1,22 @@
+[gd_scene load_steps=2 format=3 uid="uid://bccmudg4ki6m1"]
+
+[sub_resource type="GDScript" id="GDScript_54qkw"]
+script/source = "extends AudioStreamPlayer
+
+const game_music = preload(\"res://SFX/game themes/Game.mp3\")
+
+func _play_music(music: AudioStream, volume = -5.0):
+	if stream == music:
+		return
+	
+	
+	stream = music
+	volume_db = volume
+	play()
+	
+func play_music_game():
+	_play_music(game_music)
+"
+
+[node name="MusicGlobal" type="AudioStreamPlayer"]
+script = SubResource("GDScript_54qkw")
