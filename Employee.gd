@@ -9,6 +9,7 @@ var taskActive = false
 var taskRequested = false
 var taskCompleted = false
 var timerStarted = false
+var reset = false
 var rng = RandomNumberGenerator.new()
 
 var timer : Timer = Timer.new()
@@ -41,14 +42,12 @@ func _ready():
 func _process(delta):
 	if (taskRequested == false && timerStarted == false):
 		timer.start(rng.randi_range(minTaskAppearTime, maxTaskAppearTime))
-		print("Wait time for next task: ",timer.wait_time)
 		timerStarted = true
 	if timer.time_left < 10 && taskRequested:
 		$"../Music".pitch_scale = 1.5
 		var pitch_shift = AudioServer.get_bus_effect(AudioServer.get_bus_index("Music"), 0)
-		pitch_shift.pitch_scale = 1/1.5
-		
-		
+		pitch_shift.pitch_scale = 1/1.5	
+	
 # Run if player collides with employee
 func _on_body_entered(body):
 	# See if task is requested from player and start
@@ -56,6 +55,7 @@ func _on_body_entered(body):
 		notif.hide()
 		taskActive = true
 		emit_signal("newTask")
+		
 		#Randomize sounds of employee
 		var song1 = preload("res://SFX/voices/employee1.mp3")
 		var song2 = preload("res://SFX/voices/employee2.mp3")
@@ -74,8 +74,9 @@ func _on_body_entered(body):
 		taskActive = false
 		taskRequested = false
 		task = 0
-		print("Task Completed")
 		taskCompleted = false
+		print("Task Completed")
+		
 		#Reset music speed to normal
 		$"../Music".pitch_scale = 1
 		var pitch_shift = AudioServer.get_bus_effect(AudioServer.get_bus_index("Music"), 0)
@@ -88,18 +89,18 @@ func _on_body_entered(body):
 	elif (!taskRequested):
 		print("No Task Yet")
 
-
 func play_song(song):
 	var audio_player = $VoiceFX
 	audio_player.stream = song
 	audio_player.play()
 
-
 # After starting task get corrected value and set internally
 func _on_player_link_task(value):
+	if (value == 0 && taskRequested == false):
+		reset = true
+		return
 	if (task == 0 && taskActive == true):
 		task = value
-
 
 # Task Failing remove from Employee
 func _on_player_remove_task(value):
@@ -108,6 +109,8 @@ func _on_player_remove_task(value):
 		taskActive = false
 		taskCompleted = false
 		taskRequested = false
+		reset = true
+		notif.hide()
 		
 # Call when goal is complete but need to return to Employee
 func _on_task_goal_complete(value):
@@ -126,9 +129,15 @@ func _on_task_remote_complete(value):
 	
 # Timer run out request new task
 func _timer_Timeout():
-	print("Timer Finished")
 	# Request taks from player and start warning timer
 	if (!taskRequested):
+		%Player.taskIncrement()
+		if (reset):
+			timerStarted = false
+			_on_player_remove_task(task)
+			reset = false
+			return
+	
 		notif.show()
 		taskRequested = true
 		timerStarted = false
