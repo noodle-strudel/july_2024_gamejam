@@ -15,5 +15,11 @@ func _unhandled_input(event):
 		$CanvasLayer/GameUI/PauseMenu.show()
 		get_tree().paused = true
 
+# --- CHECK THIS AFTER MERGE
 func _on_music_finished():
 	$MusicRepeat.play()
+
+func _on_player_lose_game(value):
+	get_tree().paused = true
+	$CanvasLayer/GameUI/LoseScreen.update_score(value)
+	$CanvasLayer/GameUI/LoseScreen.show()

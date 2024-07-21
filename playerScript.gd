@@ -18,6 +18,9 @@ var taskCount = 0
 var input: Vector2
 var score = 0
 var warnings = 0
+var activeTaskCount = 0
+var tasksCompleted = 0
+var requestedTasks = 0
 
 # Task Class Setup
 class Task:
@@ -72,7 +75,7 @@ func _process(delta):
 # Setup Task upon Claim
 func _on_employee_new_task():
 	var value = rng.randi_range(1, totalTaskCount)
-	
+		
 	# Duplicate Task Checking
 	var taskInList = true
 	while taskInList:
@@ -85,7 +88,9 @@ func _on_employee_new_task():
 				taskInList = true
 	
 	emit_signal("linkTask", value)
-	print("Task Number: ", value)
+	print("Request B4: ", requestedTasks)
+	requestedTasks -= 1
+	print("Request AFTER: ", requestedTasks)
 	
 	# Timer
 	var timer : Timer = Timer.new()
@@ -94,7 +99,6 @@ func _on_employee_new_task():
 	timer.autostart = true
 	timer.wait_time = fixTaskTimeLimit
 	timer.timeout.connect(_timer_Timeout)
-	timer.start()
 	
 	# Specific Task Setup
 	var newTask = Task.new()
@@ -106,19 +110,29 @@ func _on_employee_new_task():
 		1:
 			newTask.taskName = "Get and Bring water"
 			newTask.taskScore = 50
+			timer.wait_time = 45
+			$"../Cooler/AnimationPlayer".play("glow")
 		2:
 			newTask.taskName = "Fix Printer"
 			newTask.taskScore = 100
+			$"../Printer/AnimationPlayer".play("glow")
 		3:
 			newTask.taskName = "Erase WhiteBoard"
 		4:
 			newTask.taskName = "Water Plant"
+			newTask.taskScore = 75
+			$"../Cooler/AnimationPlayer".play("glow")
+		5:
+			newTask.taskName = "Microwave Lunch"
+			newTask.taskScore = 100
+			timer.wait_time = 45
 					
 	# Add task to list and finish setup
 	newTask.timerObject = timer
 	newTask.taskID = value
 	tasks.append(newTask)
 	ui.create_task(newTask.taskName, newTask.timerObject.wait_time, newTask.taskID)
+	timer.start()
 	taskCount += 1
 
 
@@ -135,7 +149,8 @@ func _on_employee_task_complete(value):
 					pass
 				3:
 					pass
-					
+			
+			tasksCompleted += 1
 			score += i.taskScore
 			ui.update_score(str(score))
 			
@@ -147,26 +162,88 @@ func _on_employee_task_complete(value):
 
 # Timer End remove from list and give warning
 func _timer_Timeout():
+	var task_id = null
 	for i in tasks:
 		if (i.timerObject.time_left <= 0):
 			var index = tasks.find(i)
-			ui.remove_task(tasks[index].taskID)
+			task_id = tasks[index].taskID
+			
+			ui.remove_task(task_id)
 			tasks.remove_at(index)
 			taskCount -= 1
 			print("Timeout time left: ", i.timerObject.time_left, " ID ", i.taskID)
 			emit_signal("removeTask", i.taskID)
 	
-	ui.add_warning(warnings)
+	var task_name = ui.get_task_name(task_id)
+	ui.add_warning(warnings, task_name)
 	warnings += 1
 	print("Warnings: ", warnings)
 
 # If player doesnt claim task in time
 func _on_employee_late_warning(value):
+	var task_id = null
 	for i in tasks:
 		if (i.taskID == value):
 			var index = tasks.find(i)
-			ui.remove_task(tasks[index].taskID)
+			task_id = tasks[index].taskID
+			
+			ui.remove_task(task_id)
 			tasks.remove_at(index)
 			taskCount -= 1
+	var task_name = ui.get_task_name(task_id)
+	ui.add_warning(warnings, task_name)
 	warnings += 1
 	print("Warnings: ", warnings)
+	boss_play(warnings)
+
+func boss_play(warnings):
+	var song1 = preload("res://SFX/voices/boss1.mp3")
+	var song2 = preload("res://SFX/voices/boss2.mp3")
+	var song3 = preload("res://SFX/voices/boss3.mp3")
+	var song4 = preload("res://SFX/voices/boss4.mp3")
+	var audio_player = $"../Boss"
+	match warnings:
+		1:
+			audio_player.stream = song2
+			audio_player.play()
+		2:
+			audio_player.stream = song4
+			audio_player.play()
+		3:
+			audio_player.stream = song1
+			audio_player.play()
+
+# Check if taskObject's required task is active
+func _on_checkTaskInList(value):
+	for i in tasks:
+		if (i.taskID == value):
+			emit_signal("taskInList", value)
+			return
+			
+	print("Object not in list")
+
+# Progressive Task Chaos System
+func taskIncrement():
+	activeTaskCount = requestedTasks + len(tasks)
+	if (len(tasks) >= totalTaskCount):
+		emit_signal("linkTask", 0)
+		requestedTasks -= 1
+		return
+	if (tasksCompleted < 6 && activeTaskCount >= 2):
+		emit_signal("linkTask", 0)
+		requestedTasks -= 1
+		return
+	elif (tasksCompleted < 10 && activeTaskCount >= 4):
+		emit_signal("linkTask", 0)
+		requestedTasks -= 1
+		return
+	elif (tasksCompleted < 14 && activeTaskCount >= 7):
+		emit_signal("linkTask", 0)
+		requestedTasks -= 1
+		return
+	elif (tasksCompleted < 20 && activeTaskCount >= 10):
+		emit_signal("linkTask", 0)
+		requestedTasks -= 1
+		return
+	
+	requestedTasks += 1
