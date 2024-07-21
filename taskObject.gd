@@ -35,16 +35,23 @@ func _on_task_in_list(value):
 			1: # Cooler Task
 				get_tree().call_group("Employees", "_on_task_goal_complete", objectTaskID)
 				print("Bring back water")
+				$"../Cooler/CoolerFX".play()
+				$"../Cooler/AnimationPlayer".play("idle")
 			2: # Printer Task
 				get_tree().call_group("Employees", "_on_task_remote_complete", objectTaskID)
 				print("Printer Fixed")
+				$PrinterFX.play()
+				$AnimationPlayer.play("default")
 			3: # Whiteboard Task
 				get_tree().call_group("Employees", "_on_task_remote_complete", objectTaskID)
 				print("Erased Whiteboard")
+				$"../WhiteBoard/WhiteBoardFX".play()
+				$"../WhiteBoard/AnimationPlayer".play("idle")
 			4: # Water Plant
 				plant_timer.start()
 				plant_control.show()
 				print("Watering Plant...")
+				$"../Plant/PlantFX".play()
 			5: # Microwave
 				if (microwaveStarted == false && microwaveReady == false):
 					microwave_timer.start()

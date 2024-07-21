@@ -1,4 +1,4 @@
-[gd_scene load_steps=78 format=3 uid="uid://cwwig1f1cr45b"]
+[gd_scene load_steps=80 format=3 uid="uid://cwwig1f1cr45b"]
 
 [ext_resource type="Script" path="res://game.gd" id="1_iju5o"]
 [ext_resource type="Script" path="res://playerScript.gd" id="1_nuuqp"]
@@ -874,7 +874,7 @@ size = Vector2(175, 233)
 size = Vector2(280, 201)
 
 [sub_resource type="Animation" id="Animation_d6sjp"]
-length = 2.025
+length = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -894,10 +894,10 @@ tracks/1/path = NodePath("Sprite2D2:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = false
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.175, 0.25, 0.325, 0.4, 0.475, 0.625, 0.825, 1.025, 1.225, 1.625),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.175, 0.25, 0.325, 0.4, 0.475, 0.625, 0.825, 1.025, 1.225, 1.625),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 7, 9, 10]
+"values": [0, 2, 3, 4, 5, 6, 7, 8, 7, 9, 10]
 }
 
 [sub_resource type="Animation" id="Animation_dfjvu"]
@@ -991,9 +991,25 @@ tracks/1/keys = {
 "values": [true]
 }
 
+[sub_resource type="Animation" id="Animation_5nh1i"]
+resource_name = "idle"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_qv8s1"]
 _data = {
-"glow": SubResource("Animation_iqu8y")
+"glow": SubResource("Animation_iqu8y"),
+"idle": SubResource("Animation_5nh1i")
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gstp0"]
@@ -1031,12 +1047,28 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_acsf0"]
 resource_name = "idle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D2:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_bc88c"]
 _data = {
 "erase": SubResource("Animation_rsvfj"),
 "idle": SubResource("Animation_acsf0")
 }
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_041ff"]
+size = Vector2(162, 264)
 
 [sub_resource type="Animation" id="Animation_a7wqe"]
 length = 0.1
@@ -1232,6 +1264,7 @@ layer_2/tile_data = PackedInt32Array(327685, 262147, 6, 327686, 327683, 6, 26214
 unique_name_in_owner = true
 collision_mask = 15
 script = ExtResource("1_nuuqp")
+speed = 700.0
 totalTaskCount = 5
 metadata/_edit_group_ = true
 
@@ -1337,13 +1370,12 @@ autoplay = "type"
 
 [node name="notification" type="Node2D" parent="Employee"]
 visible = false
-position = Vector2(306.286, 357.624)
+position = Vector2(74, -91)
 scale = Vector2(0.471209, 0.541035)
 
 [node name="Sprite2D" type="Sprite2D" parent="Employee/notification"]
 texture_filter = 1
-position = Vector2(-556, -765)
-scale = Vector2(11.835, 11.835)
+scale = Vector2(11, 11)
 texture = ExtResource("21_i33yh")
 hframes = 5
 vframes = 4
@@ -1427,7 +1459,7 @@ autoplay = "left"
 
 [node name="Sprite2D" type="Sprite2D" parent="Employee2/notification"]
 texture_filter = 1
-scale = Vector2(11.835, 11.835)
+scale = Vector2(11, 11)
 texture = ExtResource("21_i33yh")
 hframes = 5
 vframes = 4
@@ -1633,7 +1665,6 @@ scale = Vector2(9, 9)
 texture = ExtResource("9_0sob1")
 hframes = 5
 vframes = 4
-frame = 5
 metadata/_aseprite_wizard_config_ = {
 "i_mode": -1,
 "keep_anim_length": false,
@@ -1719,6 +1750,8 @@ vframes = 2
 wait_time = 10.0
 one_shot = true
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Microwave"]
+
 [node name="WhiteBoard" type="Area2D" parent="."]
 position = Vector2(0, -1064)
 collision_layer = 2
@@ -1732,7 +1765,7 @@ scale = Vector2(9, 9)
 texture = ExtResource("18_fe0qd")
 hframes = 4
 vframes = 3
-frame = 2
+frame = 1
 metadata/_aseprite_wizard_config_ = {
 "i_mode": -1,
 "keep_anim_length": false,
@@ -1768,7 +1801,8 @@ objectTaskID = 4
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Plant"]
-shape = SubResource("RectangleShape2D_eqbj3")
+position = Vector2(-16, 10)
+shape = SubResource("RectangleShape2D_041ff")
 
 [node name="Sprite2D2" type="Sprite2D" parent="Plant"]
 texture_filter = 1
@@ -1840,6 +1874,7 @@ scale = Vector2(9, 9)
 texture = ExtResource("22_00pyh")
 hframes = 4
 vframes = 4
+frame = 12
 metadata/_aseprite_wizard_config_ = {
 "i_mode": -1,
 "keep_anim_length": false,
