@@ -1,8 +1,6 @@
 extends CharacterBody2D
 signal linkTask(value)
 signal removeTask(value)
-signal loseGame(value)
-signal taskInList(value)
 
 # Var Init
 @onready var ui := $"../CanvasLayer/GameUI"
@@ -31,6 +29,7 @@ class Task:
 	var taskID : int
 	var taskGoal : int
 	var taskScore : int
+
 
 # Movement Input
 func get_input():
@@ -62,7 +61,6 @@ func updateAnimation():
 		animations.play("idle")
 # Apply Movement
 func _process(delta):
-	# Movement Calculation And Animation trigger
 	var playerInput = get_input()
 	if playerInput == Vector2.ZERO:
 		velocity = Vector2.ZERO
@@ -75,8 +73,6 @@ func _process(delta):
 	updateAnimation()
 
 # Setup Task upon Claim
-# GO TO THIS FUNCTION WHEN ADDING TASK INFORMATION
-# ---------------------------------------------------------
 func _on_employee_new_task():
 	var value = rng.randi_range(1, totalTaskCount)
 		
@@ -107,14 +103,9 @@ func _on_employee_new_task():
 	# Specific Task Setup
 	var newTask = Task.new()
 
-	# -----------------------------------------------------------------------
 	# If your making a new task put all the information in THIS match case.
-	# If any task specific effects / value changes such as timer length change
-	# In specific match case
-	
 	# If your task has any specific effects on completion put them in the
 	# Match case in the "_on_employee_task_complete" function
-	# -----------------------------------------------------------------------
 	match value:
 		1:
 			newTask.taskName = "Get and Bring water"
@@ -127,7 +118,6 @@ func _on_employee_new_task():
 			$"../Printer/AnimationPlayer".play("glow")
 		3:
 			newTask.taskName = "Erase WhiteBoard"
-			newTask.taskScore = 50
 		4:
 			newTask.taskName = "Water Plant"
 			newTask.taskScore = 75
@@ -136,7 +126,6 @@ func _on_employee_new_task():
 			newTask.taskName = "Microwave Lunch"
 			newTask.taskScore = 100
 			timer.wait_time = 45
-			
 					
 	# Add task to list and finish setup
 	newTask.timerObject = timer
@@ -146,8 +135,8 @@ func _on_employee_new_task():
 	timer.start()
 	taskCount += 1
 
+
 # Find task to remove on completion and grant score
-# --- Any Task Specific Completion effects go here ---
 func _on_employee_task_complete(value):
 	for i in tasks:
 		if (i.taskID == value):
@@ -163,9 +152,8 @@ func _on_employee_task_complete(value):
 			
 			tasksCompleted += 1
 			score += i.taskScore
-
 			ui.update_score(str(score))
-			$"../TaskCompleted".play()
+			
 			var index = tasks.find(i)
 			ui.remove_task(tasks[index].taskID)
 			tasks[index].timerObject.queue_free()
@@ -189,10 +177,7 @@ func _timer_Timeout():
 	var task_name = ui.get_task_name(task_id)
 	ui.add_warning(warnings, task_name)
 	warnings += 1
-	if warnings >= 3:
-		emit_signal("loseGame", score)
 	print("Warnings: ", warnings)
-	boss_play(warnings)
 
 # If player doesnt claim task in time
 func _on_employee_late_warning(value):
@@ -208,8 +193,6 @@ func _on_employee_late_warning(value):
 	var task_name = ui.get_task_name(task_id)
 	ui.add_warning(warnings, task_name)
 	warnings += 1
-	if warnings >= 3:
-		emit_signal("loseGame", score)
 	print("Warnings: ", warnings)
 	boss_play(warnings)
 

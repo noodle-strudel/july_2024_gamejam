@@ -2,9 +2,10 @@ extends Control
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	var pitch_shift = AudioServer.get_bus_effect(AudioServer.get_bus_index("Music"), 0)
-	pitch_shift.pitch_scale = 1
 	get_tree().paused = false
+	$Settings/PanelContainer/MarginContainer/VBoxContainer/Volume.value = 0.75
+	$Settings/PanelContainer/MarginContainer/VBoxContainer/SFX.value = 0.5
+	$Settings/PanelContainer/MarginContainer/VBoxContainer/Music.value = 0.35
 	$Settings/PanelContainer/MarginContainer/VBoxContainer/Volume.value = GameSettings.master_vol
 	$Settings/PanelContainer/MarginContainer/VBoxContainer/SFX.value = GameSettings.sfx_vol
 	$Settings/PanelContainer/MarginContainer/VBoxContainer/Music.value = GameSettings.music_vol
@@ -74,7 +75,6 @@ func _on_start_button_pressed():
 
 func _on_credits_button_pressed():
 	$ClickSFX.play()
-	$Credits.show()
 
 
 func _on_sfx_value_changed(value):
@@ -87,8 +87,3 @@ func _on_music_value_changed(value):
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Music"), 
 		linear_to_db(value))
 	GameSettings.music_vol = value
-
-
-func _on_credits_back_button_pressed():
-	$ClickSFX.play()
-	$Credits.hide()
