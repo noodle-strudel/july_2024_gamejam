@@ -1,12 +1,12 @@
-[gd_scene load_steps=100 format=3 uid="uid://cwwig1f1cr45b"]
+[gd_scene load_steps=122 format=3 uid="uid://cwwig1f1cr45b"]
 
 [ext_resource type="Script" path="res://game.gd" id="1_iju5o"]
 [ext_resource type="Script" path="res://playerScript.gd" id="1_nuuqp"]
 [ext_resource type="Texture2D" uid="uid://cc33h352nhqt2" path="res://player animations.png" id="3_eui5l"]
-[ext_resource type="PackedScene" uid="uid://01jtlan6ab7s" path="res://pause_menu.tscn" id="3_t8ehk"]
+[ext_resource type="PackedScene" path="res://pause_menu.tscn" id="3_t8ehk"]
 [ext_resource type="AudioStream" uid="uid://dcnrei4dh0w72" path="res://SFX/stepsConcept.mp3" id="4_638m3"]
 [ext_resource type="Script" path="res://Employee.gd" id="4_kna2b"]
-[ext_resource type="PackedScene" uid="uid://dyojf0usew7tb" path="res://lose_screen.tscn" id="4_ub456"]
+[ext_resource type="PackedScene" path="res://lose_screen.tscn" id="4_ub456"]
 [ext_resource type="PackedScene" uid="uid://bij64nm8l8lic" path="res://game_ui.tscn" id="5_8u384"]
 [ext_resource type="Texture2D" uid="uid://celvu7mxq85y0" path="res://NPC1.png" id="5_uw183"]
 [ext_resource type="Texture2D" uid="uid://lndy083q4yje" path="res://NPC2.png" id="6_4mqjr"]
@@ -16,6 +16,7 @@
 [ext_resource type="AudioStream" uid="uid://fof7feqq11b6" path="res://SFX/Task completion.mp3" id="9_tw1qk"]
 [ext_resource type="AudioStream" uid="uid://b16telo6d6qjf" path="res://SFX/Water cooler.mp3" id="10_c8nvd"]
 [ext_resource type="Texture2D" uid="uid://vyypdnaoiexn" path="res://Assets/tilemap.png" id="10_guypu"]
+[ext_resource type="Texture2D" uid="uid://djlsfyqaykq0a" path="res://notification.png" id="11_v47ny"]
 [ext_resource type="Texture2D" uid="uid://bc505mww2bfht" path="res://NPC3.png" id="12_75mg2"]
 [ext_resource type="AudioStream" uid="uid://tmj0hdx3d4i1" path="res://SFX/background.mp3" id="12_vybnv"]
 [ext_resource type="Texture2D" uid="uid://5o2qpb12dkso" path="res://NPC4.png" id="13_dwni0"]
@@ -30,7 +31,6 @@
 [ext_resource type="Texture2D" uid="uid://bktbjk181l8su" path="res://NPC9.png" id="19_5e6qu"]
 [ext_resource type="AudioStream" uid="uid://dwfiffamsmii" path="res://SFX/microwaveStart.mp3" id="19_274ky"]
 [ext_resource type="AudioStream" uid="uid://bryptqdgaywgn" path="res://SFX/microwaveEnd.wav" id="20_81o6e"]
-[ext_resource type="Texture2D" uid="uid://c363qf5emkc4l" path="res://Assets/notification.png" id="21_i33yh"]
 [ext_resource type="Texture2D" uid="uid://cl4ukbnvv5f37" path="res://microwave.png" id="22_1d0hj"]
 [ext_resource type="Texture2D" uid="uid://b48wremgmqynm" path="res://fridge.png" id="24_tj5vo"]
 [ext_resource type="Texture2D" uid="uid://doly8te6766" path="res://water cooler.png" id="26_4a18b"]
@@ -754,6 +754,9 @@ _data = {
 "type": SubResource("Animation_3ey4i")
 }
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ce6sy"]
+load_path = "res://.godot/imported/notification.png-18567602bde4f9def9230e275e582265.ctex"
+
 [sub_resource type="Animation" id="Animation_c7gs5"]
 length = 0.6
 loop_mode = 1
@@ -779,7 +782,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [11, 12, 13, 14, 15, 11]
+"values": [54, 55, 56, 57, 58, 54]
 }
 
 [sub_resource type="Animation" id="Animation_vu7vq"]
@@ -807,7 +810,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [0, 1, 2, 3, 4, 5]
+"values": [0, 44, 45, 46, 47, 48]
 }
 
 [sub_resource type="Animation" id="Animation_pii1y"]
@@ -835,7 +838,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [6, 7, 8, 9, 10, 6]
+"values": [49, 50, 51, 52, 53, 49]
 }
 
 [sub_resource type="Animation" id="Animation_qqpsd"]
@@ -863,15 +866,421 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [16, 17, 18, 19, 17, 16]
+"values": [59, 60, 61, 62, 60, 59]
+}
+
+[sub_resource type="Animation" id="Animation_ifgtq"]
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = false
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [2, 3, 4, 4, 3, 2]
+}
+
+[sub_resource type="Animation" id="Animation_hop0b"]
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = false
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [5, 6, 7, 7, 6, 5]
+}
+
+[sub_resource type="Animation" id="Animation_jf8p4"]
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = false
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [8, 9, 10, 10, 9, 8]
+}
+
+[sub_resource type="Animation" id="Animation_1gipb"]
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = false
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [11, 12, 13, 13, 12, 11]
+}
+
+[sub_resource type="Animation" id="Animation_qbh1l"]
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = false
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [14, 15, 16, 16, 15, 14]
+}
+
+[sub_resource type="Animation" id="Animation_jgxtc"]
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = false
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [17, 18, 19, 19, 18, 17]
+}
+
+[sub_resource type="Animation" id="Animation_f2t2m"]
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = false
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [20, 21, 22, 22, 21, 20]
+}
+
+[sub_resource type="Animation" id="Animation_ox6xn"]
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = false
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [23, 24, 25, 25, 24, 23]
+}
+
+[sub_resource type="Animation" id="Animation_fhap4"]
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = false
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [26, 27, 28, 28, 27, 26]
+}
+
+[sub_resource type="Animation" id="Animation_4ttjs"]
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = false
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [29, 30, 31, 31, 30, 29]
+}
+
+[sub_resource type="Animation" id="Animation_bu5rr"]
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = false
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [32, 33, 34, 34, 33, 32]
+}
+
+[sub_resource type="Animation" id="Animation_3ix2l"]
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = false
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [35, 36, 37, 37, 36, 35]
+}
+
+[sub_resource type="Animation" id="Animation_w3ebi"]
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = false
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [38, 39, 40, 40, 39, 38]
+}
+
+[sub_resource type="Animation" id="Animation_r15d4"]
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = false
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [41, 42, 43, 43, 42, 41]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_lgsw0"]
 _data = {
 "bottom": SubResource("Animation_c7gs5"),
+"fridgeLeft": SubResource("Animation_ifgtq"),
+"fridgeRight": SubResource("Animation_hop0b"),
 "left": SubResource("Animation_vu7vq"),
+"microwaveLeft": SubResource("Animation_f2t2m"),
+"microwaveRight": SubResource("Animation_ox6xn"),
+"plantLeft": SubResource("Animation_jf8p4"),
+"plantRight": SubResource("Animation_1gipb"),
+"printerLeft": SubResource("Animation_bu5rr"),
+"printerRight": SubResource("Animation_3ix2l"),
 "right": SubResource("Animation_pii1y"),
-"top": SubResource("Animation_qqpsd")
+"top": SubResource("Animation_qqpsd"),
+"vendingLeft": SubResource("Animation_qbh1l"),
+"vendingRight": SubResource("Animation_jgxtc"),
+"waterLeft": SubResource("Animation_w3ebi"),
+"waterRight": SubResource("Animation_r15d4"),
+"whiteboardLeft": SubResource("Animation_fhap4"),
+"whiteboardRight": SubResource("Animation_4ttjs")
 }
 
 [sub_resource type="Animation" id="Animation_l2pab"]
@@ -1082,6 +1491,27 @@ _data = {
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_otmab"]
 size = Vector2(175, 233)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_nftt4"]
+load_path = "res://.godot/imported/notification.png-18567602bde4f9def9230e275e582265.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_gkdgb"]
+load_path = "res://.godot/imported/notification.png-18567602bde4f9def9230e275e582265.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_gmv0e"]
+load_path = "res://.godot/imported/notification.png-18567602bde4f9def9230e275e582265.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_wl5nd"]
+load_path = "res://.godot/imported/notification.png-18567602bde4f9def9230e275e582265.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_igsoj"]
+load_path = "res://.godot/imported/notification.png-18567602bde4f9def9230e275e582265.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_3qho4"]
+load_path = "res://.godot/imported/notification.png-18567602bde4f9def9230e275e582265.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_drmy0"]
+load_path = "res://.godot/imported/notification.png-18567602bde4f9def9230e275e582265.ctex"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_66hej"]
 size = Vector2(280, 201)
@@ -1884,9 +2314,10 @@ scale = Vector2(0.471209, 0.541035)
 texture_filter = 1
 position = Vector2(-556, -765)
 scale = Vector2(11.835, 11.835)
-texture = ExtResource("21_i33yh")
-hframes = 5
-vframes = 4
+texture = SubResource("CompressedTexture2D_ce6sy")
+hframes = 8
+vframes = 8
+frame = 54
 metadata/_aseprite_wizard_config_ = {
 "i_mode": -1,
 "keep_anim_length": false,
@@ -1895,11 +2326,11 @@ metadata/_aseprite_wizard_config_ = {
 "o_folder": "",
 "o_name": "",
 "only_visible": false,
-"player": "notification/AnimationPlayer",
+"player": "Employee/notification/AnimationPlayer",
 "slice": "",
 "source": "C:/Users/theim/Desktop/game jam art/notification.aseprite"
 }
-metadata/_aseprite_wizard_source_file_hash_ = "a1fd7833e5738218342726bb30c4ecf3"
+metadata/_aseprite_wizard_source_file_hash_ = "13aca6f6995ce2d023a0dd5af64bd531"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Employee/notification"]
 libraries = {
@@ -1964,9 +2395,10 @@ autoplay = "left"
 [node name="Sprite2D" type="Sprite2D" parent="Employee2/notification"]
 texture_filter = 1
 scale = Vector2(11.835, 11.835)
-texture = ExtResource("21_i33yh")
-hframes = 5
-vframes = 4
+texture = SubResource("CompressedTexture2D_nftt4")
+hframes = 8
+vframes = 8
+frame = 54
 metadata/_aseprite_wizard_config_ = {
 "i_mode": -1,
 "keep_anim_length": false,
@@ -1975,11 +2407,11 @@ metadata/_aseprite_wizard_config_ = {
 "o_folder": "",
 "o_name": "",
 "only_visible": false,
-"player": "notification/AnimationPlayer",
+"player": "Employee2/notification/AnimationPlayer",
 "slice": "",
 "source": "C:/Users/theim/Desktop/game jam art/notification.aseprite"
 }
-metadata/_aseprite_wizard_source_file_hash_ = "a1fd7833e5738218342726bb30c4ecf3"
+metadata/_aseprite_wizard_source_file_hash_ = "13aca6f6995ce2d023a0dd5af64bd531"
 
 [node name="VoiceFX" type="AudioStreamPlayer2D" parent="Employee2"]
 volume_db = -6.256
@@ -2039,9 +2471,10 @@ autoplay = "left"
 [node name="Sprite2D" type="Sprite2D" parent="Employee3/notification"]
 texture_filter = 1
 scale = Vector2(11.835, 11.835)
-texture = ExtResource("21_i33yh")
-hframes = 5
-vframes = 4
+texture = SubResource("CompressedTexture2D_gkdgb")
+hframes = 8
+vframes = 8
+frame = 54
 metadata/_aseprite_wizard_config_ = {
 "i_mode": -1,
 "keep_anim_length": false,
@@ -2050,11 +2483,11 @@ metadata/_aseprite_wizard_config_ = {
 "o_folder": "",
 "o_name": "",
 "only_visible": false,
-"player": "notification/AnimationPlayer",
+"player": "Employee3/notification/AnimationPlayer",
 "slice": "",
 "source": "C:/Users/theim/Desktop/game jam art/notification.aseprite"
 }
-metadata/_aseprite_wizard_source_file_hash_ = "a1fd7833e5738218342726bb30c4ecf3"
+metadata/_aseprite_wizard_source_file_hash_ = "13aca6f6995ce2d023a0dd5af64bd531"
 
 [node name="VoiceFX" type="AudioStreamPlayer2D" parent="Employee3"]
 volume_db = -6.256
@@ -2112,9 +2545,10 @@ autoplay = "left"
 [node name="Sprite2D" type="Sprite2D" parent="Employee4/notification"]
 texture_filter = 1
 scale = Vector2(11.835, 11.835)
-texture = ExtResource("21_i33yh")
-hframes = 5
-vframes = 4
+texture = SubResource("CompressedTexture2D_gmv0e")
+hframes = 8
+vframes = 8
+frame = 54
 metadata/_aseprite_wizard_config_ = {
 "i_mode": -1,
 "keep_anim_length": false,
@@ -2123,11 +2557,11 @@ metadata/_aseprite_wizard_config_ = {
 "o_folder": "",
 "o_name": "",
 "only_visible": false,
-"player": "notification/AnimationPlayer",
+"player": "Employee4/notification/AnimationPlayer",
 "slice": "",
 "source": "C:/Users/theim/Desktop/game jam art/notification.aseprite"
 }
-metadata/_aseprite_wizard_source_file_hash_ = "a1fd7833e5738218342726bb30c4ecf3"
+metadata/_aseprite_wizard_source_file_hash_ = "13aca6f6995ce2d023a0dd5af64bd531"
 
 [node name="VoiceFX" type="AudioStreamPlayer2D" parent="Employee4"]
 volume_db = -6.256
@@ -2187,9 +2621,9 @@ autoplay = "left"
 [node name="Sprite2D" type="Sprite2D" parent="Employee5/notification"]
 texture_filter = 1
 scale = Vector2(11.835, 11.835)
-texture = ExtResource("21_i33yh")
-hframes = 5
-vframes = 4
+texture = SubResource("CompressedTexture2D_wl5nd")
+hframes = 8
+vframes = 8
 metadata/_aseprite_wizard_config_ = {
 "i_mode": -1,
 "keep_anim_length": false,
@@ -2198,38 +2632,11 @@ metadata/_aseprite_wizard_config_ = {
 "o_folder": "",
 "o_name": "",
 "only_visible": false,
-"player": "notification/AnimationPlayer",
+"player": "Employee5/notification/AnimationPlayer",
 "slice": "",
 "source": "C:/Users/theim/Desktop/game jam art/notification.aseprite"
 }
-metadata/_aseprite_wizard_source_file_hash_ = "a1fd7833e5738218342726bb30c4ecf3"
-
-[node name="Sprite2D2" type="Sprite2D" parent="Employee5/notification"]
-texture_filter = 1
-position = Vector2(-556, -765)
-scale = Vector2(11.835, 11.835)
-texture = ExtResource("21_i33yh")
-hframes = 5
-vframes = 4
-metadata/_aseprite_wizard_config_ = {
-"i_mode": -1,
-"keep_anim_length": false,
-"layer": "",
-"o_ex_p": "",
-"o_folder": "",
-"o_name": "",
-"only_visible": false,
-"player": "notification/AnimationPlayer",
-"slice": "",
-"source": "C:/Users/theim/Desktop/game jam art/notification.aseprite"
-}
-metadata/_aseprite_wizard_source_file_hash_ = "a1fd7833e5738218342726bb30c4ecf3"
-
-[node name="AnimationPlayer2" type="AnimationPlayer" parent="Employee5/notification"]
-libraries = {
-"": SubResource("AnimationLibrary_lgsw0")
-}
-autoplay = "left"
+metadata/_aseprite_wizard_source_file_hash_ = "13aca6f6995ce2d023a0dd5af64bd531"
 
 [node name="VoiceFX" type="AudioStreamPlayer2D" parent="Employee5"]
 volume_db = -6.256
@@ -2289,9 +2696,10 @@ autoplay = "left"
 [node name="Sprite2D" type="Sprite2D" parent="Employee6/notification"]
 texture_filter = 1
 scale = Vector2(11.835, 11.835)
-texture = ExtResource("21_i33yh")
-hframes = 5
-vframes = 4
+texture = SubResource("CompressedTexture2D_igsoj")
+hframes = 8
+vframes = 8
+frame = 54
 metadata/_aseprite_wizard_config_ = {
 "i_mode": -1,
 "keep_anim_length": false,
@@ -2300,11 +2708,11 @@ metadata/_aseprite_wizard_config_ = {
 "o_folder": "",
 "o_name": "",
 "only_visible": false,
-"player": "notification/AnimationPlayer",
+"player": "Employee6/notification/AnimationPlayer",
 "slice": "",
 "source": "C:/Users/theim/Desktop/game jam art/notification.aseprite"
 }
-metadata/_aseprite_wizard_source_file_hash_ = "a1fd7833e5738218342726bb30c4ecf3"
+metadata/_aseprite_wizard_source_file_hash_ = "13aca6f6995ce2d023a0dd5af64bd531"
 
 [node name="VoiceFX" type="AudioStreamPlayer2D" parent="Employee6"]
 volume_db = -6.256
@@ -2364,9 +2772,9 @@ autoplay = "left"
 [node name="Sprite2D" type="Sprite2D" parent="Employee7/notification"]
 texture_filter = 1
 scale = Vector2(11, 11)
-texture = ExtResource("21_i33yh")
-hframes = 5
-vframes = 4
+texture = SubResource("CompressedTexture2D_3qho4")
+hframes = 8
+vframes = 8
 metadata/_aseprite_wizard_config_ = {
 "i_mode": -1,
 "keep_anim_length": false,
@@ -2375,11 +2783,11 @@ metadata/_aseprite_wizard_config_ = {
 "o_folder": "",
 "o_name": "",
 "only_visible": false,
-"player": "notification/AnimationPlayer",
+"player": "Employee7/notification/AnimationPlayer",
 "slice": "",
 "source": "C:/Users/theim/Desktop/game jam art/notification.aseprite"
 }
-metadata/_aseprite_wizard_source_file_hash_ = "a1fd7833e5738218342726bb30c4ecf3"
+metadata/_aseprite_wizard_source_file_hash_ = "13aca6f6995ce2d023a0dd5af64bd531"
 
 [node name="VoiceFX" type="AudioStreamPlayer2D" parent="Employee7"]
 volume_db = -6.256
@@ -2439,9 +2847,9 @@ autoplay = "left"
 [node name="Sprite2D" type="Sprite2D" parent="Employee8/notification"]
 texture_filter = 1
 scale = Vector2(11.835, 11.835)
-texture = ExtResource("21_i33yh")
-hframes = 5
-vframes = 4
+texture = SubResource("CompressedTexture2D_drmy0")
+hframes = 8
+vframes = 8
 metadata/_aseprite_wizard_config_ = {
 "i_mode": -1,
 "keep_anim_length": false,
@@ -2450,11 +2858,11 @@ metadata/_aseprite_wizard_config_ = {
 "o_folder": "",
 "o_name": "",
 "only_visible": false,
-"player": "notification/AnimationPlayer",
+"player": "Employee8/notification/AnimationPlayer",
 "slice": "",
 "source": "C:/Users/theim/Desktop/game jam art/notification.aseprite"
 }
-metadata/_aseprite_wizard_source_file_hash_ = "a1fd7833e5738218342726bb30c4ecf3"
+metadata/_aseprite_wizard_source_file_hash_ = "13aca6f6995ce2d023a0dd5af64bd531"
 
 [node name="VoiceFX" type="AudioStreamPlayer2D" parent="Employee8"]
 volume_db = -6.256
@@ -2514,9 +2922,10 @@ autoplay = "left"
 [node name="Sprite2D" type="Sprite2D" parent="Employee9/notification"]
 texture_filter = 1
 scale = Vector2(11.835, 11.835)
-texture = ExtResource("21_i33yh")
-hframes = 5
-vframes = 4
+texture = ExtResource("11_v47ny")
+hframes = 8
+vframes = 8
+frame = 54
 metadata/_aseprite_wizard_config_ = {
 "i_mode": -1,
 "keep_anim_length": false,
@@ -2525,11 +2934,11 @@ metadata/_aseprite_wizard_config_ = {
 "o_folder": "",
 "o_name": "",
 "only_visible": false,
-"player": "notification/AnimationPlayer",
+"player": "Employee9/notification/AnimationPlayer",
 "slice": "",
 "source": "C:/Users/theim/Desktop/game jam art/notification.aseprite"
 }
-metadata/_aseprite_wizard_source_file_hash_ = "a1fd7833e5738218342726bb30c4ecf3"
+metadata/_aseprite_wizard_source_file_hash_ = "13aca6f6995ce2d023a0dd5af64bd531"
 
 [node name="VoiceFX" type="AudioStreamPlayer2D" parent="Employee9"]
 volume_db = -6.256
