@@ -9,6 +9,7 @@ signal paperGrabbed(value)
 @onready var microwave_timer = $"../Microwave/MicrowaveTimer"
 @export var objectTaskID = 0
 @onready var animations = $AnimationPlayer
+@onready var ui = $"../CanvasLayer/GameUI"
 
 var collidedBody
 var microwaveStarted = false
@@ -43,11 +44,14 @@ func _on_task_in_list(value):
 		match objectTaskID:
 			1: # Cooler Task
 				get_tree().call_group("Employees", "_on_task_goal_complete", objectTaskID)
-				print("Bring back water")
+        ui.change_task_name(value, "Bring Back Water")
 				# Play Sound for all Coolers
 				self.get_child(0).play()
 				# Play Animation for all Coolers
 				self.get_child(3).play("idle")
+				
+				#$"../Cooler/CoolerFX".play()
+				#$"../Cooler/AnimationPlayer".play("idle")
 			2: # Printer Task
 				get_tree().call_group("Employees", "_on_task_remote_complete", objectTaskID)
 				print("Printer Fixed")
@@ -67,13 +71,14 @@ func _on_task_in_list(value):
 				if (microwaveStarted == false && microwaveReady == false):
 					microwave_timer.start()
 					microwaveStarted = true
-					print("Microwave Started")
+					ui.change_task_name(value, "Wait for Microwave")
 					$"../Microwave/MicrowaveFX".play()
 					$"../Microwave/AnimationPlayer".play("microwave")
 				if (microwaveReady == true):
 					get_tree().call_group("Employees", "_on_task_goal_complete", objectTaskID)
-					$"../Microwave/AnimationPlayer".play("idle")
+          ui.change_task_name(value, "Bring Back Lunch")
 					microwaveReady = false
+					$"../Microwave/AnimationPlayer".play("idle")
 					
 			6: # Delivery
 				if (deliveryTaskStep == 0 && self.name == "Files" && collidedBody == "Player"):
@@ -106,13 +111,12 @@ func _on_task_in_list(value):
 					pickedUp = true
 					self.hide()
 					return
-					
 			_: # Error Catching
 				print("Invalid Task Object: ", objectTaskID)
 	
 # Reset Plant Water Timer / Progress Bar
-func _on_plant_area_exited(area):
-	print("area exited")
+func _on_plant_body_exited(body):
+	print("Intern")
 	if plant_timer.time_left != 0:
 		plant_timer.stop()
 		plant_control.hide()
@@ -132,7 +136,8 @@ func _on_microwave_timer_timeout():
 	$"../Microwave/AnimationPlayer".play("glow")
 	microwaveStarted = false
 	microwaveReady = true
-	print("Microwave Finished")
+  ui.change_task_name(5, "Grab Lunch from Microwave")
+	$"../Microwave/AnimationPlayer".play("glow")
 
 func _on_paper_grabbed(value):
 	print("Paper Signal Recieved: ", self.name)

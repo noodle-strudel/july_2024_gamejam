@@ -5,6 +5,8 @@ signal loseGame(value)
 signal taskInList(value)
 signal resetTask(value)
 
+const SPEED = 600
+const SPRINT = 900
 # Var Init
 @onready var ui := $"../CanvasLayer/GameUI"
 @onready var animations = $AnimationPlayer
@@ -69,6 +71,10 @@ func _process(delta):
 		velocity = Vector2.ZERO
 		$Walking.stop()
 	else:
+		if Input.is_action_pressed("sprint"):
+			speed = SPRINT
+		else:
+			speed = SPEED
 		velocity = lerp(velocity, playerInput * speed, delta * accel)
 		if not $Walking.playing:
 			$Walking.play()
@@ -197,6 +203,7 @@ func _timer_Timeout():
 	if warnings >= 3:
 		emit_signal("loseGame", score)
 	print("Warnings: ", warnings)
+	boss_play(warnings)
 
 # If player doesnt claim task in time
 func _on_employee_late_warning(value):
