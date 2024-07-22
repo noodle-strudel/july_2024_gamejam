@@ -3,6 +3,7 @@ signal linkTask(value)
 signal removeTask(value)
 signal loseGame(value)
 signal taskInList(value)
+signal resetTask(value)
 
 const SPEED = 600
 const SPRINT = 900
@@ -114,25 +115,39 @@ func _on_employee_new_task():
 	match value:
 		1:
 			newTask.taskName = "Get and Bring water"
-			newTask.taskScore = 50
+			newTask.taskScore = 75
 			timer.wait_time = 45
-			$"../Cooler/AnimationPlayer".play("glow")
+			for object in get_tree().get_nodes_in_group("Coolers"):
+				object.get_child(3).play("glow")
 		2:
 			newTask.taskName = "Fix Printer"
-			newTask.taskScore = 30
+			newTask.taskScore = 25
 			$"../Printer/AnimationPlayer".play("glow")
 		3:
 			newTask.taskName = "Erase WhiteBoard"
-			newTask.taskScore = 30
+			newTask.taskScore = 50
+			$"../WhiteBoard/AnimationPlayer".play("filled")
 		4:
 			newTask.taskName = "Water Plant"
 			newTask.taskScore = 75
-			$"../Plant/AnimationPlayer".play("glow")
+			timer.wait_time = 45
+			for object in get_tree().get_nodes_in_group("Plants"):
+				object.get_child(5).play("glow")
 		5:
 			newTask.taskName = "Microwave Lunch"
 			newTask.taskScore = 100
-			timer.wait_time = 45
+			timer.wait_time = 55
 			$"../Microwave/AnimationPlayer".play("glow")
+		6:
+			newTask.taskName = "Bring Files to Storage"
+			newTask.taskScore = 150
+			timer.wait_time = 55
+			$"../Files/AnimationPlayer".play("glow")
+		7:
+			newTask.taskName = "Pickup 6 Papers"
+			newTask.taskScore = 75
+			for object in get_tree().get_nodes_in_group("Papers"):
+				object.get_child(2).play("glow")
 					
 	# Add task to list and finish setup
 	newTask.timerObject = timer
@@ -198,6 +213,7 @@ func _on_employee_late_warning(value):
 		if (i.taskID == value):
 			var index = tasks.find(i)
 			task_id = tasks[index].taskID
+			emit_signal("resetTask", value)
 			
 			ui.remove_task(task_id)
 			tasks.remove_at(index)
@@ -236,32 +252,27 @@ func _on_checkTaskInList(value):
 
 # Progressive Task Chaos System
 func taskIncrement():
-	print(taskCount)
 	requestedTasks += 1
 	activeTaskCount = requestedTasks + taskCount
-	print("Requested: ", requestedTasks, " Task Count: ", activeTaskCount)
-	if (taskCount >= totalTaskCount):
+	if (activeTaskCount > totalTaskCount):
 		emit_signal("linkTask", 0)
 		requestedTasks -= 1
 		print("Too many tasks ", requestedTasks)
 		return
-	if (tasksCompleted < 6 && activeTaskCount > 2):
+		
+	if (tasksCompleted < 3 && activeTaskCount > 2):
 		emit_signal("linkTask", 0)
 		requestedTasks -= 1
-		print("Chaos too low -1 ", requestedTasks)
 		return
 	elif (tasksCompleted < 10 && activeTaskCount > 4):
 		emit_signal("linkTask", 0)
 		requestedTasks -= 1
-		print("Chaos too low -1 ", requestedTasks)
 		return
-	elif (tasksCompleted < 14 && activeTaskCount > 7):
+	elif (tasksCompleted < 20 && activeTaskCount > 5):
 		emit_signal("linkTask", 0)
 		requestedTasks -= 1
-		print("Chaos too low -1 ", requestedTasks)
 		return
-	elif (tasksCompleted < 20 && activeTaskCount > 10):
+	elif (tasksCompleted < 30 && activeTaskCount > 6):
 		emit_signal("linkTask", 0)
 		requestedTasks -= 1
-		print("Chaos too low -1 ", requestedTasks)
 		return
