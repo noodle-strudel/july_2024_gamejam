@@ -1,6 +1,7 @@
 extends Area2D
 signal taskGoalComplete(value)
 signal taskRemoteComplete(value)
+signal deliveryUpdated(value)
 
 @onready var plant_timer = $"../Plant/PlantTimer"
 @onready var plant_control = $"../Plant/PlantControl"
@@ -9,8 +10,10 @@ signal taskRemoteComplete(value)
 @export var objectTaskID = 0
 @onready var animations = $AnimationPlayer
 
+var collidedBody
 var microwaveStarted = false
 var microwaveReady = false
+var deliveryTaskStep = 0
 
 # Connect Signals
 func _ready():
@@ -21,6 +24,7 @@ func _physics_process(delta):
 
 # Tell Player to check if task is in list
 func _on_body_entered(body):
+	collidedBody = body.name
 	%Player._on_checkTaskInList(objectTaskID)
 
 # --------------------------------------------
@@ -60,6 +64,22 @@ func _on_task_in_list(value):
 					get_tree().call_group("Employees", "_on_task_goal_complete", objectTaskID)
 					microwaveReady = false
 					
+			6: # Delivery
+				if (deliveryTaskStep == 0 && self.name == "Files" && collidedBody == "Player"):
+					print("Files Grabbed")
+					deliveryTaskStep = 1
+					collidedBody = "null"
+					%Storage.deliveryTaskStep = 1
+					return
+				if (deliveryTaskStep == 1 && self.name == "Storage" && collidedBody == "Player"):
+					print("Delivered")
+					deliveryTaskStep = 0
+					collidedBody = "null"
+					%Files.deliveryTaskStep = 0
+					get_tree().call_group("Employees", "_on_task_remote_complete", objectTaskID)
+					return
+					
+				collidedBody = "null"
 			_: # Error Catching
 				print("Invalid Task Object: ", objectTaskID)
 	
@@ -84,3 +104,4 @@ func _on_microwave_timer_timeout():
 	microwaveStarted = false
 	microwaveReady = true
 	print("Microwave Finished")
+

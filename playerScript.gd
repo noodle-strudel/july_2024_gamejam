@@ -108,15 +108,16 @@ func _on_employee_new_task():
 	match value:
 		1:
 			newTask.taskName = "Get and Bring water"
-			newTask.taskScore = 50
+			newTask.taskScore = 75
 			timer.wait_time = 45
 			$"../Cooler/AnimationPlayer".play("glow")
 		2:
 			newTask.taskName = "Fix Printer"
-			newTask.taskScore = 100
+			newTask.taskScore = 25
 			$"../Printer/AnimationPlayer".play("glow")
 		3:
 			newTask.taskName = "Erase WhiteBoard"
+			newTask.taskScore = 50
 		4:
 			newTask.taskName = "Water Plant"
 			newTask.taskScore = 75
@@ -124,6 +125,10 @@ func _on_employee_new_task():
 		5:
 			newTask.taskName = "Microwave Lunch"
 			newTask.taskScore = 100
+			timer.wait_time = 45
+		6:
+			newTask.taskName = "Bring Files to Storage"
+			newTask.taskScore = 150
 			timer.wait_time = 45
 					
 	# Add task to list and finish setup
@@ -227,32 +232,27 @@ func _on_checkTaskInList(value):
 
 # Progressive Task Chaos System
 func taskIncrement():
-	print(taskCount)
 	requestedTasks += 1
 	activeTaskCount = requestedTasks + taskCount
-	print("Requested: ", requestedTasks, " Task Count: ", activeTaskCount)
-	if (taskCount >= totalTaskCount):
+	if (activeTaskCount > totalTaskCount):
 		emit_signal("linkTask", 0)
 		requestedTasks -= 1
 		print("Too many tasks ", requestedTasks)
 		return
-	if (tasksCompleted < 6 && activeTaskCount > 2):
+		
+	if (tasksCompleted < 3 && activeTaskCount > 2):
 		emit_signal("linkTask", 0)
 		requestedTasks -= 1
-		print("Chaos too low -1 ", requestedTasks)
 		return
-	elif (tasksCompleted < 10 && activeTaskCount > 4):
+	elif (tasksCompleted < 8 && activeTaskCount > 4):
 		emit_signal("linkTask", 0)
 		requestedTasks -= 1
-		print("Chaos too low -1 ", requestedTasks)
 		return
-	elif (tasksCompleted < 14 && activeTaskCount > 7):
+	elif (tasksCompleted < 12 && activeTaskCount > 6):
 		emit_signal("linkTask", 0)
 		requestedTasks -= 1
-		print("Chaos too low -1 ", requestedTasks)
 		return
-	elif (tasksCompleted < 20 && activeTaskCount > 10):
+	elif (tasksCompleted < 20 && activeTaskCount > 8):
 		emit_signal("linkTask", 0)
 		requestedTasks -= 1
-		print("Chaos too low -1 ", requestedTasks)
 		return

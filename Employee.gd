@@ -98,7 +98,6 @@ func play_song(song):
 # After starting task get corrected value and set internally
 func _on_player_link_task(value):
 	if (value == 0 && taskRequested == false):
-		print(self)
 		reset = true
 		return
 	if (task == 0 && taskActive == true):
@@ -146,9 +145,8 @@ func _timer_Timeout():
 		timer.start(claimTaskTime)
 		return
 		print("Starting warning timer")
+		
 	# Submit warning if task unclaimed
-	if (taskRequested):
-		notif.hide()
 	if (taskRequested == true && taskActive == false):
 		emit_signal("lateWarning", task)
 		_on_player_remove_task(task)	
