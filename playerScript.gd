@@ -228,13 +228,9 @@ func _on_checkTaskInList(value):
 # Progressive Task Chaos System
 func taskIncrement():
 	requestedTasks += 1
-	print("Requested Tasks +1 ", requestedTasks)
-
-	if (requestedTasks < 0):
-		print("Uh Oh")
-		
 	activeTaskCount = requestedTasks + taskCount
 	print("Requested: ", requestedTasks, " Task Count: ", activeTaskCount)
+	
 	if (taskCount >= totalTaskCount):
 		emit_signal("linkTask", 0)
 		requestedTasks -= 1
