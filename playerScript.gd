@@ -4,6 +4,8 @@ signal removeTask(value)
 signal loseGame(value)
 signal taskInList(value)
 
+const SPEED = 600
+const SPRINT = 900
 # Var Init
 @onready var ui := $"../CanvasLayer/GameUI"
 @onready var animations = $AnimationPlayer
@@ -68,6 +70,10 @@ func _process(delta):
 		velocity = Vector2.ZERO
 		$Walking.stop()
 	else:
+		if Input.is_action_pressed("sprint"):
+			speed = SPRINT
+		else:
+			speed = SPEED
 		velocity = lerp(velocity, playerInput * speed, delta * accel)
 		if not $Walking.playing:
 			$Walking.play()
@@ -113,18 +119,20 @@ func _on_employee_new_task():
 			$"../Cooler/AnimationPlayer".play("glow")
 		2:
 			newTask.taskName = "Fix Printer"
-			newTask.taskScore = 100
+			newTask.taskScore = 30
 			$"../Printer/AnimationPlayer".play("glow")
 		3:
 			newTask.taskName = "Erase WhiteBoard"
+			newTask.taskScore = 30
 		4:
 			newTask.taskName = "Water Plant"
 			newTask.taskScore = 75
-			$"../Cooler/AnimationPlayer".play("glow")
+			$"../Plant/AnimationPlayer".play("glow")
 		5:
 			newTask.taskName = "Microwave Lunch"
 			newTask.taskScore = 100
 			timer.wait_time = 45
+			$"../Microwave/AnimationPlayer".play("glow")
 					
 	# Add task to list and finish setup
 	newTask.timerObject = timer
@@ -180,6 +188,7 @@ func _timer_Timeout():
 	if warnings >= 3:
 		emit_signal("loseGame", score)
 	print("Warnings: ", warnings)
+	boss_play(warnings)
 
 # If player doesnt claim task in time
 func _on_employee_late_warning(value):

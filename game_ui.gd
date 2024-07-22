@@ -45,3 +45,9 @@ func add_warning(num, task_name):
 	else:
 		warning_container.get_child(num).get_node("MarginContainer/RichTextLabel").text = task_name
 		warning_container.get_child(num).show()
+
+# update a new task's name given ID and new name
+func change_task_name(task_id, new_name):
+	for task in task_container.get_children():
+		if task.get_id() == task_id:
+			task.update_name(new_name)

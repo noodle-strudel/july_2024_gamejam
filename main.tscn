@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://qmi8c5dydg75"]
+[gd_scene load_steps=10 format=3 uid="uid://qmi8c5dydg75"]
 
 [ext_resource type="Theme" uid="uid://bpxh7lh817tql" path="res://themes/ui.tres" id="1_e1g62"]
 [ext_resource type="Script" path="res://main_menu.gd" id="1_y2sul"]
@@ -37,6 +37,12 @@ tracks/1/keys = {
 _data = {
 "elevator": SubResource("Animation_36032")
 }
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_36fey"]
+bg_color = Color(0.194627, 0.150897, 0.137729, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nea43"]
+bg_color = Color(0.851234, 0.484954, 0.404944, 1)
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -127,6 +133,7 @@ grow_vertical = 2
 layout_mode = 2
 offset_right = 1920.0
 offset_bottom = 1080.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_36fey")
 
 [node name="MarginContainer" type="MarginContainer" parent="Settings/PanelContainer"]
 layout_mode = 2
@@ -224,6 +231,7 @@ grow_vertical = 2
 layout_mode = 2
 offset_right = 1920.0
 offset_bottom = 1080.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_nea43")
 
 [node name="MarginContainer" type="MarginContainer" parent="Credits/PanelContainer"]
 layout_mode = 2
@@ -248,9 +256,21 @@ layout_mode = 2
 text = "MrSqueeg - Lead Programmer
 palnex - Music and SFX producer
 Corggae - Lead artist
-noodle- UI and Assistant Programmer"
+noodle- UI and Assistant Programmer
+
+"
 fit_content = true
 autowrap_mode = 0
+
+[node name="Copyright" type="RichTextLabel" parent="Credits/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 32
+text = "The FontStruction “Cursive”
+(https://fontstruct.com/fontstructions/show/1511230) by “Omegaville” is
+licensed under a Creative Commons Attribution Share Alike license
+(http://creativecommons.org/licenses/by-sa/3.0/).
+"
+fit_content = true
 
 [node name="CreditsBackButton" type="Button" parent="Credits/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
