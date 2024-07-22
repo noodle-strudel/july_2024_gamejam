@@ -2205,27 +2205,6 @@ metadata/_aseprite_wizard_config_ = {
 }
 metadata/_aseprite_wizard_source_file_hash_ = "a1fd7833e5738218342726bb30c4ecf3"
 
-[node name="Sprite2D2" type="Sprite2D" parent="Employee5/notification"]
-texture_filter = 1
-position = Vector2(-556, -765)
-scale = Vector2(11.835, 11.835)
-texture = ExtResource("21_i33yh")
-hframes = 5
-vframes = 4
-metadata/_aseprite_wizard_config_ = {
-"i_mode": -1,
-"keep_anim_length": false,
-"layer": "",
-"o_ex_p": "",
-"o_folder": "",
-"o_name": "",
-"only_visible": false,
-"player": "notification/AnimationPlayer",
-"slice": "",
-"source": "C:/Users/theim/Desktop/game jam art/notification.aseprite"
-}
-metadata/_aseprite_wizard_source_file_hash_ = "a1fd7833e5738218342726bb30c4ecf3"
-
 [node name="AnimationPlayer2" type="AnimationPlayer" parent="Employee5/notification"]
 libraries = {
 "": SubResource("AnimationLibrary_lgsw0")
@@ -2502,8 +2481,7 @@ metadata/_aseprite_wizard_interface_config_ = {
 }
 
 [node name="notification" type="Node2D" parent="Employee9"]
-visible = false
-position = Vector2(65.6304, -60.8063)
+position = Vector2(124.41, -118.52)
 scale = Vector2(0.575705, 0.660939)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Employee9/notification"]
@@ -2790,7 +2768,6 @@ scale = Vector2(9, 9)
 texture = ExtResource("32_qp0i5")
 hframes = 4
 vframes = 4
-frame = 11
 metadata/_aseprite_wizard_config_ = {
 "i_mode": -1,
 "keep_anim_length": false,
@@ -2864,7 +2841,7 @@ bus = &"SFX"
 
 [node name="TaskCompleted" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("9_tw1qk")
-volume_db = -10.558
+volume_db = -12.428
 bus = &"SFX"
 
 [node name="NoodleTilemap" type="TileMap" parent="."]
@@ -2926,11 +2903,7 @@ layer_1/tile_data = PackedInt32Array(-1114100, 524289, 0, -1114099, 589825, 0, -
 [connection signal="taskComplete" from="Employee9" to="Player" method="_on_employee_task_complete"]
 [connection signal="area_entered" from="Printer" to="Printer" method="_on_area_entered"]
 [connection signal="body_entered" from="Printer" to="Printer" method="_on_body_entered"]
-[connection signal="taskGoalComplete" from="Printer" to="Employee2" method="_on_task_goal_complete"]
-[connection signal="taskRemoteComplete" from="Printer" to="Employee2" method="_on_task_remote_complete"]
 [connection signal="body_entered" from="Cooler" to="Cooler" method="_on_body_entered"]
-[connection signal="taskGoalComplete" from="Cooler" to="Employee" method="_on_task_goal_complete"]
-[connection signal="taskRemoteComplete" from="Cooler" to="Employee" method="_on_task_remote_complete"]
 [connection signal="area_entered" from="Microwave" to="Microwave" method="_on_area_entered"]
 [connection signal="body_entered" from="Microwave" to="Microwave" method="_on_body_entered"]
 [connection signal="timeout" from="Microwave/MicrowaveTimer" to="Microwave" method="_on_microwave_timer_timeout"]
@@ -2938,17 +2911,10 @@ layer_1/tile_data = PackedInt32Array(-1114100, 524289, 0, -1114099, 589825, 0, -
 [connection signal="area_entered" from="WhiteBoard" to="WhiteBoard" method="_on_area_entered"]
 [connection signal="body_entered" from="WhiteBoard" to="Player" method="_on_printer_body_entered"]
 [connection signal="body_entered" from="WhiteBoard" to="WhiteBoard" method="_on_body_entered"]
-[connection signal="taskGoalComplete" from="WhiteBoard" to="Employee" method="_on_task_goal_complete"]
-[connection signal="taskGoalComplete" from="WhiteBoard" to="Employee2" method="_on_task_goal_complete"]
-[connection signal="taskRemoteComplete" from="WhiteBoard" to="Employee" method="_on_task_remote_complete"]
-[connection signal="taskRemoteComplete" from="WhiteBoard" to="Employee2" method="_on_task_remote_complete"]
 [connection signal="area_entered" from="Plant" to="Player" method="_on_printer_area_entered"]
 [connection signal="area_entered" from="Plant" to="Plant" method="_on_area_entered"]
 [connection signal="body_entered" from="Plant" to="Player" method="_on_printer_body_entered"]
 [connection signal="body_entered" from="Plant" to="Plant" method="_on_body_entered"]
-[connection signal="taskGoalComplete" from="Plant" to="Employee" method="_on_task_goal_complete"]
-[connection signal="taskGoalComplete" from="Plant" to="Employee2" method="_on_task_goal_complete"]
-[connection signal="taskRemoteComplete" from="Plant" to="Employee" method="_on_task_remote_complete"]
-[connection signal="taskRemoteComplete" from="Plant" to="Employee2" method="_on_task_remote_complete"]
+[connection signal="body_exited" from="Plant" to="WhiteBoard" method="_on_plant_body_exited"]
 [connection signal="timeout" from="Plant/PlantTimer" to="Plant" method="_on_plant_timer_timeout"]
 [connection signal="finished" from="Music" to="." method="_on_music_finished"]

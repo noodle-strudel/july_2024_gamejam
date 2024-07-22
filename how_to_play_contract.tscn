@@ -1,0 +1,116 @@
+[gd_scene load_steps=6 format=3 uid="uid://des3s3htepayb"]
+
+[ext_resource type="Theme" uid="uid://bpxh7lh817tql" path="res://themes/ui.tres" id="1_7mey1"]
+[ext_resource type="Script" path="res://how_to_play_contract.gd" id="2_67pnf"]
+[ext_resource type="FontFile" uid="uid://bos6gs11yxase" path="res://fonts/Cursive.ttf" id="2_da5kh"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dsd66"]
+bg_color = Color(0.28, 0.1792, 0.056, 1)
+border_width_left = 16
+border_width_top = 16
+border_width_right = 16
+border_width_bottom = 16
+border_color = Color(0.52, 0.3172, 0.208, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_elo2k"]
+bg_color = Color(1, 1, 1, 1)
+
+[node name="Contract" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_7mey1")
+script = ExtResource("2_67pnf")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_dsd66")
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 640
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 640
+theme_override_constants/margin_bottom = 32
+
+[node name="PanelContainer" type="PanelContainer" parent="PanelContainer/MarginContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_elo2k")
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Title" type="RichTextLabel" parent="PanelContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/default_color = Color(1.15514e-06, 0.380079, 0.67257, 1)
+bbcode_enabled = true
+text = "[center]Contract 7/22/20xx[/center]"
+fit_content = true
+
+[node name="Contents" type="RichTextLabel" parent="PanelContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/default_color = Color(0, 0.4, 0.705882, 1)
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+text = "
+[color=gold]Move around [/color]with [color=gold]WASD or arrow keys[color=0066b4]
+
+[color=gold]Run into employees [/color]to accept random tasks.
+Be careful not to wait too long to accept them!
+
+Whenever you fail to complete a task or accept one, [color=gold]you will get a warning[/color] stating what you failed!
+
+Get 3 warnings and you are [color=red]fired.[/color]
+
+Click on the button below to sign the contract.
+
+"
+fit_content = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="XSignature" type="RichTextLabel" parent="PanelContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 64
+bbcode_enabled = true
+text = "x"
+fit_content = true
+autowrap_mode = 0
+
+[node name="Signature" type="RichTextLabel" parent="PanelContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("2_da5kh")
+theme_override_font_sizes/normal_font_size = 68
+bbcode_enabled = true
+text = "John Doe"
+fit_content = true
+autowrap_mode = 0
+visible_characters = 0
+visible_ratio = 0.0
+
+[node name="SignatureButton" type="Button" parent="PanelContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Write Signature"
+
+[connection signal="pressed" from="PanelContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/SignatureButton" to="." method="_on_signature_button_pressed"]

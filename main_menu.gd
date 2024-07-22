@@ -70,7 +70,7 @@ func _on_settings_back_button_pressed():
 func _on_start_button_pressed():
 	$ClickSFX.play()
 	await get_tree().create_timer(0.1).timeout
-	get_tree().change_scene_to_file("res://game.tscn")
+	get_tree().change_scene_to_file("res://how_to_play_contract.tscn")
 
 
 func _on_credits_button_pressed():

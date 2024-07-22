@@ -98,7 +98,6 @@ func play_song(song):
 # After starting task get corrected value and set internally
 func _on_player_link_task(value):
 	if (value == 0 && taskRequested == false):
-		print(self)
 		reset = true
 		return
 	if (task == 0 && taskActive == true):
@@ -122,6 +121,7 @@ func _on_task_goal_complete(value):
 # Call when task is completed away from employee
 func _on_task_remote_complete(value):
 	if (value == task):
+		$"../TaskCompleted".play()
 		emit_signal("taskComplete", task)
 		taskActive = false
 		taskRequested = false
@@ -149,6 +149,8 @@ func _timer_Timeout():
 	# Submit warning if task unclaimed
 	if (taskRequested):
 		notif.hide()
+		#match task:
+			#1:
 	if (taskRequested == true && taskActive == false):
 		emit_signal("lateWarning", task)
 		_on_player_remove_task(task)	

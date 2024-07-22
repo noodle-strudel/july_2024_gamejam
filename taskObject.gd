@@ -64,8 +64,8 @@ func _on_task_in_list(value):
 				print("Invalid Task Object: ", objectTaskID)
 	
 # Reset Plant Water Timer / Progress Bar
-func _on_plant_area_exited(area):
-	print("area exited")
+func _on_plant_body_exited(body):
+	print("Intern")
 	if plant_timer.time_left != 0:
 		plant_timer.stop()
 		plant_control.hide()
@@ -84,3 +84,5 @@ func _on_microwave_timer_timeout():
 	microwaveStarted = false
 	microwaveReady = true
 	print("Microwave Finished")
+
+
