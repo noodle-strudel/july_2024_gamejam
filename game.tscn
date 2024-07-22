@@ -3327,7 +3327,6 @@ scale = Vector2(9, 9)
 texture = ExtResource("28_1qqqj")
 hframes = 4
 vframes = 3
-frame = 1
 metadata/_aseprite_wizard_config_ = {
 "i_mode": -1,
 "keep_anim_length": false,
@@ -3354,6 +3353,7 @@ shape = SubResource("RectangleShape2D_tyhdp")
 libraries = {
 "": SubResource("AnimationLibrary_bc88c")
 }
+autoplay = "empty"
 
 [node name="Plant" type="Area2D" parent="."]
 position = Vector2(462, -139)

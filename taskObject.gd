@@ -26,6 +26,8 @@ func _ready():
 
 func _physics_process(delta):
 	plant_progress.value = -plant_timer.time_left
+	if ($AnimationPlayer.current_animation_position == 1 && objectTaskID == 3):
+		$"../WhiteBoard/AnimationPlayer".play("empty")
 
 # Tell Player to check if task is in list
 func _on_body_entered(body):
@@ -56,7 +58,7 @@ func _on_task_in_list(value):
 				get_tree().call_group("Employees", "_on_task_remote_complete", objectTaskID)
 				print("Erased Whiteboard")
 				$"../WhiteBoard/WhiteBoardFX".play()
-				$"../WhiteBoard/AnimationPlayer".play("idle")
+				$"../WhiteBoard/AnimationPlayer".play("erase")
 			4: # Water Plant
 				plant_timer.start()
 				plant_control.show()

@@ -120,7 +120,7 @@ func _on_employee_new_task():
 		3:
 			newTask.taskName = "Erase WhiteBoard"
 			newTask.taskScore = 50
-			$"../WhiteBoard/AnimationPlayer".play("glow")
+			$"../WhiteBoard/AnimationPlayer".play("filled")
 		4:
 			newTask.taskName = "Water Plant"
 			newTask.taskScore = 75
@@ -135,6 +135,7 @@ func _on_employee_new_task():
 			newTask.taskName = "Bring Files to Storage"
 			newTask.taskScore = 150
 			timer.wait_time = 55
+			$"../Files/AnimationPlayer".play("glow")
 		7:
 			newTask.taskName = "Pickup 6 Papers"
 			newTask.taskScore = 75
