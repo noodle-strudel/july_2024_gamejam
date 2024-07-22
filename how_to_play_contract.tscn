@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://des3s3htepayb"]
+[gd_scene load_steps=7 format=3 uid="uid://des3s3htepayb"]
 
 [ext_resource type="Theme" uid="uid://bpxh7lh817tql" path="res://themes/ui.tres" id="1_7mey1"]
 [ext_resource type="Script" path="res://how_to_play_contract.gd" id="2_67pnf"]
 [ext_resource type="FontFile" uid="uid://bos6gs11yxase" path="res://fonts/Cursive.ttf" id="2_da5kh"]
+[ext_resource type="AudioStream" uid="uid://c2m6nllcchx2q" path="res://SFX/penWriting.mp3" id="4_ahm36"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dsd66"]
 bg_color = Color(0.28, 0.1792, 0.056, 1)
@@ -112,5 +113,8 @@ visible_ratio = 0.0
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "Write Signature"
+
+[node name="SignNoise" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_ahm36")
 
 [connection signal="pressed" from="PanelContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/SignatureButton" to="." method="_on_signature_button_pressed"]

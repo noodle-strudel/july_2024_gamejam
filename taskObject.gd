@@ -55,11 +55,12 @@ func _on_task_in_list(value):
 				if (microwaveStarted == false && microwaveReady == false):
 					microwave_timer.start()
 					microwaveStarted = true
-					print("Microwave Started")
+					ui.change_task_name(value, "Wait for Microwave")
 					$"../Microwave/MicrowaveFX".play()
 					$"../Microwave/AnimationPlayer".play("microwave")
 				if (microwaveReady == true):
 					get_tree().call_group("Employees", "_on_task_goal_complete", objectTaskID)
+					ui.change_task_name(value, "Bring Back Lunch")
 					microwaveReady = false
 					$"../Microwave/AnimationPlayer".play("idle")
 			_: # Error Catching
@@ -86,7 +87,7 @@ func _on_microwave_timer_timeout():
 	$"../Microwave/MicrowaveFXend".play()
 	microwaveStarted = false
 	microwaveReady = true
-	print("Microwave Finished")
+	ui.change_task_name(5, "Grab Lunch from Microwave")
 	$"../Microwave/AnimationPlayer".play("glow")
 
 

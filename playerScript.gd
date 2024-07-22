@@ -119,10 +119,11 @@ func _on_employee_new_task():
 			$"../Cooler/AnimationPlayer".play("glow")
 		2:
 			newTask.taskName = "Fix Printer"
-			newTask.taskScore = 100
+			newTask.taskScore = 30
 			$"../Printer/AnimationPlayer".play("glow")
 		3:
 			newTask.taskName = "Erase WhiteBoard"
+			newTask.taskScore = 30
 		4:
 			newTask.taskName = "Water Plant"
 			newTask.taskScore = 75

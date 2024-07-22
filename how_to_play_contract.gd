@@ -16,12 +16,13 @@ func _process(delta):
 
 func _on_signature_button_pressed():
 	var tween = get_tree().create_tween()
-	tween.tween_property(signature, "visible_ratio", 1, 3)
+	$SignNoise.play()
+	tween.tween_property(signature, "visible_ratio", 1, 2)
 	tween.finished.connect(_on_signature_complete)
 	signature_button.queue_free()
 	
 
 
 func _on_signature_complete():
-	await get_tree().create_timer(1).timeout
+	await get_tree().create_timer(2).timeout
 	get_tree().change_scene_to_file("res://game.tscn")

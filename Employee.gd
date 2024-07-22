@@ -20,6 +20,7 @@ var timer : Timer = Timer.new()
 @export var maxTaskAppearTime = 20
 
 @onready var notif = $"notification"
+@onready var notif_animation = $"notification/AnimationPlayer"
 
 # Employee Timer and Signal Setup
 func _ready():
@@ -52,10 +53,22 @@ func _process(delta):
 func _on_body_entered(body):
 	# See if task is requested from player and start
 	if (taskActive == false && taskRequested == true):
-		notif.hide()
 		taskActive = true
+		# Allocate a task number to the employee
 		emit_signal("newTask")
 		
+		# Determine the notif animation based on the task number given
+		match task:
+			1:
+				notif_animation.play("waterLeft")
+			2:
+				notif_animation.play("printerLeft")
+			3:
+				notif_animation.play("whiteboardLeft")
+			4:
+				notif_animation.play("plantLeft")
+			5:
+				notif_animation.play("microwaveLeft")
 		#Randomize sounds of employee
 		var song1 = preload("res://SFX/voices/employee1.mp3")
 		var song2 = preload("res://SFX/voices/employee2.mp3")
@@ -77,6 +90,8 @@ func _on_body_entered(body):
 		taskCompleted = false
 		reset = false
 		print("Task Completed")
+		notif.hide()
+		notif_animation.play("left")
 		
 		#Reset music speed to normal
 		$"../Music".pitch_scale = 1
@@ -112,6 +127,7 @@ func _on_player_remove_task(value):
 		taskRequested = false
 		reset = false
 		notif.hide()
+		notif_animation.play("left")
 		
 # Call when goal is complete but need to return to Employee
 func _on_task_goal_complete(value):
@@ -128,6 +144,8 @@ func _on_task_remote_complete(value):
 		print("Task Completed")
 		taskCompleted = false
 		task = 0
+		notif.hide()
+		notif_animation.play("left")
 	
 # Timer run out request new task
 func _timer_Timeout():
@@ -147,10 +165,6 @@ func _timer_Timeout():
 		return
 		print("Starting warning timer")
 	# Submit warning if task unclaimed
-	if (taskRequested):
-		notif.hide()
-		#match task:
-			#1:
 	if (taskRequested == true && taskActive == false):
 		emit_signal("lateWarning", task)
 		_on_player_remove_task(task)	
