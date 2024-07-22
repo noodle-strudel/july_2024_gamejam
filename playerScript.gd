@@ -84,15 +84,12 @@ func _on_employee_new_task():
 		taskInList = false
 		for i in tasks:
 			if (i.taskID == value):
-				print("Duplicate found: ", value)
 				value = rng.randi_range(1, totalTaskCount)
-				print("New Value: ", value)
 				taskInList = true
 	
 	emit_signal("linkTask", value)
-	print("Request B4: ", requestedTasks)
 	requestedTasks -= 1
-	print("Request AFTER: ", requestedTasks)
+	print("Task Claimed ", requestedTasks)
 	
 	# Timer
 	var timer : Timer = Timer.new()
@@ -136,11 +133,13 @@ func _on_employee_new_task():
 	ui.create_task(newTask.taskName, newTask.timerObject.wait_time, newTask.taskID)
 	timer.start()
 	taskCount += 1
+	print(taskCount)
 
 
 # Find task to remove on completion and grant score
 func _on_employee_task_complete(value):
 	tasksCompleted += 1
+	print("Task Completed ", tasksCompleted)
 	for i in tasks:
 		if (i.taskID == value):
 			# General effects for task completion go here
@@ -152,8 +151,6 @@ func _on_employee_task_complete(value):
 					pass
 				3:
 					pass
-			
-			
 			score += i.taskScore
 			ui.update_score(str(score))
 			
@@ -186,6 +183,7 @@ func _timer_Timeout():
 
 # If player doesnt claim task in time
 func _on_employee_late_warning(value):
+	requestedTasks -= 1
 	var task_id = null
 	for i in tasks:
 		if (i.taskID == value):
@@ -226,17 +224,11 @@ func _on_checkTaskInList(value):
 		if (i.taskID == value):
 			emit_signal("taskInList", value)
 			return
-			
-	print("Object not in list")
 
 # Progressive Task Chaos System
 func taskIncrement():
+	print(taskCount)
 	requestedTasks += 1
-	print("Requested Tasks +1 ", requestedTasks)
-
-	if (requestedTasks < 0):
-		print("Uh Oh")
-
 	activeTaskCount = requestedTasks + taskCount
 	print("Requested: ", requestedTasks, " Task Count: ", activeTaskCount)
 	if (taskCount >= totalTaskCount):
