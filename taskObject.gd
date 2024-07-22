@@ -44,7 +44,7 @@ func _on_task_in_list(value):
 		match objectTaskID:
 			1: # Cooler Task
 				get_tree().call_group("Employees", "_on_task_goal_complete", objectTaskID)
-        ui.change_task_name(value, "Bring Back Water")
+				ui.change_task_name(value, "Bring Back Water")
 				# Play Sound for all Coolers
 				self.get_child(0).play()
 				# Play Animation for all Coolers
@@ -76,7 +76,7 @@ func _on_task_in_list(value):
 					$"../Microwave/AnimationPlayer".play("microwave")
 				if (microwaveReady == true):
 					get_tree().call_group("Employees", "_on_task_goal_complete", objectTaskID)
-          ui.change_task_name(value, "Bring Back Lunch")
+					ui.change_task_name(value, "Bring Back Lunch")
 					microwaveReady = false
 					$"../Microwave/AnimationPlayer".play("idle")
 					
@@ -136,7 +136,7 @@ func _on_microwave_timer_timeout():
 	$"../Microwave/AnimationPlayer".play("glow")
 	microwaveStarted = false
 	microwaveReady = true
-  ui.change_task_name(5, "Grab Lunch from Microwave")
+	ui.change_task_name(5, "Grab Lunch from Microwave")
 	$"../Microwave/AnimationPlayer".play("glow")
 
 func _on_paper_grabbed(value):
