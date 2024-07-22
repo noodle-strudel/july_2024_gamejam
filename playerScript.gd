@@ -134,8 +134,7 @@ func _on_employee_new_task():
 			timer.wait_time = 55
 		7:
 			newTask.taskName = "Pickup 6 Papers"
-			newTask.taskScore = 100
-			timer.wait_time = 40
+			newTask.taskScore = 75
 					
 	# Add task to list and finish setup
 	newTask.timerObject = timer
@@ -251,15 +250,15 @@ func taskIncrement():
 		emit_signal("linkTask", 0)
 		requestedTasks -= 1
 		return
-	elif (tasksCompleted < 8 && activeTaskCount > 4):
+	elif (tasksCompleted < 10 && activeTaskCount > 4):
 		emit_signal("linkTask", 0)
 		requestedTasks -= 1
 		return
-	elif (tasksCompleted < 12 && activeTaskCount > 5):
+	elif (tasksCompleted < 20 && activeTaskCount > 5):
 		emit_signal("linkTask", 0)
 		requestedTasks -= 1
 		return
-	elif (tasksCompleted < 20 && activeTaskCount > 6):
+	elif (tasksCompleted < 30 && activeTaskCount > 6):
 		emit_signal("linkTask", 0)
 		requestedTasks -= 1
 		return

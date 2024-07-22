@@ -2265,6 +2265,214 @@ autoplay = "left"
 volume_db = -6.256
 bus = &"SFX"
 
+[node name="Employee14" type="Area2D" parent="." groups=["Employees"]]
+position = Vector2(-1892, -227)
+script = ExtResource("4_kna2b")
+claimTaskTime = 25
+minTaskAppearTime = 10
+maxTaskAppearTime = 30
+metadata/_edit_group_ = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Employee14"]
+root_node = NodePath("../CollisionShape2D")
+libraries = {
+"": SubResource("AnimationLibrary_dcykq")
+}
+autoplay = "type"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Employee14"]
+position = Vector2(-18.5, -5.5)
+shape = SubResource("RectangleShape2D_otmab")
+
+[node name="Sprite2D" type="Sprite2D" parent="Employee14"]
+texture_filter = 1
+position = Vector2(0, -6.04)
+scale = Vector2(9, 9)
+texture = ExtResource("15_rt1a4")
+hframes = 2
+metadata/_aseprite_wizard_config_ = {
+"i_mode": -1,
+"keep_anim_length": false,
+"layer": "",
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"player": "Employee2/AnimationPlayer",
+"slice": "",
+"source": "C:/Users/theim/Desktop/game jam art/NPC6.aseprite"
+}
+metadata/_aseprite_wizard_source_file_hash_ = "fd95b325eb0c10847c5df548e66d3ce4"
+metadata/_aseprite_wizard_interface_config_ = {
+"layer_section": true
+}
+
+[node name="notification" type="Node2D" parent="Employee14"]
+visible = false
+position = Vector2(65.6304, -60.8063)
+scale = Vector2(0.575705, 0.660939)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Employee14/notification"]
+libraries = {
+"": SubResource("AnimationLibrary_lgsw0")
+}
+autoplay = "left"
+
+[node name="Sprite2D" type="Sprite2D" parent="Employee14/notification"]
+texture_filter = 1
+scale = Vector2(11.835, 11.835)
+texture = ExtResource("21_i33yh")
+hframes = 5
+vframes = 4
+metadata/_aseprite_wizard_config_ = {
+"i_mode": -1,
+"keep_anim_length": false,
+"layer": "",
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"player": "notification/AnimationPlayer",
+"slice": "",
+"source": "C:/Users/theim/Desktop/game jam art/notification.aseprite"
+}
+metadata/_aseprite_wizard_source_file_hash_ = "a1fd7833e5738218342726bb30c4ecf3"
+
+[node name="Sprite2D2" type="Sprite2D" parent="Employee14/notification"]
+texture_filter = 1
+position = Vector2(-556, -765)
+scale = Vector2(11.835, 11.835)
+texture = ExtResource("21_i33yh")
+hframes = 5
+vframes = 4
+metadata/_aseprite_wizard_config_ = {
+"i_mode": -1,
+"keep_anim_length": false,
+"layer": "",
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"player": "notification/AnimationPlayer",
+"slice": "",
+"source": "C:/Users/theim/Desktop/game jam art/notification.aseprite"
+}
+metadata/_aseprite_wizard_source_file_hash_ = "a1fd7833e5738218342726bb30c4ecf3"
+
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="Employee14/notification"]
+libraries = {
+"": SubResource("AnimationLibrary_lgsw0")
+}
+autoplay = "left"
+
+[node name="VoiceFX" type="AudioStreamPlayer2D" parent="Employee14"]
+volume_db = -6.256
+bus = &"SFX"
+
+[node name="Employee15" type="Area2D" parent="." groups=["Employees"]]
+position = Vector2(-1880, 303)
+script = ExtResource("4_kna2b")
+claimTaskTime = 25
+minTaskAppearTime = 10
+maxTaskAppearTime = 30
+metadata/_edit_group_ = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Employee15"]
+root_node = NodePath("../CollisionShape2D")
+libraries = {
+"": SubResource("AnimationLibrary_dcykq")
+}
+autoplay = "type"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Employee15"]
+position = Vector2(-18.5, -5.5)
+shape = SubResource("RectangleShape2D_otmab")
+
+[node name="Sprite2D" type="Sprite2D" parent="Employee15"]
+texture_filter = 1
+position = Vector2(0, -6.04)
+scale = Vector2(9, 9)
+texture = ExtResource("15_rt1a4")
+hframes = 2
+metadata/_aseprite_wizard_config_ = {
+"i_mode": -1,
+"keep_anim_length": false,
+"layer": "",
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"player": "Employee2/AnimationPlayer",
+"slice": "",
+"source": "C:/Users/theim/Desktop/game jam art/NPC6.aseprite"
+}
+metadata/_aseprite_wizard_source_file_hash_ = "fd95b325eb0c10847c5df548e66d3ce4"
+metadata/_aseprite_wizard_interface_config_ = {
+"layer_section": true
+}
+
+[node name="notification" type="Node2D" parent="Employee15"]
+visible = false
+position = Vector2(65.6304, -60.8063)
+scale = Vector2(0.575705, 0.660939)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Employee15/notification"]
+libraries = {
+"": SubResource("AnimationLibrary_lgsw0")
+}
+autoplay = "left"
+
+[node name="Sprite2D" type="Sprite2D" parent="Employee15/notification"]
+texture_filter = 1
+scale = Vector2(11.835, 11.835)
+texture = ExtResource("21_i33yh")
+hframes = 5
+vframes = 4
+metadata/_aseprite_wizard_config_ = {
+"i_mode": -1,
+"keep_anim_length": false,
+"layer": "",
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"player": "notification/AnimationPlayer",
+"slice": "",
+"source": "C:/Users/theim/Desktop/game jam art/notification.aseprite"
+}
+metadata/_aseprite_wizard_source_file_hash_ = "a1fd7833e5738218342726bb30c4ecf3"
+
+[node name="Sprite2D2" type="Sprite2D" parent="Employee15/notification"]
+texture_filter = 1
+position = Vector2(-556, -765)
+scale = Vector2(11.835, 11.835)
+texture = ExtResource("21_i33yh")
+hframes = 5
+vframes = 4
+metadata/_aseprite_wizard_config_ = {
+"i_mode": -1,
+"keep_anim_length": false,
+"layer": "",
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"player": "notification/AnimationPlayer",
+"slice": "",
+"source": "C:/Users/theim/Desktop/game jam art/notification.aseprite"
+}
+metadata/_aseprite_wizard_source_file_hash_ = "a1fd7833e5738218342726bb30c4ecf3"
+
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="Employee15/notification"]
+libraries = {
+"": SubResource("AnimationLibrary_lgsw0")
+}
+autoplay = "left"
+
+[node name="VoiceFX" type="AudioStreamPlayer2D" parent="Employee15"]
+volume_db = -6.256
+bus = &"SFX"
+
 [node name="Employee6" type="Area2D" parent="." groups=["Employees"]]
 position = Vector2(-1108, 289.52)
 script = ExtResource("4_kna2b")
@@ -2571,6 +2779,310 @@ metadata/_aseprite_wizard_source_file_hash_ = "a1fd7833e5738218342726bb30c4ecf3"
 volume_db = -6.256
 bus = &"SFX"
 
+[node name="Employee10" type="Area2D" parent="." groups=["Employees"]]
+position = Vector2(-1547, -496)
+script = ExtResource("4_kna2b")
+claimTaskTime = 25
+maxTaskAppearTime = 10
+metadata/_edit_group_ = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Employee10"]
+root_node = NodePath("../CollisionShape2D")
+libraries = {
+"": SubResource("AnimationLibrary_dcykq")
+}
+autoplay = "type"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Employee10"]
+position = Vector2(-10.615, -5.5)
+shape = SubResource("RectangleShape2D_y7247")
+
+[node name="Sprite2D" type="Sprite2D" parent="Employee10"]
+texture_filter = 1
+position = Vector2(0, -6.04)
+scale = Vector2(9, 9)
+texture = ExtResource("19_5e6qu")
+hframes = 2
+metadata/_aseprite_wizard_config_ = {
+"i_mode": -1,
+"keep_anim_length": false,
+"layer": "",
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"player": "Employee2/AnimationPlayer",
+"slice": "",
+"source": "C:/Users/theim/Desktop/game jam art/NPC9.aseprite"
+}
+metadata/_aseprite_wizard_source_file_hash_ = "da020ebacfcae21288046d923f413210"
+metadata/_aseprite_wizard_interface_config_ = {
+"layer_section": true
+}
+
+[node name="notification" type="Node2D" parent="Employee10"]
+visible = false
+position = Vector2(65.6304, -60.8063)
+scale = Vector2(0.575705, 0.660939)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Employee10/notification"]
+libraries = {
+"": SubResource("AnimationLibrary_lgsw0")
+}
+autoplay = "left"
+
+[node name="Sprite2D" type="Sprite2D" parent="Employee10/notification"]
+texture_filter = 1
+scale = Vector2(11.835, 11.835)
+texture = ExtResource("21_i33yh")
+hframes = 5
+vframes = 4
+metadata/_aseprite_wizard_config_ = {
+"i_mode": -1,
+"keep_anim_length": false,
+"layer": "",
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"player": "notification/AnimationPlayer",
+"slice": "",
+"source": "C:/Users/theim/Desktop/game jam art/notification.aseprite"
+}
+metadata/_aseprite_wizard_source_file_hash_ = "a1fd7833e5738218342726bb30c4ecf3"
+
+[node name="VoiceFX" type="AudioStreamPlayer2D" parent="Employee10"]
+volume_db = -6.256
+bus = &"SFX"
+
+[node name="Employee11" type="Area2D" parent="." groups=["Employees"]]
+position = Vector2(-2353, -498)
+script = ExtResource("4_kna2b")
+claimTaskTime = 25
+maxTaskAppearTime = 10
+metadata/_edit_group_ = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Employee11"]
+root_node = NodePath("../CollisionShape2D")
+libraries = {
+"": SubResource("AnimationLibrary_dcykq")
+}
+autoplay = "type"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Employee11"]
+position = Vector2(-10.615, -5.5)
+shape = SubResource("RectangleShape2D_y7247")
+
+[node name="Sprite2D" type="Sprite2D" parent="Employee11"]
+texture_filter = 1
+position = Vector2(0, -6.04)
+scale = Vector2(9, 9)
+texture = ExtResource("19_5e6qu")
+hframes = 2
+metadata/_aseprite_wizard_config_ = {
+"i_mode": -1,
+"keep_anim_length": false,
+"layer": "",
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"player": "Employee2/AnimationPlayer",
+"slice": "",
+"source": "C:/Users/theim/Desktop/game jam art/NPC9.aseprite"
+}
+metadata/_aseprite_wizard_source_file_hash_ = "da020ebacfcae21288046d923f413210"
+metadata/_aseprite_wizard_interface_config_ = {
+"layer_section": true
+}
+
+[node name="notification" type="Node2D" parent="Employee11"]
+visible = false
+position = Vector2(65.6304, -60.8063)
+scale = Vector2(0.575705, 0.660939)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Employee11/notification"]
+libraries = {
+"": SubResource("AnimationLibrary_lgsw0")
+}
+autoplay = "left"
+
+[node name="Sprite2D" type="Sprite2D" parent="Employee11/notification"]
+texture_filter = 1
+scale = Vector2(11.835, 11.835)
+texture = ExtResource("21_i33yh")
+hframes = 5
+vframes = 4
+metadata/_aseprite_wizard_config_ = {
+"i_mode": -1,
+"keep_anim_length": false,
+"layer": "",
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"player": "notification/AnimationPlayer",
+"slice": "",
+"source": "C:/Users/theim/Desktop/game jam art/notification.aseprite"
+}
+metadata/_aseprite_wizard_source_file_hash_ = "a1fd7833e5738218342726bb30c4ecf3"
+
+[node name="VoiceFX" type="AudioStreamPlayer2D" parent="Employee11"]
+volume_db = -6.256
+bus = &"SFX"
+
+[node name="Employee12" type="Area2D" parent="." groups=["Employees"]]
+position = Vector2(-2371, 18)
+script = ExtResource("4_kna2b")
+claimTaskTime = 25
+maxTaskAppearTime = 10
+metadata/_edit_group_ = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Employee12"]
+root_node = NodePath("../CollisionShape2D")
+libraries = {
+"": SubResource("AnimationLibrary_dcykq")
+}
+autoplay = "type"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Employee12"]
+position = Vector2(-10.615, -5.5)
+shape = SubResource("RectangleShape2D_y7247")
+
+[node name="Sprite2D" type="Sprite2D" parent="Employee12"]
+texture_filter = 1
+position = Vector2(0, -6.04)
+scale = Vector2(9, 9)
+texture = ExtResource("19_5e6qu")
+hframes = 2
+metadata/_aseprite_wizard_config_ = {
+"i_mode": -1,
+"keep_anim_length": false,
+"layer": "",
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"player": "Employee2/AnimationPlayer",
+"slice": "",
+"source": "C:/Users/theim/Desktop/game jam art/NPC9.aseprite"
+}
+metadata/_aseprite_wizard_source_file_hash_ = "da020ebacfcae21288046d923f413210"
+metadata/_aseprite_wizard_interface_config_ = {
+"layer_section": true
+}
+
+[node name="notification" type="Node2D" parent="Employee12"]
+visible = false
+position = Vector2(65.6304, -60.8063)
+scale = Vector2(0.575705, 0.660939)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Employee12/notification"]
+libraries = {
+"": SubResource("AnimationLibrary_lgsw0")
+}
+autoplay = "left"
+
+[node name="Sprite2D" type="Sprite2D" parent="Employee12/notification"]
+texture_filter = 1
+scale = Vector2(11.835, 11.835)
+texture = ExtResource("21_i33yh")
+hframes = 5
+vframes = 4
+metadata/_aseprite_wizard_config_ = {
+"i_mode": -1,
+"keep_anim_length": false,
+"layer": "",
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"player": "notification/AnimationPlayer",
+"slice": "",
+"source": "C:/Users/theim/Desktop/game jam art/notification.aseprite"
+}
+metadata/_aseprite_wizard_source_file_hash_ = "a1fd7833e5738218342726bb30c4ecf3"
+
+[node name="VoiceFX" type="AudioStreamPlayer2D" parent="Employee12"]
+volume_db = -6.256
+bus = &"SFX"
+
+[node name="Employee13" type="Area2D" parent="." groups=["Employees"]]
+position = Vector2(-2355, 550)
+script = ExtResource("4_kna2b")
+claimTaskTime = 25
+maxTaskAppearTime = 10
+metadata/_edit_group_ = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Employee13"]
+root_node = NodePath("../CollisionShape2D")
+libraries = {
+"": SubResource("AnimationLibrary_dcykq")
+}
+autoplay = "type"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Employee13"]
+position = Vector2(-10.615, -5.5)
+shape = SubResource("RectangleShape2D_y7247")
+
+[node name="Sprite2D" type="Sprite2D" parent="Employee13"]
+texture_filter = 1
+position = Vector2(0, -6.04)
+scale = Vector2(9, 9)
+texture = ExtResource("19_5e6qu")
+hframes = 2
+metadata/_aseprite_wizard_config_ = {
+"i_mode": -1,
+"keep_anim_length": false,
+"layer": "",
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"player": "Employee2/AnimationPlayer",
+"slice": "",
+"source": "C:/Users/theim/Desktop/game jam art/NPC9.aseprite"
+}
+metadata/_aseprite_wizard_source_file_hash_ = "da020ebacfcae21288046d923f413210"
+metadata/_aseprite_wizard_interface_config_ = {
+"layer_section": true
+}
+
+[node name="notification" type="Node2D" parent="Employee13"]
+visible = false
+position = Vector2(65.6304, -60.8063)
+scale = Vector2(0.575705, 0.660939)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Employee13/notification"]
+libraries = {
+"": SubResource("AnimationLibrary_lgsw0")
+}
+autoplay = "left"
+
+[node name="Sprite2D" type="Sprite2D" parent="Employee13/notification"]
+texture_filter = 1
+scale = Vector2(11.835, 11.835)
+texture = ExtResource("21_i33yh")
+hframes = 5
+vframes = 4
+metadata/_aseprite_wizard_config_ = {
+"i_mode": -1,
+"keep_anim_length": false,
+"layer": "",
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"player": "notification/AnimationPlayer",
+"slice": "",
+"source": "C:/Users/theim/Desktop/game jam art/notification.aseprite"
+}
+metadata/_aseprite_wizard_source_file_hash_ = "a1fd7833e5738218342726bb30c4ecf3"
+
+[node name="VoiceFX" type="AudioStreamPlayer2D" parent="Employee13"]
+volume_db = -6.256
+bus = &"SFX"
+
 [node name="Printer" type="Area2D" parent="."]
 position = Vector2(1134, -35)
 collision_layer = 2
@@ -2697,7 +3209,7 @@ libraries = {
 
 [node name="Storage" type="Area2D" parent="." groups=["TaskObjects"]]
 unique_name_in_owner = true
-position = Vector2(-2383, 1345)
+position = Vector2(-2586, 1318)
 collision_layer = 2
 script = ExtResource("6_ef730")
 objectTaskID = 6
@@ -2728,6 +3240,43 @@ metadata/_aseprite_wizard_config_ = {
 metadata/_aseprite_wizard_source_file_hash_ = "c57894fd3d41175b083fdbf518b2105f"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Storage"]
+libraries = {
+"": SubResource("AnimationLibrary_qv8s1")
+}
+
+[node name="Storage2" type="Area2D" parent="." groups=["TaskObjects"]]
+unique_name_in_owner = true
+position = Vector2(-2586, 1318)
+collision_layer = 2
+script = ExtResource("6_ef730")
+objectTaskID = 6
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Storage2"]
+position = Vector2(1.5, 24.25)
+shape = SubResource("RectangleShape2D_eqbj3")
+
+[node name="Sprite2D" type="Sprite2D" parent="Storage2"]
+texture_filter = 1
+scale = Vector2(9, 9)
+texture = ExtResource("26_4a18b")
+hframes = 2
+vframes = 2
+metadata/_aseprite_wizard_config_ = {
+"i_mode": -1,
+"keep_anim_length": false,
+"layer": "",
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"player": "Cooler/AnimationPlayer",
+"slice": "",
+"source": "C:/Users/theim/Desktop/game jam art/water cooler.aseprite"
+}
+metadata/_aseprite_wizard_source_file_hash_ = "c57894fd3d41175b083fdbf518b2105f"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Storage2"]
 libraries = {
 "": SubResource("AnimationLibrary_qv8s1")
 }
@@ -3215,6 +3764,154 @@ libraries = {
 "": SubResource("AnimationLibrary_qv8s1")
 }
 
+[node name="Paper8" type="Area2D" parent="." groups=["Papers", "TaskObjects"]]
+unique_name_in_owner = true
+position = Vector2(-1417, 895)
+collision_layer = 2
+script = ExtResource("6_ef730")
+objectTaskID = 7
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Paper8"]
+position = Vector2(1.5, 24.25)
+shape = SubResource("RectangleShape2D_eqbj3")
+
+[node name="Sprite2D" type="Sprite2D" parent="Paper8"]
+texture_filter = 1
+scale = Vector2(9, 9)
+texture = ExtResource("26_4a18b")
+hframes = 2
+vframes = 2
+metadata/_aseprite_wizard_config_ = {
+"i_mode": -1,
+"keep_anim_length": false,
+"layer": "",
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"player": "Cooler/AnimationPlayer",
+"slice": "",
+"source": "C:/Users/theim/Desktop/game jam art/water cooler.aseprite"
+}
+metadata/_aseprite_wizard_source_file_hash_ = "c57894fd3d41175b083fdbf518b2105f"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Paper8"]
+libraries = {
+"": SubResource("AnimationLibrary_qv8s1")
+}
+
+[node name="Paper9" type="Area2D" parent="." groups=["Papers", "TaskObjects"]]
+unique_name_in_owner = true
+position = Vector2(-1518, 1552)
+collision_layer = 2
+script = ExtResource("6_ef730")
+objectTaskID = 7
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Paper9"]
+position = Vector2(1.5, 24.25)
+shape = SubResource("RectangleShape2D_eqbj3")
+
+[node name="Sprite2D" type="Sprite2D" parent="Paper9"]
+texture_filter = 1
+scale = Vector2(9, 9)
+texture = ExtResource("26_4a18b")
+hframes = 2
+vframes = 2
+metadata/_aseprite_wizard_config_ = {
+"i_mode": -1,
+"keep_anim_length": false,
+"layer": "",
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"player": "Cooler/AnimationPlayer",
+"slice": "",
+"source": "C:/Users/theim/Desktop/game jam art/water cooler.aseprite"
+}
+metadata/_aseprite_wizard_source_file_hash_ = "c57894fd3d41175b083fdbf518b2105f"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Paper9"]
+libraries = {
+"": SubResource("AnimationLibrary_qv8s1")
+}
+
+[node name="Paper10" type="Area2D" parent="." groups=["Papers", "TaskObjects"]]
+unique_name_in_owner = true
+position = Vector2(-2239, 1658)
+collision_layer = 2
+script = ExtResource("6_ef730")
+objectTaskID = 7
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Paper10"]
+position = Vector2(1.5, 24.25)
+shape = SubResource("RectangleShape2D_eqbj3")
+
+[node name="Sprite2D" type="Sprite2D" parent="Paper10"]
+texture_filter = 1
+scale = Vector2(9, 9)
+texture = ExtResource("26_4a18b")
+hframes = 2
+vframes = 2
+metadata/_aseprite_wizard_config_ = {
+"i_mode": -1,
+"keep_anim_length": false,
+"layer": "",
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"player": "Cooler/AnimationPlayer",
+"slice": "",
+"source": "C:/Users/theim/Desktop/game jam art/water cooler.aseprite"
+}
+metadata/_aseprite_wizard_source_file_hash_ = "c57894fd3d41175b083fdbf518b2105f"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Paper10"]
+libraries = {
+"": SubResource("AnimationLibrary_qv8s1")
+}
+
+[node name="Paper11" type="Area2D" parent="." groups=["Papers", "TaskObjects"]]
+unique_name_in_owner = true
+position = Vector2(1163, 1240)
+collision_layer = 2
+script = ExtResource("6_ef730")
+objectTaskID = 7
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Paper11"]
+position = Vector2(1.5, 24.25)
+shape = SubResource("RectangleShape2D_eqbj3")
+
+[node name="Sprite2D" type="Sprite2D" parent="Paper11"]
+texture_filter = 1
+scale = Vector2(9, 9)
+texture = ExtResource("26_4a18b")
+hframes = 2
+vframes = 2
+metadata/_aseprite_wizard_config_ = {
+"i_mode": -1,
+"keep_anim_length": false,
+"layer": "",
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"player": "Cooler/AnimationPlayer",
+"slice": "",
+"source": "C:/Users/theim/Desktop/game jam art/water cooler.aseprite"
+}
+metadata/_aseprite_wizard_source_file_hash_ = "c57894fd3d41175b083fdbf518b2105f"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Paper11"]
+libraries = {
+"": SubResource("AnimationLibrary_qv8s1")
+}
+
 [node name="Music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_5ce1c")
 volume_db = -7.0
@@ -3258,6 +3955,16 @@ bus = &"SFX"
 [connection signal="lateWarning" from="Employee5" to="Player" method="_on_employee_late_warning"]
 [connection signal="newTask" from="Employee5" to="Player" method="_on_employee_new_task"]
 [connection signal="taskComplete" from="Employee5" to="Player" method="_on_employee_task_complete"]
+[connection signal="area_entered" from="Employee14" to="Player" method="_on_employee_area_entered"]
+[connection signal="body_entered" from="Employee14" to="Employee14" method="_on_body_entered"]
+[connection signal="lateWarning" from="Employee14" to="Player" method="_on_employee_late_warning"]
+[connection signal="newTask" from="Employee14" to="Player" method="_on_employee_new_task"]
+[connection signal="taskComplete" from="Employee14" to="Player" method="_on_employee_task_complete"]
+[connection signal="area_entered" from="Employee15" to="Player" method="_on_employee_area_entered"]
+[connection signal="body_entered" from="Employee15" to="Employee15" method="_on_body_entered"]
+[connection signal="lateWarning" from="Employee15" to="Player" method="_on_employee_late_warning"]
+[connection signal="newTask" from="Employee15" to="Player" method="_on_employee_new_task"]
+[connection signal="taskComplete" from="Employee15" to="Player" method="_on_employee_task_complete"]
 [connection signal="area_entered" from="Employee6" to="Player" method="_on_employee_area_entered"]
 [connection signal="body_entered" from="Employee6" to="Employee6" method="_on_body_entered"]
 [connection signal="lateWarning" from="Employee6" to="Player" method="_on_employee_late_warning"]
@@ -3278,6 +3985,26 @@ bus = &"SFX"
 [connection signal="lateWarning" from="Employee9" to="Player" method="_on_employee_late_warning"]
 [connection signal="newTask" from="Employee9" to="Player" method="_on_employee_new_task"]
 [connection signal="taskComplete" from="Employee9" to="Player" method="_on_employee_task_complete"]
+[connection signal="area_entered" from="Employee10" to="Player" method="_on_employee_area_entered"]
+[connection signal="body_entered" from="Employee10" to="Employee10" method="_on_body_entered"]
+[connection signal="lateWarning" from="Employee10" to="Player" method="_on_employee_late_warning"]
+[connection signal="newTask" from="Employee10" to="Player" method="_on_employee_new_task"]
+[connection signal="taskComplete" from="Employee10" to="Player" method="_on_employee_task_complete"]
+[connection signal="area_entered" from="Employee11" to="Player" method="_on_employee_area_entered"]
+[connection signal="body_entered" from="Employee11" to="Employee11" method="_on_body_entered"]
+[connection signal="lateWarning" from="Employee11" to="Player" method="_on_employee_late_warning"]
+[connection signal="newTask" from="Employee11" to="Player" method="_on_employee_new_task"]
+[connection signal="taskComplete" from="Employee11" to="Player" method="_on_employee_task_complete"]
+[connection signal="area_entered" from="Employee12" to="Player" method="_on_employee_area_entered"]
+[connection signal="body_entered" from="Employee12" to="Employee12" method="_on_body_entered"]
+[connection signal="lateWarning" from="Employee12" to="Player" method="_on_employee_late_warning"]
+[connection signal="newTask" from="Employee12" to="Player" method="_on_employee_new_task"]
+[connection signal="taskComplete" from="Employee12" to="Player" method="_on_employee_task_complete"]
+[connection signal="area_entered" from="Employee13" to="Player" method="_on_employee_area_entered"]
+[connection signal="body_entered" from="Employee13" to="Employee13" method="_on_body_entered"]
+[connection signal="lateWarning" from="Employee13" to="Player" method="_on_employee_late_warning"]
+[connection signal="newTask" from="Employee13" to="Player" method="_on_employee_new_task"]
+[connection signal="taskComplete" from="Employee13" to="Player" method="_on_employee_task_complete"]
 [connection signal="area_entered" from="Printer" to="Printer" method="_on_area_entered"]
 [connection signal="body_entered" from="Printer" to="Printer" method="_on_body_entered"]
 [connection signal="taskGoalComplete" from="Printer" to="Employee2" method="_on_task_goal_complete"]
@@ -3292,6 +4019,9 @@ bus = &"SFX"
 [connection signal="body_entered" from="Storage" to="Storage" method="_on_body_entered"]
 [connection signal="taskGoalComplete" from="Storage" to="Employee" method="_on_task_goal_complete"]
 [connection signal="taskRemoteComplete" from="Storage" to="Employee" method="_on_task_remote_complete"]
+[connection signal="body_entered" from="Storage2" to="Storage2" method="_on_body_entered"]
+[connection signal="taskGoalComplete" from="Storage2" to="Employee" method="_on_task_goal_complete"]
+[connection signal="taskRemoteComplete" from="Storage2" to="Employee" method="_on_task_remote_complete"]
 [connection signal="area_entered" from="Microwave" to="Microwave" method="_on_area_entered"]
 [connection signal="body_entered" from="Microwave" to="Microwave" method="_on_body_entered"]
 [connection signal="timeout" from="Microwave/MicrowaveTimer" to="Microwave" method="_on_microwave_timer_timeout"]
@@ -3339,4 +4069,20 @@ bus = &"SFX"
 [connection signal="body_entered" from="Paper7" to="Paper7" method="_on_body_entered"]
 [connection signal="taskGoalComplete" from="Paper7" to="Employee" method="_on_task_goal_complete"]
 [connection signal="taskRemoteComplete" from="Paper7" to="Employee" method="_on_task_remote_complete"]
+[connection signal="area_entered" from="Paper8" to="Paper8" method="_on_files_area_entered"]
+[connection signal="body_entered" from="Paper8" to="Paper8" method="_on_body_entered"]
+[connection signal="taskGoalComplete" from="Paper8" to="Employee" method="_on_task_goal_complete"]
+[connection signal="taskRemoteComplete" from="Paper8" to="Employee" method="_on_task_remote_complete"]
+[connection signal="area_entered" from="Paper9" to="Paper9" method="_on_files_area_entered"]
+[connection signal="body_entered" from="Paper9" to="Paper9" method="_on_body_entered"]
+[connection signal="taskGoalComplete" from="Paper9" to="Employee" method="_on_task_goal_complete"]
+[connection signal="taskRemoteComplete" from="Paper9" to="Employee" method="_on_task_remote_complete"]
+[connection signal="area_entered" from="Paper10" to="Paper10" method="_on_files_area_entered"]
+[connection signal="body_entered" from="Paper10" to="Paper10" method="_on_body_entered"]
+[connection signal="taskGoalComplete" from="Paper10" to="Employee" method="_on_task_goal_complete"]
+[connection signal="taskRemoteComplete" from="Paper10" to="Employee" method="_on_task_remote_complete"]
+[connection signal="area_entered" from="Paper11" to="Paper11" method="_on_files_area_entered"]
+[connection signal="body_entered" from="Paper11" to="Paper11" method="_on_body_entered"]
+[connection signal="taskGoalComplete" from="Paper11" to="Employee" method="_on_task_goal_complete"]
+[connection signal="taskRemoteComplete" from="Paper11" to="Employee" method="_on_task_remote_complete"]
 [connection signal="finished" from="Music" to="." method="_on_music_finished"]
