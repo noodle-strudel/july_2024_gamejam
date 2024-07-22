@@ -121,15 +121,16 @@ func _on_employee_new_task():
 		4:
 			newTask.taskName = "Water Plant"
 			newTask.taskScore = 75
+			timer.wait_time = 45
 			$"../Cooler/AnimationPlayer".play("glow")
 		5:
 			newTask.taskName = "Microwave Lunch"
 			newTask.taskScore = 100
-			timer.wait_time = 45
+			timer.wait_time = 60
 		6:
 			newTask.taskName = "Bring Files to Storage"
 			newTask.taskScore = 150
-			timer.wait_time = 45
+			timer.wait_time = 60
 					
 	# Add task to list and finish setup
 	newTask.timerObject = timer
@@ -248,11 +249,11 @@ func taskIncrement():
 		emit_signal("linkTask", 0)
 		requestedTasks -= 1
 		return
-	elif (tasksCompleted < 12 && activeTaskCount > 6):
+	elif (tasksCompleted < 12 && activeTaskCount > 5):
 		emit_signal("linkTask", 0)
 		requestedTasks -= 1
 		return
-	elif (tasksCompleted < 20 && activeTaskCount > 8):
+	elif (tasksCompleted < 20 && activeTaskCount > 6):
 		emit_signal("linkTask", 0)
 		requestedTasks -= 1
 		return

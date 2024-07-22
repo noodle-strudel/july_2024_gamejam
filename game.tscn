@@ -1798,6 +1798,7 @@ script = ExtResource("1_nuuqp")
 speed = 700.0
 accel = 7
 totalTaskCount = 6
+fixTaskTimeLimit = 30
 metadata/_edit_group_ = true
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
