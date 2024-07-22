@@ -11,7 +11,7 @@ signal taskInList(value)
 # Exported values for easy editing
 @export var speed = 600.0
 @export var accel = 5
-@export var totalTaskCount = 3
+@export var totalTaskCount = 5
 @export var fixTaskTimeLimit = 20
 
 var rng = RandomNumberGenerator.new()
@@ -86,15 +86,12 @@ func _on_employee_new_task():
 		taskInList = false
 		for i in tasks:
 			if (i.taskID == value):
-				print("Duplicate found: ", value)
 				value = rng.randi_range(1, totalTaskCount)
-				print("New Value: ", value)
 				taskInList = true
 	
 	emit_signal("linkTask", value)
-	print("Request B4: ", requestedTasks)
 	requestedTasks -= 1
-	print("Request AFTER: ", requestedTasks)
+	print("Task Claimed ", requestedTasks)
 	
 	# Timer
 	var timer : Timer = Timer.new()
@@ -146,6 +143,8 @@ func _on_employee_new_task():
 # Find task to remove on completion and grant score
 # --- Any Task Specific Completion effects go here ---
 func _on_employee_task_complete(value):
+	tasksCompleted += 1
+	print("Task Completed ", tasksCompleted)
 	for i in tasks:
 		if (i.taskID == value):
 			# General effects for task completion go here
@@ -158,7 +157,6 @@ func _on_employee_task_complete(value):
 				3:
 					pass
 			
-			tasksCompleted += 1
 			score += i.taskScore
 
 			ui.update_score(str(score))
@@ -226,31 +224,39 @@ func _on_checkTaskInList(value):
 		if (i.taskID == value):
 			emit_signal("taskInList", value)
 			return
-			
-	print("Object not in list")
 
 # Progressive Task Chaos System
 func taskIncrement():
-	activeTaskCount = requestedTasks + len(tasks)
-	if (len(tasks) >= totalTaskCount):
-		emit_signal("linkTask", 0)
-		requestedTasks -= 1
-		return
-	if (tasksCompleted < 6 && activeTaskCount >= 2):
-		emit_signal("linkTask", 0)
-		requestedTasks -= 1
-		return
-	elif (tasksCompleted < 10 && activeTaskCount >= 4):
-		emit_signal("linkTask", 0)
-		requestedTasks -= 1
-		return
-	elif (tasksCompleted < 14 && activeTaskCount >= 7):
-		emit_signal("linkTask", 0)
-		requestedTasks -= 1
-		return
-	elif (tasksCompleted < 20 && activeTaskCount >= 10):
-		emit_signal("linkTask", 0)
-		requestedTasks -= 1
-		return
-	
 	requestedTasks += 1
+	print("Requested Tasks +1 ", requestedTasks)
+
+	if (requestedTasks < 0):
+		print("Uh Oh")
+		
+	activeTaskCount = requestedTasks + taskCount
+	print("Requested: ", requestedTasks, " Task Count: ", activeTaskCount)
+	if (taskCount >= totalTaskCount):
+		emit_signal("linkTask", 0)
+		requestedTasks -= 1
+		print("Too many tasks ", requestedTasks)
+		return
+	if (tasksCompleted < 6 && activeTaskCount > 2):
+		emit_signal("linkTask", 0)
+		requestedTasks -= 1
+		print("Chaos too low -1 ", requestedTasks)
+		return
+	elif (tasksCompleted < 10 && activeTaskCount > 4):
+		emit_signal("linkTask", 0)
+		requestedTasks -= 1
+		print("Chaos too low -1 ", requestedTasks)
+		return
+	elif (tasksCompleted < 14 && activeTaskCount > 7):
+		emit_signal("linkTask", 0)
+		requestedTasks -= 1
+		print("Chaos too low -1 ", requestedTasks)
+		return
+	elif (tasksCompleted < 20 && activeTaskCount > 10):
+		emit_signal("linkTask", 0)
+		requestedTasks -= 1
+		print("Chaos too low -1 ", requestedTasks)
+		return

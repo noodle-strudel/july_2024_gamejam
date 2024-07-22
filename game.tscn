@@ -1232,7 +1232,6 @@ layer_2/tile_data = PackedInt32Array(327685, 262147, 6, 327686, 327683, 6, 26214
 unique_name_in_owner = true
 collision_mask = 15
 script = ExtResource("1_nuuqp")
-totalTaskCount = 5
 metadata/_edit_group_ = true
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
