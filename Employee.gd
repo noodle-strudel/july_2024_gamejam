@@ -98,6 +98,7 @@ func play_song(song):
 # After starting task get corrected value and set internally
 func _on_player_link_task(value):
 	if (value == 0 && taskRequested == false):
+		print(self)
 		reset = true
 		return
 	if (task == 0 && taskActive == true):

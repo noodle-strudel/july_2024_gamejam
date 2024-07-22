@@ -32,6 +32,7 @@ class Task:
 	var taskGoal : int
 	var taskScore : int
 
+
 # Movement Input
 func get_input():
 	input.x = Input.get_action_strength("right") - Input.get_action_strength("left")
@@ -62,7 +63,6 @@ func updateAnimation():
 		animations.play("idle")
 # Apply Movement
 func _process(delta):
-	# Movement Calculation And Animation trigger
 	var playerInput = get_input()
 	if playerInput == Vector2.ZERO:
 		velocity = Vector2.ZERO
@@ -75,8 +75,6 @@ func _process(delta):
 	updateAnimation()
 
 # Setup Task upon Claim
-# GO TO THIS FUNCTION WHEN ADDING TASK INFORMATION
-# ---------------------------------------------------------
 func _on_employee_new_task():
 	var value = rng.randi_range(1, totalTaskCount)
 		
@@ -104,33 +102,29 @@ func _on_employee_new_task():
 	# Specific Task Setup
 	var newTask = Task.new()
 
-	# -----------------------------------------------------------------------
 	# If your making a new task put all the information in THIS match case.
-	# If any task specific effects / value changes such as timer length change
-	# In specific match case
-	
 	# If your task has any specific effects on completion put them in the
 	# Match case in the "_on_employee_task_complete" function
-	# -----------------------------------------------------------------------
 	match value:
 		1:
 			newTask.taskName = "Get and Bring water"
 			newTask.taskScore = 50
 			timer.wait_time = 45
+			$"../Cooler/AnimationPlayer".play("glow")
 		2:
 			newTask.taskName = "Fix Printer"
 			newTask.taskScore = 100
+			$"../Printer/AnimationPlayer".play("glow")
 		3:
 			newTask.taskName = "Erase WhiteBoard"
-			newTask.taskScore = 50
 		4:
 			newTask.taskName = "Water Plant"
 			newTask.taskScore = 75
+			$"../Cooler/AnimationPlayer".play("glow")
 		5:
 			newTask.taskName = "Microwave Lunch"
 			newTask.taskScore = 100
 			timer.wait_time = 45
-			
 					
 	# Add task to list and finish setup
 	newTask.timerObject = timer
@@ -141,8 +135,8 @@ func _on_employee_new_task():
 	taskCount += 1
 	print(taskCount)
 
+
 # Find task to remove on completion and grant score
-# --- Any Task Specific Completion effects go here ---
 func _on_employee_task_complete(value):
 	tasksCompleted += 1
 	print("Task Completed ", tasksCompleted)
@@ -157,11 +151,9 @@ func _on_employee_task_complete(value):
 					pass
 				3:
 					pass
-			
 			score += i.taskScore
-
 			ui.update_score(str(score))
-			$"../TaskCompleted".play()
+			
 			var index = tasks.find(i)
 			ui.remove_task(tasks[index].taskID)
 			tasks[index].timerObject.queue_free()
@@ -170,34 +162,39 @@ func _on_employee_task_complete(value):
 
 # Timer End remove from list and give warning
 func _timer_Timeout():
+	var task_id = null
 	for i in tasks:
 		if (i.timerObject.time_left <= 0):
 			var index = tasks.find(i)
-			ui.remove_task(tasks[index].taskID)
+			task_id = tasks[index].taskID
+			
+			ui.remove_task(task_id)
 			tasks.remove_at(index)
 			taskCount -= 1
 			print("Timeout time left: ", i.timerObject.time_left, " ID ", i.taskID)
 			emit_signal("removeTask", i.taskID)
 	
-	ui.add_warning(warnings)
+	var task_name = ui.get_task_name(task_id)
+	ui.add_warning(warnings, task_name)
 	warnings += 1
 	if warnings >= 3:
 		emit_signal("loseGame", score)
 	print("Warnings: ", warnings)
-	boss_play(warnings)
 
 # If player doesnt claim task in time
 func _on_employee_late_warning(value):
 	requestedTasks -= 1
+	var task_id = null
 	for i in tasks:
 		if (i.taskID == value):
 			var index = tasks.find(i)
-			ui.remove_task(tasks[index].taskID)
-			tasks.remove_at(index)
-			print(taskCount)
+			task_id = tasks[index].taskID
 			
-	
-	ui.add_warning(warnings)
+			ui.remove_task(task_id)
+			tasks.remove_at(index)
+			taskCount -= 1
+	var task_name = ui.get_task_name(task_id)
+	ui.add_warning(warnings, task_name)
 	warnings += 1
 	if warnings >= 3:
 		emit_signal("loseGame", score)
@@ -234,7 +231,6 @@ func taskIncrement():
 	requestedTasks += 1
 	activeTaskCount = requestedTasks + taskCount
 	print("Requested: ", requestedTasks, " Task Count: ", activeTaskCount)
-	
 	if (taskCount >= totalTaskCount):
 		emit_signal("linkTask", 0)
 		requestedTasks -= 1

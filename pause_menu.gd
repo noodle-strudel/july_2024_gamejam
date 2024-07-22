@@ -34,36 +34,44 @@ func _on_music_value_changed(value):
 
 
 func _on_resume_button_pressed():
+	$ClickSFX.play()
 	get_tree().paused = false
 	hide()
 
 
 func _on_main_menu_button_pressed():
+	$ClickSFX.play()
+	await get_tree().create_timer(0.1).timeout
 	get_tree().change_scene_to_file("res://main.tscn")
 
 
 func _on_display_item_selected(index):
-	$ClickSFX.play()
 	match index:
 		0:
 			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+			$ClickSFX.play()
 		1:
 			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
 			DisplayServer.window_set_size(DisplayServer.window_get_size())
+			$ClickSFX.play()
 		2:
 			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+			$ClickSFX.play()
 	GameSettings.display_id = index
 
 
 func _on_resolution_item_selected(index):
-	$ClickSFX.play()
 	match index:
 		0:
 			DisplayServer.window_set_size(Vector2i(2560, 1440))
+			$ClickSFX.play()
 		1:
 			DisplayServer.window_set_size(Vector2i(1920, 1080))
+			$ClickSFX.play()
 		2:
 			DisplayServer.window_set_size(Vector2i(1366, 768))
+			$ClickSFX.play()
 		3:
 			DisplayServer.window_set_size(Vector2i(1280, 720))
+			$ClickSFX.play()
 	GameSettings.resolution_id = index

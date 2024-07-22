@@ -30,10 +30,18 @@ func remove_task(task_id):
 func update_score(value : String):
 	score.text = value
 
+func get_task_name(task_id) -> String:
+	for task in task_container.get_children():
+		if task.get_id() == task_id:
+			return task.get_task_name()
+	# if there is no task of ID then it was unclaimed
+	return "Help Employee"
+
 # Update the warnings shown in the UI
-func add_warning(num):
+func add_warning(num, task_name):
 	# unhides the corresponding warning, given a number between 0-2 (3 unique warnings in total)
 	if num > 2:
 		print("ERROR: Somehow the number of warnings is above 3...")
 	else:
+		warning_container.get_child(num).get_node("MarginContainer/RichTextLabel").text = task_name
 		warning_container.get_child(num).show()
