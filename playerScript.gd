@@ -139,6 +139,7 @@ func _on_employee_new_task():
 	ui.create_task(newTask.taskName, newTask.timerObject.wait_time, newTask.taskID)
 	timer.start()
 	taskCount += 1
+	print(taskCount)
 
 # Find task to remove on completion and grant score
 # --- Any Task Specific Completion effects go here ---
@@ -187,12 +188,14 @@ func _timer_Timeout():
 
 # If player doesnt claim task in time
 func _on_employee_late_warning(value):
+	requestedTasks -= 1
 	for i in tasks:
 		if (i.taskID == value):
 			var index = tasks.find(i)
 			ui.remove_task(tasks[index].taskID)
 			tasks.remove_at(index)
-			taskCount -= 1
+			print(taskCount)
+			
 	
 	ui.add_warning(warnings)
 	warnings += 1
@@ -227,6 +230,7 @@ func _on_checkTaskInList(value):
 
 # Progressive Task Chaos System
 func taskIncrement():
+	print(taskCount)
 	requestedTasks += 1
 	activeTaskCount = requestedTasks + taskCount
 	print("Requested: ", requestedTasks, " Task Count: ", activeTaskCount)
