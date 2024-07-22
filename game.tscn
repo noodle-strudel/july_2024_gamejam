@@ -1183,7 +1183,6 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_85rn2"]
 length = 2.125
-loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -1409,7 +1408,6 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_rsvfj"]
 length = 1.1
-loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -3043,6 +3041,7 @@ scale = Vector2(9, 9)
 texture = ExtResource("9_0sob1")
 hframes = 5
 vframes = 4
+frame = 15
 metadata/_aseprite_wizard_config_ = {
 "i_mode": -1,
 "keep_anim_length": false,

@@ -53,7 +53,7 @@ func _on_task_in_list(value):
 				get_tree().call_group("Employees", "_on_task_remote_complete", objectTaskID)
 				print("Printer Fixed")
 				$PrinterFX.play()
-				$AnimationPlayer.play("default")
+				$AnimationPlayer.play("print")
 			3: # Whiteboard Task
 				get_tree().call_group("Employees", "_on_task_remote_complete", objectTaskID)
 				print("Erased Whiteboard")
@@ -118,7 +118,6 @@ func _on_plant_area_exited(area):
 		plant_timer.stop()
 		plant_control.hide()
 		print("Plant Watering Stopped")
-
 
 func _on_plant_timer_timeout():
 	get_tree().call_group("Employees", "_on_task_remote_complete", objectTaskID)
