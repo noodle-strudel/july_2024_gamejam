@@ -1,4 +1,4 @@
-[gd_scene load_steps=100 format=3 uid="uid://cwwig1f1cr45b"]
+[gd_scene load_steps=101 format=3 uid="uid://cwwig1f1cr45b"]
 
 [ext_resource type="Script" path="res://game.gd" id="1_iju5o"]
 [ext_resource type="Script" path="res://playerScript.gd" id="1_nuuqp"]
@@ -36,6 +36,7 @@
 [ext_resource type="Texture2D" uid="uid://doly8te6766" path="res://water cooler.png" id="26_4a18b"]
 [ext_resource type="Texture2D" uid="uid://d2m2t4gx6tcsj" path="res://whiteboard.png" id="28_1qqqj"]
 [ext_resource type="Texture2D" uid="uid://btrkgjlsy1xlc" path="res://vending machine.png" id="32_qp0i5"]
+[ext_resource type="TileSet" uid="uid://e70r6ltoq1oh" path="res://noodlestrudel_tileset.tres" id="37_k37px"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_guvmm"]
 texture = ExtResource("10_guypu")
@@ -1650,7 +1651,7 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gwsq8"]
-size = Vector2(29.0292, 49.9529)
+size = Vector2(29.0292, 61.1687)
 
 [sub_resource type="Animation" id="Animation_80gfd"]
 length = 0.1
@@ -2779,16 +2780,17 @@ libraries = {
 }
 
 [node name="vending machine" type="Area2D" parent="."]
+position = Vector2(533, 611)
 collision_layer = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="vending machine"]
 texture_filter = 1
-position = Vector2(536, 575)
+position = Vector2(6, -37)
 scale = Vector2(9, 9)
 texture = ExtResource("32_qp0i5")
 hframes = 4
 vframes = 4
-frame = 12
+frame = 11
 metadata/_aseprite_wizard_config_ = {
 "i_mode": -1,
 "keep_anim_length": false,
@@ -2804,7 +2806,7 @@ metadata/_aseprite_wizard_config_ = {
 metadata/_aseprite_wizard_source_file_hash_ = "527db13576b70980887d02187fc7003e"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="vending machine"]
-position = Vector2(532.5, 567)
+position = Vector2(6, -37)
 shape = SubResource("RectangleShape2D_batf5")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="vending machine"]
@@ -2813,16 +2815,17 @@ libraries = {
 }
 
 [node name="fridge" type="Area2D" parent="."]
+position = Vector2(1261, 747)
 collision_layer = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="fridge"]
-position = Vector2(1259, 565)
+position = Vector2(1, -138.25)
 scale = Vector2(5.305, 5.305)
 shape = SubResource("RectangleShape2D_gwsq8")
 
 [node name="Sprite2D" type="Sprite2D" parent="fridge"]
 texture_filter = 1
-position = Vector2(1261.76, 573)
+position = Vector2(-2, -173)
 scale = Vector2(9, 9)
 texture = ExtResource("24_tj5vo")
 hframes = 2
@@ -2864,6 +2867,19 @@ stream = ExtResource("9_tw1qk")
 volume_db = -10.558
 bus = &"SFX"
 
+[node name="NoodleTilemap" type="TileMap" parent="."]
+y_sort_enabled = true
+scale = Vector2(8.32, 8.32)
+tile_set = ExtResource("37_k37px")
+format = 2
+layer_0/name = "Base"
+layer_0/y_sort_enabled = true
+layer_0/tile_data = PackedInt32Array(-983046, 1, 0, -983045, 65537, 0, -917510, 1, 1, -851974, 1, 2, -917509, 65537, 1, -917508, 131073, 1, -917507, 196609, 1, -917506, 262145, 1, -851973, 65537, 2, -851972, 65537, 2, -851971, 65537, 2, -851970, 262145, 2, -983042, 262145, 0, -983043, 196609, 0, -983044, 196609, 0, -1114100, 327681, 0, -1114099, 393217, 0, -1114098, 393217, 0, -1114097, 393217, 0, -1114096, 393217, 0, -1114095, 458753, 0, 1114126, 131073, 4, 1114127, 196609, 4, 1179662, 131073, 5, 1179663, 196609, 5, 1048591, 196609, 3, 851979, 1, 3, 851980, 65537, 3, 917515, 1, 4, 917516, 65537, 4, 983051, 1, 5, 983052, 65537, 5, 1507343, 327681, 4, 1507342, 262145, 4, 1572878, 262145, 5, 1572879, 327681, 5, 1441806, 262145, 3, 1245201, 1, 3, 1376273, 1, 5, 1310738, 65537, 4, 1310737, 1, 4, 1245202, 65537, 3, 1376274, 65537, 5, 1507300, 393217, 2, 1572836, 393217, 3, 1638372, 393217, 4, 1507301, 458753, 2, 1507302, 458753, 2, 1507303, 458753, 2, 1507304, 458753, 2, 1507305, 458753, 2, 1507306, 458753, 2, 1572837, 458753, 3, 1572838, 458753, 3, 1572839, 458753, 3, 1572840, 458753, 3, 1572841, 458753, 3, 1572842, 458753, 3, 1638373, 458753, 4, 1703909, 458753, 5, 1638374, 524289, 4, 1638375, 524289, 4, 1638376, 524289, 4, 1638377, 524289, 4, 1638378, 524289, 4, 1638379, 589825, 4, 1703915, 589825, 5, 1638380, 393217, 268435460, 1507308, 393217, 268435458, 1507307, 458753, 2, 1572843, 458753, 3, 1572844, 393217, 805306371)
+layer_1/name = "Coat"
+layer_1/y_sort_enabled = true
+layer_1/tile_data = PackedInt32Array(-1114100, 524289, 0, -1114099, 589825, 0, -1114098, 524289, 0, -1114096, 524289, 0, -1114095, 589825, 0, -1114097, 589825, 0, -1048564, 524289, 1, -1048562, 524289, 1, -1048561, 589825, 1, -1048563, 589825, 1, -1048560, 524289, 1, -1048559, 589825, 1)
+
+[connection signal="loseGame" from="Player" to="." method="_on_player_lose_game"]
 [connection signal="body_entered" from="Employee" to="Employee" method="_on_body_entered"]
 [connection signal="lateWarning" from="Employee" to="Player" method="_on_employee_late_warning"]
 [connection signal="newTask" from="Employee" to="Player" method="_on_employee_new_task"]
