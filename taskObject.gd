@@ -1,7 +1,7 @@
 extends Area2D
 signal taskGoalComplete(value)
 signal taskRemoteComplete(value)
-signal deliveryUpdated(value)
+signal paperGrabbed(value)
 
 @onready var plant_timer = $"../Plant/PlantTimer"
 @onready var plant_control = $"../Plant/PlantControl"
@@ -14,10 +14,15 @@ var collidedBody
 var microwaveStarted = false
 var microwaveReady = false
 var deliveryTaskStep = 0
+var pickedUp = false
+var paperCount = 0
 
 # Connect Signals
 func _ready():
 	%Player.taskInList.connect(_on_task_in_list)
+	for object in get_tree().get_nodes_in_group("Papers"):
+		object.paperGrabbed.connect(_on_paper_grabbed)
+	%Player.resetTask.connect(_on_reset_task)
 
 func _physics_process(delta):
 	plant_progress.value = -plant_timer.time_left
@@ -26,6 +31,7 @@ func _physics_process(delta):
 func _on_body_entered(body):
 	collidedBody = body.name
 	%Player._on_checkTaskInList(objectTaskID)
+	collidedBody = "null"
 
 # --------------------------------------------
 # Trigger TaskObject Effects 
@@ -68,18 +74,29 @@ func _on_task_in_list(value):
 				if (deliveryTaskStep == 0 && self.name == "Files" && collidedBody == "Player"):
 					print("Files Grabbed")
 					deliveryTaskStep = 1
-					collidedBody = "null"
 					%Storage.deliveryTaskStep = 1
 					return
 				if (deliveryTaskStep == 1 && self.name == "Storage" && collidedBody == "Player"):
 					print("Delivered")
 					deliveryTaskStep = 0
-					collidedBody = "null"
 					%Files.deliveryTaskStep = 0
 					get_tree().call_group("Employees", "_on_task_remote_complete", objectTaskID)
 					return
+				
+			7: # Pickup Papers
+				if (pickedUp == false && collidedBody == "Player"):
+					print("Local Paper Count: ", paperCount)
+					emit_signal("paperGrabbed", 1)
+					if (paperCount >= 6):
+						emit_signal("paperGrabbed", 0)
+						get_tree().call_group("Employees", "_on_task_remote_complete", objectTaskID)
+						print("Papers Finished")
+						paperCount = 0
+						return
+					pickedUp = true
+					self.hide()
+					return
 					
-				collidedBody = "null"
 			_: # Error Catching
 				print("Invalid Task Object: ", objectTaskID)
 	
@@ -105,3 +122,18 @@ func _on_microwave_timer_timeout():
 	microwaveReady = true
 	print("Microwave Finished")
 
+func _on_paper_grabbed(value):
+	print("Paper Signal Recieved: ", self.name)
+	if (value == 1 && pickedUp == false):
+		paperCount += 1
+		print("New Paper Count: ", paperCount)
+	if (value == 0):
+		paperCount = 0
+		pickedUp = false
+		self.show()
+
+func _on_reset_task(value):
+	if (value == 6):
+		deliveryTaskStep = 0
+	if (value == 7):
+		emit_signal("paperGrabbed", 0)

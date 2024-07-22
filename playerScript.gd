@@ -3,6 +3,7 @@ signal linkTask(value)
 signal removeTask(value)
 signal loseGame(value)
 signal taskInList(value)
+signal resetTask(value)
 
 # Var Init
 @onready var ui := $"../CanvasLayer/GameUI"
@@ -126,11 +127,15 @@ func _on_employee_new_task():
 		5:
 			newTask.taskName = "Microwave Lunch"
 			newTask.taskScore = 100
-			timer.wait_time = 60
+			timer.wait_time = 55
 		6:
 			newTask.taskName = "Bring Files to Storage"
 			newTask.taskScore = 150
-			timer.wait_time = 60
+			timer.wait_time = 55
+		7:
+			newTask.taskName = "Pickup 6 Papers"
+			newTask.taskScore = 100
+			timer.wait_time = 40
 					
 	# Add task to list and finish setup
 	newTask.timerObject = timer
@@ -195,6 +200,7 @@ func _on_employee_late_warning(value):
 		if (i.taskID == value):
 			var index = tasks.find(i)
 			task_id = tasks[index].taskID
+			emit_signal("resetTask", value)
 			
 			ui.remove_task(task_id)
 			tasks.remove_at(index)
