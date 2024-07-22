@@ -26,8 +26,7 @@ func _ready():
 
 func _physics_process(delta):
 	plant_progress.value = -plant_timer.time_left
-	if ($AnimationPlayer.current_animation_position == 1 && objectTaskID == 3):
-		$"../WhiteBoard/AnimationPlayer".play("empty")
+
 
 # Tell Player to check if task is in list
 func _on_body_entered(body):
