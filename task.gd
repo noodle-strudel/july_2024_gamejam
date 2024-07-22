@@ -30,3 +30,6 @@ func get_task_name() -> String:
 
 func _on_timer_timeout():
 	timer_on = false
+
+func update_name(new_name):
+	$IndivTaskContainer/TaskLabel.text = new_name

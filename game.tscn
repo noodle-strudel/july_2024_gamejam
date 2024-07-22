@@ -2481,6 +2481,7 @@ metadata/_aseprite_wizard_interface_config_ = {
 }
 
 [node name="notification" type="Node2D" parent="Employee9"]
+visible = false
 position = Vector2(124.41, -118.52)
 scale = Vector2(0.575705, 0.660939)
 

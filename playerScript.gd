@@ -126,11 +126,12 @@ func _on_employee_new_task():
 		4:
 			newTask.taskName = "Water Plant"
 			newTask.taskScore = 75
-			$"../Cooler/AnimationPlayer".play("glow")
+			$"../Plant/AnimationPlayer".play("glow")
 		5:
 			newTask.taskName = "Microwave Lunch"
 			newTask.taskScore = 100
 			timer.wait_time = 45
+			$"../Microwave/AnimationPlayer".play("glow")
 					
 	# Add task to list and finish setup
 	newTask.timerObject = timer

@@ -8,6 +8,7 @@ signal taskRemoteComplete(value)
 @onready var microwave_timer = $"../Microwave/MicrowaveTimer"
 @export var objectTaskID = 0
 @onready var animations = $AnimationPlayer
+@onready var ui = $"../CanvasLayer/GameUI"
 
 var microwaveStarted = false
 var microwaveReady = false
@@ -32,7 +33,7 @@ func _on_task_in_list(value):
 		match objectTaskID:
 			1: # Cooler Task
 				get_tree().call_group("Employees", "_on_task_goal_complete", objectTaskID)
-				print("Bring back water")
+				ui.change_task_name(value, "Bring Back Water")
 				$"../Cooler/CoolerFX".play()
 				$"../Cooler/AnimationPlayer".play("idle")
 			2: # Printer Task
@@ -56,10 +57,11 @@ func _on_task_in_list(value):
 					microwaveStarted = true
 					print("Microwave Started")
 					$"../Microwave/MicrowaveFX".play()
+					$"../Microwave/AnimationPlayer".play("microwave")
 				if (microwaveReady == true):
 					get_tree().call_group("Employees", "_on_task_goal_complete", objectTaskID)
 					microwaveReady = false
-					
+					$"../Microwave/AnimationPlayer".play("idle")
 			_: # Error Catching
 				print("Invalid Task Object: ", objectTaskID)
 	
@@ -76,6 +78,7 @@ func _on_plant_timer_timeout():
 	get_tree().call_group("Employees", "_on_task_remote_complete", objectTaskID)
 	plant_control.hide()
 	print("Plant Watered")
+	$"../Plant/AnimationPlayer".play("idle")
 
 # Microwave Finished Heating Timer
 func _on_microwave_timer_timeout():
@@ -84,5 +87,6 @@ func _on_microwave_timer_timeout():
 	microwaveStarted = false
 	microwaveReady = true
 	print("Microwave Finished")
+	$"../Microwave/AnimationPlayer".play("glow")
 
 
