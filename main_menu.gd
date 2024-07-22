@@ -75,6 +75,7 @@ func _on_start_button_pressed():
 
 func _on_credits_button_pressed():
 	$ClickSFX.play()
+	$Credits.show()
 
 
 func _on_sfx_value_changed(value):
@@ -87,3 +88,8 @@ func _on_music_value_changed(value):
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Music"), 
 		linear_to_db(value))
 	GameSettings.music_vol = value
+
+
+func _on_credits_back_button_pressed():
+	$ClickSFX.play()
+	$Credits.hide()

@@ -75,6 +75,7 @@ func _on_body_entered(body):
 		taskRequested = false
 		task = 0
 		taskCompleted = false
+		reset = false
 		print("Task Completed")
 		
 		#Reset music speed to normal
@@ -97,6 +98,7 @@ func play_song(song):
 # After starting task get corrected value and set internally
 func _on_player_link_task(value):
 	if (value == 0 && taskRequested == false):
+		print(self)
 		reset = true
 		return
 	if (task == 0 && taskActive == true):
@@ -109,7 +111,7 @@ func _on_player_remove_task(value):
 		taskActive = false
 		taskCompleted = false
 		taskRequested = false
-		reset = true
+		reset = false
 		notif.hide()
 		
 # Call when goal is complete but need to return to Employee
@@ -130,12 +132,12 @@ func _on_task_remote_complete(value):
 # Timer run out request new task
 func _timer_Timeout():
 	# Request taks from player and start warning timer
+	reset = false
 	if (!taskRequested):
 		%Player.taskIncrement()
 		if (reset):
 			timerStarted = false
 			_on_player_remove_task(task)
-			reset = false
 			return
 	
 		notif.show()

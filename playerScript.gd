@@ -1,6 +1,8 @@
 extends CharacterBody2D
 signal linkTask(value)
 signal removeTask(value)
+signal loseGame(value)
+signal taskInList(value)
 
 # Var Init
 @onready var ui := $"../CanvasLayer/GameUI"
@@ -9,7 +11,7 @@ signal removeTask(value)
 # Exported values for easy editing
 @export var speed = 600.0
 @export var accel = 5
-@export var totalTaskCount = 3
+@export var totalTaskCount = 5
 @export var fixTaskTimeLimit = 20
 
 var rng = RandomNumberGenerator.new()
@@ -138,6 +140,7 @@ func _on_employee_new_task():
 
 # Find task to remove on completion and grant score
 func _on_employee_task_complete(value):
+	tasksCompleted += 1
 	for i in tasks:
 		if (i.taskID == value):
 			# General effects for task completion go here
@@ -150,7 +153,7 @@ func _on_employee_task_complete(value):
 				3:
 					pass
 			
-			tasksCompleted += 1
+			
 			score += i.taskScore
 			ui.update_score(str(score))
 			
@@ -177,6 +180,8 @@ func _timer_Timeout():
 	var task_name = ui.get_task_name(task_id)
 	ui.add_warning(warnings, task_name)
 	warnings += 1
+	if warnings >= 3:
+		emit_signal("loseGame", score)
 	print("Warnings: ", warnings)
 
 # If player doesnt claim task in time
@@ -193,6 +198,8 @@ func _on_employee_late_warning(value):
 	var task_name = ui.get_task_name(task_id)
 	ui.add_warning(warnings, task_name)
 	warnings += 1
+	if warnings >= 3:
+		emit_signal("loseGame", score)
 	print("Warnings: ", warnings)
 	boss_play(warnings)
 
@@ -224,26 +231,36 @@ func _on_checkTaskInList(value):
 
 # Progressive Task Chaos System
 func taskIncrement():
-	activeTaskCount = requestedTasks + len(tasks)
-	if (len(tasks) >= totalTaskCount):
-		emit_signal("linkTask", 0)
-		requestedTasks -= 1
-		return
-	if (tasksCompleted < 6 && activeTaskCount >= 2):
-		emit_signal("linkTask", 0)
-		requestedTasks -= 1
-		return
-	elif (tasksCompleted < 10 && activeTaskCount >= 4):
-		emit_signal("linkTask", 0)
-		requestedTasks -= 1
-		return
-	elif (tasksCompleted < 14 && activeTaskCount >= 7):
-		emit_signal("linkTask", 0)
-		requestedTasks -= 1
-		return
-	elif (tasksCompleted < 20 && activeTaskCount >= 10):
-		emit_signal("linkTask", 0)
-		requestedTasks -= 1
-		return
-	
 	requestedTasks += 1
+	print("Requested Tasks +1 ", requestedTasks)
+
+	if (requestedTasks < 0):
+		print("Uh Oh")
+
+	activeTaskCount = requestedTasks + taskCount
+	print("Requested: ", requestedTasks, " Task Count: ", activeTaskCount)
+	if (taskCount >= totalTaskCount):
+		emit_signal("linkTask", 0)
+		requestedTasks -= 1
+		print("Too many tasks ", requestedTasks)
+		return
+	if (tasksCompleted < 6 && activeTaskCount > 2):
+		emit_signal("linkTask", 0)
+		requestedTasks -= 1
+		print("Chaos too low -1 ", requestedTasks)
+		return
+	elif (tasksCompleted < 10 && activeTaskCount > 4):
+		emit_signal("linkTask", 0)
+		requestedTasks -= 1
+		print("Chaos too low -1 ", requestedTasks)
+		return
+	elif (tasksCompleted < 14 && activeTaskCount > 7):
+		emit_signal("linkTask", 0)
+		requestedTasks -= 1
+		print("Chaos too low -1 ", requestedTasks)
+		return
+	elif (tasksCompleted < 20 && activeTaskCount > 10):
+		emit_signal("linkTask", 0)
+		requestedTasks -= 1
+		print("Chaos too low -1 ", requestedTasks)
+		return
