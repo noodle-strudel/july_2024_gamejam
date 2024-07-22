@@ -3018,7 +3018,7 @@ metadata/_aseprite_wizard_source_file_hash_ = "a1fd7833e5738218342726bb30c4ecf3"
 volume_db = -6.256
 bus = &"SFX"
 
-[node name="Printer" type="Area2D" parent="."]
+[node name="Printer" type="Area2D" parent="." groups=["TaskObjects"]]
 position = Vector2(1134, -35)
 collision_layer = 2
 script = ExtResource("6_ef730")
@@ -3064,7 +3064,7 @@ libraries = {
 "": SubResource("AnimationLibrary_3gqov")
 }
 
-[node name="Cooler" type="Area2D" parent="." groups=["TaskObjects"]]
+[node name="Cooler" type="Area2D" parent="." groups=["Coolers", "TaskObjects"]]
 position = Vector2(734, -39)
 collision_layer = 2
 script = ExtResource("6_ef730")
@@ -3107,7 +3107,7 @@ libraries = {
 }
 autoplay = "idle"
 
-[node name="Cooler2" type="Area2D" parent="." groups=["TaskObjects"]]
+[node name="Cooler2" type="Area2D" parent="." groups=["Coolers", "TaskObjects"]]
 position = Vector2(-2648, -961)
 collision_layer = 2
 script = ExtResource("6_ef730")
@@ -3354,7 +3354,7 @@ libraries = {
 }
 autoplay = "empty"
 
-[node name="Plant" type="Area2D" parent="."]
+[node name="Plant" type="Area2D" parent="." groups=["Plants", "TaskObjects"]]
 position = Vector2(462, -139)
 collision_layer = 2
 script = ExtResource("6_ef730")
@@ -3413,6 +3413,69 @@ stream = ExtResource("18_7gi7o")
 bus = &"SFX"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Plant"]
+libraries = {
+"": SubResource("AnimationLibrary_v4r60")
+}
+
+[node name="Plant2" type="Area2D" parent="." groups=["Plants", "TaskObjects"]]
+position = Vector2(290, -896)
+collision_layer = 2
+script = ExtResource("6_ef730")
+objectTaskID = 4
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Plant2"]
+position = Vector2(-2.5, 41.5)
+shape = SubResource("RectangleShape2D_041ff")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Plant2"]
+texture_filter = 1
+scale = Vector2(9, 9)
+texture = ExtResource("18_1yhif")
+hframes = 2
+vframes = 2
+metadata/_aseprite_wizard_config_ = {
+"i_mode": -1,
+"keep_anim_length": false,
+"layer": "",
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"player": "Plant/AnimationPlayer",
+"slice": "",
+"source": "C:/Users/theim/Desktop/game jam art/plant1.aseprite"
+}
+metadata/_aseprite_wizard_source_file_hash_ = "9d6320df02d121fb7c0f4a6bd351b53c"
+
+[node name="PlantTimer" type="Timer" parent="Plant2"]
+wait_time = 3.0
+one_shot = true
+
+[node name="PlantControl" type="Control" parent="Plant2"]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_left = -120.0
+offset_top = -120.0
+offset_right = 120.0
+offset_bottom = 120.0
+
+[node name="ProgressBar" type="ProgressBar" parent="Plant2/PlantControl"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 27.0
+grow_horizontal = 2
+min_value = -3.0
+max_value = 0.0
+value = -3.0
+
+[node name="PlantFX" type="AudioStreamPlayer2D" parent="Plant2"]
+stream = ExtResource("18_7gi7o")
+bus = &"SFX"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Plant2"]
 libraries = {
 "": SubResource("AnimationLibrary_v4r60")
 }
@@ -4004,6 +4067,10 @@ bus = &"SFX"
 [connection signal="body_entered" from="Plant" to="Player" method="_on_printer_body_entered"]
 [connection signal="body_entered" from="Plant" to="Plant" method="_on_body_entered"]
 [connection signal="timeout" from="Plant/PlantTimer" to="Plant" method="_on_plant_timer_timeout"]
+[connection signal="area_exited" from="Plant2" to="Plant2" method="_on_plant_area_exited"]
+[connection signal="body_entered" from="Plant2" to="Player" method="_on_printer_body_entered"]
+[connection signal="body_entered" from="Plant2" to="Plant2" method="_on_body_entered"]
+[connection signal="timeout" from="Plant2/PlantTimer" to="Plant2" method="_on_plant_timer_timeout"]
 [connection signal="area_entered" from="Paper" to="Paper" method="_on_files_area_entered"]
 [connection signal="body_entered" from="Paper" to="Paper" method="_on_body_entered"]
 [connection signal="area_entered" from="Paper2" to="Paper2" method="_on_files_area_entered"]

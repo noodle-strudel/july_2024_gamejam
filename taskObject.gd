@@ -44,10 +44,10 @@ func _on_task_in_list(value):
 			1: # Cooler Task
 				get_tree().call_group("Employees", "_on_task_goal_complete", objectTaskID)
 				print("Bring back water")
-				$"../Cooler/CoolerFX".play()
-				$"../Cooler2/CoolerFX".play()
-				$"../Cooler/AnimationPlayer".play("idle")
-				$"../Cooler2/AnimationPlayer".play("idle")
+				# Play Sound for all Coolers
+				self.get_child(0).play()
+				# Play Animation for all Coolers
+				self.get_child(3).play("idle")
 			2: # Printer Task
 				get_tree().call_group("Employees", "_on_task_remote_complete", objectTaskID)
 				print("Printer Fixed")
@@ -62,7 +62,7 @@ func _on_task_in_list(value):
 				plant_timer.start()
 				plant_control.show()
 				print("Watering Plant...")
-				$"../Plant/PlantFX".play()
+				self.get_child(4).play()
 			5: # Microwave
 				if (microwaveStarted == false && microwaveReady == false):
 					microwave_timer.start()
@@ -121,8 +121,9 @@ func _on_plant_area_exited(area):
 func _on_plant_timer_timeout():
 	get_tree().call_group("Employees", "_on_task_remote_complete", objectTaskID)
 	plant_control.hide()
-	$"../Plant/AnimationPlayer".play("idle")
-	print("Plant Watered")
+	for child in get_children():
+		if child is AnimationPlayer:
+			child.play("idle")
 
 # Microwave Finished Heating Timer
 func _on_microwave_timer_timeout():

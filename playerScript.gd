@@ -111,8 +111,8 @@ func _on_employee_new_task():
 			newTask.taskName = "Get and Bring water"
 			newTask.taskScore = 75
 			timer.wait_time = 45
-			$"../Cooler/AnimationPlayer".play("glow")
-			$"../Cooler2/AnimationPlayer".play("glow")
+			for object in get_tree().get_nodes_in_group("Coolers"):
+				object.get_child(3).play("glow")
 		2:
 			newTask.taskName = "Fix Printer"
 			newTask.taskScore = 25
@@ -125,7 +125,8 @@ func _on_employee_new_task():
 			newTask.taskName = "Water Plant"
 			newTask.taskScore = 75
 			timer.wait_time = 45
-			$"../Plant/AnimationPlayer".play("glow")
+			for object in get_tree().get_nodes_in_group("Plants"):
+				object.get_child(5).play("glow")
 		5:
 			newTask.taskName = "Microwave Lunch"
 			newTask.taskScore = 100
