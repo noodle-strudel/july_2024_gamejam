@@ -112,6 +112,7 @@ func _on_employee_new_task():
 			newTask.taskScore = 75
 			timer.wait_time = 45
 			$"../Cooler/AnimationPlayer".play("glow")
+			$"../Cooler2/AnimationPlayer".play("glow")
 		2:
 			newTask.taskName = "Fix Printer"
 			newTask.taskScore = 25
@@ -119,15 +120,17 @@ func _on_employee_new_task():
 		3:
 			newTask.taskName = "Erase WhiteBoard"
 			newTask.taskScore = 50
+			$"../WhiteBoard/AnimationPlayer".play("glow")
 		4:
 			newTask.taskName = "Water Plant"
 			newTask.taskScore = 75
 			timer.wait_time = 45
-			$"../Cooler/AnimationPlayer".play("glow")
+			$"../Plant/AnimationPlayer".play("glow")
 		5:
 			newTask.taskName = "Microwave Lunch"
 			newTask.taskScore = 100
 			timer.wait_time = 55
+			$"../Microwave/AnimationPlayer".play("glow")
 		6:
 			newTask.taskName = "Bring Files to Storage"
 			newTask.taskScore = 150
@@ -135,6 +138,8 @@ func _on_employee_new_task():
 		7:
 			newTask.taskName = "Pickup 6 Papers"
 			newTask.taskScore = 75
+			for object in get_tree().get_nodes_in_group("Papers"):
+				object.get_child(2).play("glow")
 					
 	# Add task to list and finish setup
 	newTask.timerObject = timer

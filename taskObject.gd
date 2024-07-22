@@ -44,7 +44,9 @@ func _on_task_in_list(value):
 				get_tree().call_group("Employees", "_on_task_goal_complete", objectTaskID)
 				print("Bring back water")
 				$"../Cooler/CoolerFX".play()
+				$"../Cooler2/CoolerFX".play()
 				$"../Cooler/AnimationPlayer".play("idle")
+				$"../Cooler2/AnimationPlayer".play("idle")
 			2: # Printer Task
 				get_tree().call_group("Employees", "_on_task_remote_complete", objectTaskID)
 				print("Printer Fixed")
@@ -66,8 +68,10 @@ func _on_task_in_list(value):
 					microwaveStarted = true
 					print("Microwave Started")
 					$"../Microwave/MicrowaveFX".play()
+					$"../Microwave/AnimationPlayer".play("microwave")
 				if (microwaveReady == true):
 					get_tree().call_group("Employees", "_on_task_goal_complete", objectTaskID)
+					$"../Microwave/AnimationPlayer".play("idle")
 					microwaveReady = false
 					
 			6: # Delivery
@@ -75,11 +79,14 @@ func _on_task_in_list(value):
 					print("Files Grabbed")
 					deliveryTaskStep = 1
 					%Storage.deliveryTaskStep = 1
+					$"../Files/AnimationPlayer".play("idle")
+					$"../Storage/AnimationPlayer".play("glow")
 					return
 				if (deliveryTaskStep == 1 && self.name == "Storage" && collidedBody == "Player"):
 					print("Delivered")
 					deliveryTaskStep = 0
 					%Files.deliveryTaskStep = 0
+					$"../Storage/AnimationPlayer".play("idle")
 					get_tree().call_group("Employees", "_on_task_remote_complete", objectTaskID)
 					return
 				
@@ -92,6 +99,8 @@ func _on_task_in_list(value):
 						get_tree().call_group("Employees", "_on_task_remote_complete", objectTaskID)
 						print("Papers Finished")
 						paperCount = 0
+						for object in get_tree().get_nodes_in_group("Papers"):
+							object.get_child(2).play("idle")
 						return
 					pickedUp = true
 					self.hide()
@@ -112,12 +121,14 @@ func _on_plant_area_exited(area):
 func _on_plant_timer_timeout():
 	get_tree().call_group("Employees", "_on_task_remote_complete", objectTaskID)
 	plant_control.hide()
+	$"../Plant/AnimationPlayer".play("idle")
 	print("Plant Watered")
 
 # Microwave Finished Heating Timer
 func _on_microwave_timer_timeout():
 	$"../Microwave/MicrowaveFX".stop()
 	$"../Microwave/MicrowaveFXend".play()
+	$"../Microwave/AnimationPlayer".play("glow")
 	microwaveStarted = false
 	microwaveReady = true
 	print("Microwave Finished")

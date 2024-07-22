@@ -144,7 +144,6 @@ func _timer_Timeout():
 		timerStarted = false
 		timer.start(claimTaskTime)
 		return
-		print("Starting warning timer")
 		
 	# Submit warning if task unclaimed
 	if (taskRequested == true && taskActive == false):
