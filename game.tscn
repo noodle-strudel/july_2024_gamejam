@@ -1,4 +1,4 @@
-[gd_scene load_steps=504 format=3 uid="uid://cwwig1f1cr45b"]
+[gd_scene load_steps=505 format=3 uid="uid://cwwig1f1cr45b"]
 
 [ext_resource type="Script" path="res://game.gd" id="1_iju5o"]
 [ext_resource type="Script" path="res://playerScript.gd" id="1_nuuqp"]
@@ -45,6 +45,7 @@
 [ext_resource type="Texture2D" uid="uid://dfnswo5c3x5oe" path="res://paper2.png" id="39_t87u3"]
 [ext_resource type="Texture2D" uid="uid://xdlo6ym65712" path="res://paper3.png" id="40_jcheo"]
 [ext_resource type="Texture2D" uid="uid://ukfk0s6jstx8" path="res://paper4.png" id="41_jt0s0"]
+[ext_resource type="AudioStream" uid="uid://cubpiaqjiqua0" path="res://SFX/Request.mp3" id="45_6ypj7"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_guvmm"]
 texture = ExtResource("10_guypu")
@@ -10380,7 +10381,7 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eqbj3"]
-size = Vector2(113, 86)
+size = Vector2(140, 151)
 
 [sub_resource type="Animation" id="Animation_iqu8y"]
 length = 1.2
@@ -10445,7 +10446,7 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6otjp"]
-size = Vector2(163, 86)
+size = Vector2(185, 148)
 
 [sub_resource type="Animation" id="Animation_ec4g4"]
 length = 1.2
@@ -10510,7 +10511,7 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_batf5"]
-size = Vector2(227, 364)
+size = Vector2(320, 364)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tyhdp"]
 size = Vector2(356, 419.25)
@@ -11285,6 +11286,9 @@ _data = {
 "idle": SubResource("Animation_1oe2d")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s2qtq"]
+size = Vector2(140, 141)
+
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_xd8ak"]
 load_path = "res://.godot/imported/paper2.png-8026f0d3da6e52ed8a67b14353b9c452.ctex"
 
@@ -11415,6 +11419,9 @@ _data = {
 "idle": SubResource("Animation_30d21")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tmsk4"]
+size = Vector2(130, 142)
+
 [sub_resource type="Animation" id="Animation_xns64"]
 length = 1.2
 loop_mode = 1
@@ -11477,6 +11484,9 @@ _data = {
 "idle": SubResource("Animation_pijp2")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e5hbc"]
+size = Vector2(132, 149.25)
+
 [sub_resource type="Animation" id="Animation_t3srx"]
 length = 1.2
 loop_mode = 1
@@ -11538,6 +11548,9 @@ _data = {
 "glow": SubResource("Animation_t3srx"),
 "idle": SubResource("Animation_qsijh")
 }
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_btevp"]
+size = Vector2(138, 141)
 
 [sub_resource type="Animation" id="Animation_lidoo"]
 length = 1.2
@@ -11708,7 +11721,7 @@ unique_name_in_owner = true
 position = Vector2(269, -901)
 collision_mask = 31
 script = ExtResource("1_nuuqp")
-speed = 700.0
+speed = 750.0
 accel = 7
 totalTaskCount = 7
 fixTaskTimeLimit = 30
@@ -11765,6 +11778,10 @@ metadata/_aseprite_wizard_source_file_hash_ = "e97e507f6350f772da97af89f82ea5b4"
 stream = ExtResource("4_638m3")
 volume_db = -5.807
 bus = &"SFX"
+
+[node name="Complete" type="AudioStreamPlayer2D" parent="Player"]
+stream = ExtResource("9_tw1qk")
+volume_db = -5.573
 
 [node name="receptionist" type="Area2D" parent="." groups=["Employees"]]
 position = Vector2(1020, -594)
@@ -13047,7 +13064,7 @@ attenuation = 2.37841
 bus = &"SFX"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Cooler"]
-position = Vector2(1.5, 24.25)
+position = Vector2(1.5, 52.125)
 shape = SubResource("RectangleShape2D_eqbj3")
 
 [node name="Sprite2D" type="Sprite2D" parent="Cooler"]
@@ -13077,7 +13094,7 @@ libraries = {
 autoplay = "idle"
 
 [node name="Cooler2" type="Area2D" parent="." groups=["Coolers", "TaskObjects"]]
-position = Vector2(-2227, -861)
+position = Vector2(-2259, -942)
 collision_layer = 2
 script = ExtResource("6_ef730")
 objectTaskID = 1
@@ -13090,7 +13107,7 @@ attenuation = 2.37841
 bus = &"SFX"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Cooler2"]
-position = Vector2(1.5, 24.25)
+position = Vector2(-0.5, 46.6875)
 shape = SubResource("RectangleShape2D_eqbj3")
 
 [node name="Sprite2D" type="Sprite2D" parent="Cooler2"]
@@ -13128,7 +13145,7 @@ objectTaskID = 6
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Files"]
-position = Vector2(-23.5, 24.25)
+position = Vector2(-34.5, 14)
 shape = SubResource("RectangleShape2D_6otjp")
 
 [node name="Sprite2D" type="Sprite2D" parent="Files"]
@@ -13202,6 +13219,7 @@ objectTaskID = 6
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Storage2"]
+position = Vector2(-3, 0)
 shape = SubResource("RectangleShape2D_batf5")
 
 [node name="Sprite2D" type="Sprite2D" parent="Storage2"]
@@ -13272,7 +13290,7 @@ libraries = {
 autoplay = "empty"
 
 [node name="Plant" type="Area2D" parent="." groups=["Plants", "TaskObjects"]]
-position = Vector2(462, -139)
+position = Vector2(465, -159)
 collision_layer = 2
 script = ExtResource("6_ef730")
 objectTaskID = 4
@@ -13288,6 +13306,7 @@ scale = Vector2(9, 9)
 texture = ExtResource("18_1yhif")
 hframes = 2
 vframes = 2
+frame = 1
 metadata/_aseprite_wizard_config_ = {
 "i_mode": -1,
 "keep_anim_length": false,
@@ -13419,6 +13438,140 @@ collision_layer = 16
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Plant2/StaticBody2D"]
 shape = SubResource("RectangleShape2D_uh0tv")
 
+[node name="Plant3" type="Area2D" parent="." groups=["Plants", "TaskObjects"]]
+position = Vector2(-1405, -1039)
+collision_layer = 2
+script = ExtResource("6_ef730")
+objectTaskID = 4
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Plant3"]
+position = Vector2(-2.5, 41.5)
+shape = SubResource("RectangleShape2D_041ff")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Plant3"]
+z_index = 2
+texture_filter = 1
+scale = Vector2(9, 9)
+texture = SubResource("CompressedTexture2D_6p71w")
+hframes = 2
+vframes = 2
+metadata/_aseprite_wizard_config_ = {
+"i_mode": -1,
+"keep_anim_length": false,
+"layer": "",
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"player": "Plant/AnimationPlayer",
+"slice": "",
+"source": "C:/Users/theim/Desktop/game jam art/plant1.aseprite"
+}
+metadata/_aseprite_wizard_source_file_hash_ = "9d6320df02d121fb7c0f4a6bd351b53c"
+
+[node name="PlantTimer" type="Timer" parent="Plant3"]
+wait_time = 3.0
+one_shot = true
+
+[node name="PlantControl" type="Control" parent="Plant3"]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_left = -120.0
+offset_top = -120.0
+offset_right = 120.0
+offset_bottom = 120.0
+theme = ExtResource("34_63wog")
+
+[node name="ProgressBar" type="ProgressBar" parent="Plant3/PlantControl"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 32.0
+grow_horizontal = 2
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+min_value = -3.0
+max_value = 0.0
+value = -3.0
+
+[node name="PlantFX" type="AudioStreamPlayer2D" parent="Plant3"]
+stream = ExtResource("18_7gi7o")
+bus = &"SFX"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Plant3"]
+libraries = {
+"": SubResource("AnimationLibrary_v4r60")
+}
+
+[node name="Plant4" type="Area2D" parent="." groups=["Plants", "TaskObjects"]]
+position = Vector2(-557, 1101)
+collision_layer = 2
+script = ExtResource("6_ef730")
+objectTaskID = 4
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Plant4"]
+position = Vector2(-2.5, 41.5)
+shape = SubResource("RectangleShape2D_041ff")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Plant4"]
+z_index = 2
+texture_filter = 1
+scale = Vector2(9, 9)
+texture = SubResource("CompressedTexture2D_6p71w")
+hframes = 2
+vframes = 2
+metadata/_aseprite_wizard_config_ = {
+"i_mode": -1,
+"keep_anim_length": false,
+"layer": "",
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"player": "Plant/AnimationPlayer",
+"slice": "",
+"source": "C:/Users/theim/Desktop/game jam art/plant1.aseprite"
+}
+metadata/_aseprite_wizard_source_file_hash_ = "9d6320df02d121fb7c0f4a6bd351b53c"
+
+[node name="PlantTimer" type="Timer" parent="Plant4"]
+wait_time = 3.0
+one_shot = true
+
+[node name="PlantControl" type="Control" parent="Plant4"]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_left = -120.0
+offset_top = -120.0
+offset_right = 120.0
+offset_bottom = 120.0
+theme = ExtResource("34_63wog")
+
+[node name="ProgressBar" type="ProgressBar" parent="Plant4/PlantControl"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 32.0
+grow_horizontal = 2
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+min_value = -3.0
+max_value = 0.0
+value = -3.0
+
+[node name="PlantFX" type="AudioStreamPlayer2D" parent="Plant4"]
+stream = ExtResource("18_7gi7o")
+bus = &"SFX"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Plant4"]
+libraries = {
+"": SubResource("AnimationLibrary_v4r60")
+}
+
 [node name="vending machine" type="Area2D" parent="."]
 y_sort_enabled = true
 position = Vector2(533, 731)
@@ -13502,14 +13655,14 @@ libraries = {
 
 [node name="Paper" type="Area2D" parent="." groups=["Papers", "TaskObjects"]]
 unique_name_in_owner = true
-position = Vector2(-2291, -213)
+position = Vector2(-2286, 64)
 collision_layer = 2
 script = ExtResource("6_ef730")
 objectTaskID = 7
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Paper"]
-position = Vector2(1.5, 24.25)
+position = Vector2(-2.75, 10)
 shape = SubResource("RectangleShape2D_eqbj3")
 
 [node name="Sprite2D" type="Sprite2D" parent="Paper"]
@@ -13539,7 +13692,7 @@ libraries = {
 
 [node name="Paper2" type="Area2D" parent="." groups=["Papers", "TaskObjects"]]
 unique_name_in_owner = true
-position = Vector2(69, 1195)
+position = Vector2(17, 1214)
 collision_layer = 2
 script = ExtResource("6_ef730")
 objectTaskID = 7
@@ -13576,14 +13729,14 @@ libraries = {
 
 [node name="Paper3" type="Area2D" parent="." groups=["Papers", "TaskObjects"]]
 unique_name_in_owner = true
-position = Vector2(-612, 317)
+position = Vector2(-641, -83)
 collision_layer = 2
 script = ExtResource("6_ef730")
 objectTaskID = 7
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Paper3"]
-position = Vector2(1.5, 24.25)
+position = Vector2(-4.5, 5)
 shape = SubResource("RectangleShape2D_eqbj3")
 
 [node name="Sprite2D" type="Sprite2D" parent="Paper3"]
@@ -13613,14 +13766,14 @@ libraries = {
 
 [node name="Paper4" type="Area2D" parent="." groups=["Papers", "TaskObjects"]]
 unique_name_in_owner = true
-position = Vector2(-1507, 43)
+position = Vector2(-1452, 451)
 collision_layer = 2
 script = ExtResource("6_ef730")
 objectTaskID = 7
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Paper4"]
-position = Vector2(1.5, 24.25)
+position = Vector2(-5, 5)
 shape = SubResource("RectangleShape2D_eqbj3")
 
 [node name="Sprite2D" type="Sprite2D" parent="Paper4"]
@@ -13650,7 +13803,7 @@ libraries = {
 
 [node name="Paper5" type="Area2D" parent="." groups=["Papers", "TaskObjects"]]
 unique_name_in_owner = true
-position = Vector2(-891, -782)
+position = Vector2(-1082, -832)
 collision_layer = 2
 script = ExtResource("6_ef730")
 objectTaskID = 7
@@ -13687,15 +13840,15 @@ libraries = {
 
 [node name="Paper6" type="Area2D" parent="." groups=["Papers", "TaskObjects"]]
 unique_name_in_owner = true
-position = Vector2(143, 404)
+position = Vector2(238, 504)
 collision_layer = 2
 script = ExtResource("6_ef730")
 objectTaskID = 7
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Paper6"]
-position = Vector2(1.5, 24.25)
-shape = SubResource("RectangleShape2D_eqbj3")
+position = Vector2(-14, -11.5)
+shape = SubResource("RectangleShape2D_s2qtq")
 
 [node name="Sprite2D" type="Sprite2D" parent="Paper6"]
 texture_filter = 1
@@ -13724,7 +13877,7 @@ libraries = {
 
 [node name="Paper7" type="Area2D" parent="." groups=["Papers", "TaskObjects"]]
 unique_name_in_owner = true
-position = Vector2(38, -703)
+position = Vector2(567, -769)
 collision_layer = 2
 script = ExtResource("6_ef730")
 objectTaskID = 7
@@ -13768,8 +13921,8 @@ objectTaskID = 7
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Paper8"]
-position = Vector2(1.5, 24.25)
-shape = SubResource("RectangleShape2D_eqbj3")
+position = Vector2(-3, 4)
+shape = SubResource("RectangleShape2D_tmsk4")
 
 [node name="Sprite2D" type="Sprite2D" parent="Paper8"]
 texture_filter = 1
@@ -13798,15 +13951,15 @@ libraries = {
 
 [node name="Paper9" type="Area2D" parent="." groups=["Papers", "TaskObjects"]]
 unique_name_in_owner = true
-position = Vector2(692, 177)
+position = Vector2(939, 177)
 collision_layer = 2
 script = ExtResource("6_ef730")
 objectTaskID = 7
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Paper9"]
-position = Vector2(1.5, 24.25)
-shape = SubResource("RectangleShape2D_eqbj3")
+position = Vector2(-4, 15.625)
+shape = SubResource("RectangleShape2D_e5hbc")
 
 [node name="Sprite2D" type="Sprite2D" parent="Paper9"]
 texture_filter = 1
@@ -13835,15 +13988,15 @@ libraries = {
 
 [node name="Paper10" type="Area2D" parent="." groups=["Papers", "TaskObjects"]]
 unique_name_in_owner = true
-position = Vector2(-1459, 739)
+position = Vector2(-1857, 1354)
 collision_layer = 2
 script = ExtResource("6_ef730")
 objectTaskID = 7
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Paper10"]
-position = Vector2(1.5, 24.25)
-shape = SubResource("RectangleShape2D_eqbj3")
+position = Vector2(-10, -6.5)
+shape = SubResource("RectangleShape2D_btevp")
 
 [node name="Sprite2D" type="Sprite2D" parent="Paper10"]
 texture_filter = 1
@@ -13879,7 +14032,7 @@ objectTaskID = 7
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Paper11"]
-position = Vector2(1.5, 24.25)
+position = Vector2(-4, 5.5)
 shape = SubResource("RectangleShape2D_eqbj3")
 
 [node name="Sprite2D" type="Sprite2D" parent="Paper11"]
@@ -13919,6 +14072,10 @@ bus = &"SFX"
 
 [node name="Boss" type="AudioStreamPlayer" parent="."]
 bus = &"SFX"
+
+[node name="TaskRequested" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(-483, -69)
+stream = ExtResource("45_6ypj7")
 
 [node name="TaskCompleted" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("9_tw1qk")
@@ -14055,6 +14212,14 @@ shape = SubResource("RectangleShape2D_v4dht")
 [connection signal="body_entered" from="Plant2" to="Plant2" method="_on_body_entered"]
 [connection signal="body_exited" from="Plant2" to="Paper10" method="_on_plant_body_exited"]
 [connection signal="timeout" from="Plant2/PlantTimer" to="Plant2" method="_on_plant_timer_timeout"]
+[connection signal="area_exited" from="Plant3" to="Plant3" method="_on_plant_area_exited"]
+[connection signal="body_entered" from="Plant3" to="Player" method="_on_printer_body_entered"]
+[connection signal="body_entered" from="Plant3" to="Plant3" method="_on_body_entered"]
+[connection signal="timeout" from="Plant3/PlantTimer" to="Plant3" method="_on_plant_timer_timeout"]
+[connection signal="area_exited" from="Plant4" to="Plant4" method="_on_plant_area_exited"]
+[connection signal="body_entered" from="Plant4" to="Player" method="_on_printer_body_entered"]
+[connection signal="body_entered" from="Plant4" to="Plant4" method="_on_body_entered"]
+[connection signal="timeout" from="Plant4/PlantTimer" to="Plant4" method="_on_plant_timer_timeout"]
 [connection signal="area_entered" from="Paper" to="Paper" method="_on_files_area_entered"]
 [connection signal="body_entered" from="Paper" to="Paper" method="_on_body_entered"]
 [connection signal="area_entered" from="Paper2" to="Paper2" method="_on_files_area_entered"]
