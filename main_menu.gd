@@ -11,6 +11,8 @@ func _ready():
 	$Settings/PanelContainer/MarginContainer/VBoxContainer/Music.value = GameSettings.music_vol
 	$Settings/PanelContainer/MarginContainer/VBoxContainer/Resolution.selected = GameSettings.resolution_id
 	$Settings/PanelContainer/MarginContainer/VBoxContainer/OptionButton.selected = GameSettings.display_id
+	var pitch_shift = AudioServer.get_bus_effect(AudioServer.get_bus_index("Music"), 0)
+	pitch_shift.pitch_scale = 1	
 	$Music.play()
 
 

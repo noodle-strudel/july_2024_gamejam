@@ -5,14 +5,12 @@ signal loseGame(value)
 signal taskInList(value)
 signal resetTask(value)
 
-const SPEED = 600
-const SPRINT = 900
 # Var Init
 @onready var ui := $"../CanvasLayer/GameUI"
 @onready var animations = $AnimationPlayer
 
 # Exported values for easy editing
-@export var speed = 600.0
+@export var speed = 750.0
 @export var accel = 5
 @export var totalTaskCount = 5
 @export var fixTaskTimeLimit = 20
@@ -71,10 +69,6 @@ func _process(delta):
 		velocity = Vector2.ZERO
 		$Walking.stop()
 	else:
-		if Input.is_action_pressed("sprint"):
-			speed = SPRINT
-		else:
-			speed = SPEED
 		velocity = lerp(velocity, playerInput * speed, delta * accel)
 		if not $Walking.playing:
 			$Walking.play()
@@ -96,7 +90,6 @@ func _on_employee_new_task():
 	
 	emit_signal("linkTask", value)
 	requestedTasks -= 1
-	print("Task Claimed ", requestedTasks)
 	
 	# Timer
 	var timer : Timer = Timer.new()
@@ -126,7 +119,8 @@ func _on_employee_new_task():
 		3:
 			newTask.taskName = "Erase WhiteBoard"
 			newTask.taskScore = 50
-			$"../WhiteBoard/AnimationPlayer".play("filled")
+			$"../WhiteBoard/AnimationPlayer".play("glow")
+			
 		4:
 			newTask.taskName = "Water Plant"
 			newTask.taskScore = 75
@@ -139,12 +133,12 @@ func _on_employee_new_task():
 			timer.wait_time = 55
 			$"../Microwave/AnimationPlayer".play("glow")
 		6:
-			newTask.taskName = "Bring Files to Storage"
+			newTask.taskName = "Grab Files from Receptionist Desk"
 			newTask.taskScore = 150
 			timer.wait_time = 55
 			$"../Files/AnimationPlayer".play("glow")
 		7:
-			newTask.taskName = "Pickup 6 Papers"
+			newTask.taskName = "Pick up 6 Papers"
 			newTask.taskScore = 75
 			for object in get_tree().get_nodes_in_group("Papers"):
 				object.get_child(2).play("glow")
@@ -156,13 +150,11 @@ func _on_employee_new_task():
 	ui.create_task(newTask.taskName, newTask.timerObject.wait_time, newTask.taskID)
 	timer.start()
 	taskCount += 1
-	print(taskCount)
 
 
 # Find task to remove on completion and grant score
 func _on_employee_task_complete(value):
 	tasksCompleted += 1
-	print("Task Completed ", tasksCompleted)
 	for i in tasks:
 		if (i.taskID == value):
 			# General effects for task completion go here
@@ -194,7 +186,6 @@ func _timer_Timeout():
 			ui.remove_task(task_id)
 			tasks.remove_at(index)
 			taskCount -= 1
-			print("Timeout time left: ", i.timerObject.time_left, " ID ", i.taskID)
 			emit_signal("removeTask", i.taskID)
 	
 	var task_name = ui.get_task_name(task_id)
@@ -202,8 +193,8 @@ func _timer_Timeout():
 	warnings += 1
 	if warnings >= 3:
 		emit_signal("loseGame", score)
-	print("Warnings: ", warnings)
 	boss_play(warnings)
+	$"../Boss2/AnimationPlayer".play("angry")
 
 # If player doesnt claim task in time
 func _on_employee_late_warning(value):
@@ -223,8 +214,8 @@ func _on_employee_late_warning(value):
 	warnings += 1
 	if warnings >= 3:
 		emit_signal("loseGame", score)
-	print("Warnings: ", warnings)
 	boss_play(warnings)
+	$"../Boss2/AnimationPlayer".play("angry")
 
 func boss_play(warnings):
 	var song1 = preload("res://SFX/voices/boss1.mp3")
@@ -257,7 +248,6 @@ func taskIncrement():
 	if (activeTaskCount > totalTaskCount):
 		emit_signal("linkTask", 0)
 		requestedTasks -= 1
-		print("Too many tasks ", requestedTasks)
 		return
 		
 	if (tasksCompleted < 3 && activeTaskCount > 2):
@@ -276,3 +266,7 @@ func taskIncrement():
 		emit_signal("linkTask", 0)
 		requestedTasks -= 1
 		return
+
+
+func _on_boss_finished():
+	$"../Boss2/AnimationPlayer".play("idle")
