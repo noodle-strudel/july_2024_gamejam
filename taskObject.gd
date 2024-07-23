@@ -5,7 +5,10 @@ signal paperGrabbed(value)
 
 @onready var plant_timer = $"../Plant/PlantTimer"
 @onready var plant_control = $"../Plant/PlantControl"
+@onready var plant_timer2 = $"../Plant2/PlantTimer"
+@onready var plant_control2 = $"../Plant2/PlantControl"
 @onready var plant_progress = $"../Plant/PlantControl/ProgressBar"
+@onready var plant_progress2 = $"../Plant2/PlantControl/ProgressBar"
 @onready var microwave_timer = $"../Microwave/MicrowaveTimer"
 @export var objectTaskID = 0
 @onready var animations = $AnimationPlayer
@@ -17,6 +20,7 @@ var microwaveReady = false
 var deliveryTaskStep = 0
 var pickedUp = false
 var paperCount = 0
+var neededPapers = 6
 
 # Connect Signals
 func _ready():
@@ -27,6 +31,7 @@ func _ready():
 
 func _physics_process(delta):
 	plant_progress.value = -plant_timer.time_left
+	plant_progress2.value = -plant_timer2.time_left
 
 
 # Tell Player to check if task is in list
@@ -54,17 +59,19 @@ func _on_task_in_list(value):
 				#$"../Cooler/AnimationPlayer".play("idle")
 			2: # Printer Task
 				get_tree().call_group("Employees", "_on_task_remote_complete", objectTaskID)
-				print("Printer Fixed")
 				$PrinterFX.play()
 				$AnimationPlayer.play("print")
 			3: # Whiteboard Task
 				get_tree().call_group("Employees", "_on_task_remote_complete", objectTaskID)
-				print("Erased Whiteboard")
 				$"../WhiteBoard/WhiteBoardFX".play()
 				$"../WhiteBoard/AnimationPlayer".play("erase")
 			4: # Water Plant
-				plant_timer.start()
-				plant_control.show()
+				if name == "Plant":
+					plant_timer.start()
+					plant_control.show()
+				else:
+					plant_timer2.start()
+					plant_control2.show()
 				print("Watering Plant...")
 				self.get_child(4).play()
 			5: # Microwave
@@ -82,14 +89,13 @@ func _on_task_in_list(value):
 					
 			6: # Delivery
 				if (deliveryTaskStep == 0 && self.name == "Files" && collidedBody == "Player"):
-					print("Files Grabbed")
+					ui.change_task_name(value, "Bring Files to Storage")
 					deliveryTaskStep = 1
 					%Storage.deliveryTaskStep = 1
 					$"../Files/AnimationPlayer".play("idle")
 					$"../Storage/AnimationPlayer".play("glow")
 					return
 				if (deliveryTaskStep == 1 && self.name == "Storage" && collidedBody == "Player"):
-					print("Delivered")
 					deliveryTaskStep = 0
 					%Files.deliveryTaskStep = 0
 					$"../Storage/AnimationPlayer".play("idle")
@@ -116,11 +122,11 @@ func _on_task_in_list(value):
 	
 # Reset Plant Water Timer / Progress Bar
 func _on_plant_body_exited(body):
-	print("Intern")
 	if plant_timer.time_left != 0:
 		plant_timer.stop()
 		plant_control.hide()
-		print("Plant Watering Stopped")
+		plant_timer2.stop()
+		plant_control2.hide()
 
 func _on_plant_timer_timeout():
 	get_tree().call_group("Employees", "_on_task_remote_complete", objectTaskID)
@@ -140,10 +146,9 @@ func _on_microwave_timer_timeout():
 	$"../Microwave/AnimationPlayer".play("glow")
 
 func _on_paper_grabbed(value):
-	print("Paper Signal Recieved: ", self.name)
 	if (value == 1 && pickedUp == false):
 		paperCount += 1
-		print("New Paper Count: ", paperCount)
+		#ui.change_task_name(7, "Pick Up " + str(paperCount) + " Paper(s)")
 	if (value == 0):
 		paperCount = 0
 		pickedUp = false

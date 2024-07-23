@@ -3,6 +3,9 @@ extends Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	$"Music".pitch_scale = 1
+	var pitch_shift = AudioServer.get_bus_effect(AudioServer.get_bus_index("Music"), 0)
+	pitch_shift.pitch_scale = 1
 	$Music.play()
 
 
