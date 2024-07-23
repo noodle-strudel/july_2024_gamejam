@@ -11,7 +11,7 @@ var taskCompleted = false
 var timerStarted = false
 var reset = false
 var rng = RandomNumberGenerator.new()
-
+var pitchHigh = false
 var timer : Timer = Timer.new()
 
 # Editor Variables for easier changing
@@ -44,10 +44,13 @@ func _process(delta):
 	if (taskRequested == false && timerStarted == false):
 		timer.start(rng.randi_range(minTaskAppearTime, maxTaskAppearTime))
 		timerStarted = true
-	if timer.time_left < 10 && taskRequested:
+	if timer.time_left < 10 && taskRequested && taskActive == false && pitchHigh == false:
+		pitchHigh = true
 		$"../Music".pitch_scale = 1.5
 		var pitch_shift = AudioServer.get_bus_effect(AudioServer.get_bus_index("Music"), 0)
-		pitch_shift.pitch_scale = 1/1.5	
+		pitch_shift.pitch_scale = 1/1.5
+		print("Pitch Raised")
+		print(pitchHigh)
 	
 # Run if player collides with employee
 func _on_body_entered(body):
@@ -56,6 +59,7 @@ func _on_body_entered(body):
 		taskActive = true
 		# Allocate a task number to the employee
 		emit_signal("newTask")
+		resetMusic()
 		
 		# Determine the notif animation based on the task number given
 		match task:
@@ -157,7 +161,8 @@ func _timer_Timeout():
 			timerStarted = false
 			_on_player_remove_task(task)
 			return
-	
+		
+		$"../TaskRequested".play()
 		notif.show()
 		taskRequested = true
 		timerStarted = false
@@ -168,4 +173,14 @@ func _timer_Timeout():
 	if (taskRequested == true && taskActive == false):
 		emit_signal("lateWarning", task)
 		_on_player_remove_task(task)	
+		resetMusic()
 		return
+
+func resetMusic():
+	print("Reset Called: ", pitchHigh)
+	if (pitchHigh == true):
+		$"../Music".pitch_scale = 1
+		var pitch_shift = AudioServer.get_bus_effect(AudioServer.get_bus_index("Music"), 0)
+		pitch_shift.pitch_scale = 1
+		pitchHigh = false
+		print("Pitch Reset")
