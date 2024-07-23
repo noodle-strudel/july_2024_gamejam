@@ -116,5 +116,6 @@ text = "Write Signature"
 
 [node name="SignNoise" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_ahm36")
+bus = &"SFX"
 
 [connection signal="pressed" from="PanelContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/SignatureButton" to="." method="_on_signature_button_pressed"]

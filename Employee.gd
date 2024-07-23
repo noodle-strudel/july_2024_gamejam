@@ -73,6 +73,10 @@ func _on_body_entered(body):
 				notif_animation.play("plantLeft")
 			5:
 				notif_animation.play("microwaveLeft")
+			6:
+				notif_animation.play("storageLeft")
+			7:
+				notif_animation.play("paperLeft")
 		#Randomize sounds of employee
 		var song1 = preload("res://SFX/voices/employee1.mp3")
 		var song2 = preload("res://SFX/voices/employee2.mp3")
@@ -93,7 +97,6 @@ func _on_body_entered(body):
 		task = 0
 		taskCompleted = false
 		reset = false
-		print("Task Completed")
 		notif.hide()
 		notif_animation.play("left")
 		
@@ -105,9 +108,9 @@ func _on_body_entered(body):
 		
 	# Debug Purposes
 	elif (taskActive):
-		print("Not Complete")
+		pass
 	elif (!taskRequested):
-		print("No Task Yet")
+		pass
 
 func play_song(song):
 	var audio_player = $VoiceFX

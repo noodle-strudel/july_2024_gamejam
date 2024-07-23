@@ -489,9 +489,11 @@ use_texture_padding = false
 7:4/0 = 0
 7:4/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 7:4/0/physics_layer_0/angular_velocity = 0.0
+7:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, -8, -8, -8, 8, -8, 8, 8, 8, 8, -8)
 8:6/0 = 0
 8:6/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 8:6/0/physics_layer_0/angular_velocity = 0.0
+8:6/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, -8, -8, -8, 8, -8, 8, 8, 8, 8, 8, 8, -8, 8, -8, -8, -8, -8, -8)
 
 [sub_resource type="TileSet" id="TileSet_21p80"]
 physics_layer_0/collision_layer = 2
@@ -8349,8 +8351,8 @@ _data = {
 "print": SubResource("Animation_85rn2")
 }
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_u8a7i"]
-size = Vector2(128, 212)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gstp0"]
+size = Vector2(128, 192)
 
 [sub_resource type="Animation" id="Animation_b80i7"]
 length = 1.2
@@ -8442,6 +8444,9 @@ _data = {
 "idle": SubResource("Animation_elu8k"),
 "microwave": SubResource("Animation_upey0")
 }
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vql2q"]
+size = Vector2(508, 92)
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_4exl8"]
 load_path = "res://.godot/imported/notification.png-18567602bde4f9def9230e275e582265.ctex"
@@ -10698,6 +10703,9 @@ _data = {
 "idle": SubResource("Animation_oj7eq")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uh0tv"]
+size = Vector2(92, 49)
+
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_6p71w"]
 load_path = "res://.godot/imported/plant1.png-f7b54aa1eaa2988fca79e27c9690ac7f.ctex"
 
@@ -10790,6 +10798,9 @@ _data = {
 "glow": SubResource("Animation_k38v4"),
 "idle": SubResource("Animation_da2le")
 }
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4ylvc"]
+size = Vector2(232, 49)
 
 [sub_resource type="Animation" id="Animation_nansg"]
 length = 1.2
@@ -11665,6 +11676,9 @@ _data = {
 "idle": SubResource("Animation_tov0b")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v4dht"]
+size = Vector2(546, 1354)
+
 [node name="Game" type="Node2D"]
 y_sort_enabled = true
 position = Vector2(483, 69)
@@ -11704,8 +11718,8 @@ layer_3/tile_data = PackedInt32Array(262150, 458755, 6)
 
 [node name="Player" type="CharacterBody2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(281, -869)
-collision_mask = 15
+position = Vector2(269, -901)
+collision_mask = 31
 script = ExtResource("1_nuuqp")
 speed = 750.0
 accel = 7
@@ -11716,7 +11730,7 @@ metadata/_edit_group_ = true
 [node name="Camera2D" type="Camera2D" parent="Player"]
 scale = Vector2(1.50189, 0.369756)
 zoom = Vector2(0.72, 0.72)
-limit_left = -2348
+limit_left = -1947
 limit_top = -1296
 limit_right = 1848
 limit_bottom = 1968
@@ -11736,7 +11750,7 @@ libraries = {
 [node name="Sprite2D" type="Sprite2D" parent="Player"]
 visibility_layer = 519
 texture_filter = 1
-position = Vector2(-7.62939e-06, -96)
+position = Vector2(0, -112)
 scale = Vector2(9, 9)
 texture = ExtResource("3_eui5l")
 hframes = 7
@@ -11940,7 +11954,6 @@ scale = Vector2(11.835, 11.835)
 texture = SubResource("CompressedTexture2D_8rs37")
 hframes = 9
 vframes = 9
-frame = 47
 metadata/_aseprite_wizard_config_ = {
 "i_mode": -1,
 "keep_anim_length": false,
@@ -11959,6 +11972,7 @@ metadata/_aseprite_wizard_source_file_hash_ = "20e8191b2b178a771d48bb4fd6e4d999"
 libraries = {
 "": SubResource("AnimationLibrary_0ucv7")
 }
+autoplay = "left"
 
 [node name="VoiceFX" type="AudioStreamPlayer2D" parent="Employee2"]
 volume_db = -6.256
@@ -12018,7 +12032,6 @@ scale = Vector2(11.835, 11.835)
 texture = SubResource("CompressedTexture2D_r7sla")
 hframes = 9
 vframes = 9
-frame = 66
 metadata/_aseprite_wizard_config_ = {
 "i_mode": -1,
 "keep_anim_length": false,
@@ -12037,6 +12050,7 @@ metadata/_aseprite_wizard_source_file_hash_ = "20e8191b2b178a771d48bb4fd6e4d999"
 libraries = {
 "": SubResource("AnimationLibrary_6lyca")
 }
+autoplay = "left"
 
 [node name="VoiceFX" type="AudioStreamPlayer2D" parent="Employee3"]
 volume_db = -6.256
@@ -12095,7 +12109,6 @@ scale = Vector2(11.835, 11.835)
 texture = SubResource("CompressedTexture2D_n30gl")
 hframes = 9
 vframes = 9
-frame = 66
 metadata/_aseprite_wizard_config_ = {
 "i_mode": -1,
 "keep_anim_length": false,
@@ -12114,6 +12127,7 @@ metadata/_aseprite_wizard_source_file_hash_ = "20e8191b2b178a771d48bb4fd6e4d999"
 libraries = {
 "": SubResource("AnimationLibrary_0mbkh")
 }
+autoplay = "left"
 
 [node name="VoiceFX" type="AudioStreamPlayer2D" parent="Employee4"]
 volume_db = -6.256
@@ -12173,7 +12187,6 @@ scale = Vector2(11.835, 11.835)
 texture = SubResource("CompressedTexture2D_8cts4")
 hframes = 9
 vframes = 9
-frame = 66
 metadata/_aseprite_wizard_config_ = {
 "i_mode": -1,
 "keep_anim_length": false,
@@ -12192,6 +12205,7 @@ metadata/_aseprite_wizard_source_file_hash_ = "20e8191b2b178a771d48bb4fd6e4d999"
 libraries = {
 "": SubResource("AnimationLibrary_en4i1")
 }
+autoplay = "left"
 
 [node name="VoiceFX" type="AudioStreamPlayer2D" parent="Employee5"]
 volume_db = -6.256
@@ -12250,7 +12264,6 @@ scale = Vector2(11.835, 11.835)
 texture = SubResource("CompressedTexture2D_gllfs")
 hframes = 9
 vframes = 9
-frame = 66
 metadata/_aseprite_wizard_config_ = {
 "i_mode": -1,
 "keep_anim_length": false,
@@ -12269,6 +12282,7 @@ metadata/_aseprite_wizard_source_file_hash_ = "20e8191b2b178a771d48bb4fd6e4d999"
 libraries = {
 "": SubResource("AnimationLibrary_xf7pg")
 }
+autoplay = "left"
 
 [node name="VoiceFX" type="AudioStreamPlayer2D" parent="Employee15"]
 volume_db = -6.256
@@ -12327,7 +12341,6 @@ scale = Vector2(11.835, 11.835)
 texture = SubResource("CompressedTexture2D_rinee")
 hframes = 9
 vframes = 9
-frame = 66
 metadata/_aseprite_wizard_config_ = {
 "i_mode": -1,
 "keep_anim_length": false,
@@ -12346,6 +12359,7 @@ metadata/_aseprite_wizard_source_file_hash_ = "20e8191b2b178a771d48bb4fd6e4d999"
 libraries = {
 "": SubResource("AnimationLibrary_jfv82")
 }
+autoplay = "left"
 
 [node name="VoiceFX" type="AudioStreamPlayer2D" parent="Employee6"]
 volume_db = -6.256
@@ -12403,7 +12417,6 @@ scale = Vector2(11, 11)
 texture = SubResource("CompressedTexture2D_ncykb")
 hframes = 9
 vframes = 9
-frame = 66
 metadata/_aseprite_wizard_config_ = {
 "i_mode": -1,
 "keep_anim_length": false,
@@ -12422,6 +12435,7 @@ metadata/_aseprite_wizard_source_file_hash_ = "20e8191b2b178a771d48bb4fd6e4d999"
 libraries = {
 "": SubResource("AnimationLibrary_tyrj6")
 }
+autoplay = "left"
 
 [node name="VoiceFX" type="AudioStreamPlayer2D" parent="Employee7"]
 volume_db = -6.256
@@ -12479,7 +12493,6 @@ scale = Vector2(11.835, 11.835)
 texture = SubResource("CompressedTexture2D_flndg")
 hframes = 9
 vframes = 9
-frame = 66
 metadata/_aseprite_wizard_config_ = {
 "i_mode": -1,
 "keep_anim_length": false,
@@ -12498,6 +12511,7 @@ metadata/_aseprite_wizard_source_file_hash_ = "20e8191b2b178a771d48bb4fd6e4d999"
 libraries = {
 "": SubResource("AnimationLibrary_c6cmd")
 }
+autoplay = "left"
 
 [node name="VoiceFX" type="AudioStreamPlayer2D" parent="Employee8"]
 volume_db = -6.256
@@ -12547,7 +12561,7 @@ metadata/_aseprite_wizard_interface_config_ = {
 
 [node name="notification" type="Node2D" parent="Employee9"]
 visible = false
-position = Vector2(124.41, -134.52)
+position = Vector2(88, -120)
 scale = Vector2(0.575705, 0.660939)
 
 [node name="Sprite2D" type="Sprite2D" parent="Employee9/notification"]
@@ -12556,7 +12570,6 @@ scale = Vector2(11.835, 11.835)
 texture = SubResource("CompressedTexture2D_074f4")
 hframes = 9
 vframes = 9
-frame = 66
 metadata/_aseprite_wizard_config_ = {
 "i_mode": -1,
 "keep_anim_length": false,
@@ -12575,6 +12588,7 @@ metadata/_aseprite_wizard_source_file_hash_ = "20e8191b2b178a771d48bb4fd6e4d999"
 libraries = {
 "": SubResource("AnimationLibrary_vvrom")
 }
+autoplay = "left"
 
 [node name="VoiceFX" type="AudioStreamPlayer2D" parent="Employee9"]
 volume_db = -6.256
@@ -12632,7 +12646,6 @@ scale = Vector2(11.835, 11.835)
 texture = SubResource("CompressedTexture2D_dn8kf")
 hframes = 9
 vframes = 9
-frame = 66
 metadata/_aseprite_wizard_config_ = {
 "i_mode": -1,
 "keep_anim_length": false,
@@ -12651,12 +12664,14 @@ metadata/_aseprite_wizard_source_file_hash_ = "20e8191b2b178a771d48bb4fd6e4d999"
 libraries = {
 "": SubResource("AnimationLibrary_s0u22")
 }
+autoplay = "left"
 
 [node name="VoiceFX" type="AudioStreamPlayer2D" parent="Employee10"]
 volume_db = -6.256
 bus = &"SFX"
 
 [node name="Boss2" type="Area2D" parent="." groups=["Employees"]]
+process_mode = 3
 position = Vector2(-1254, 1540)
 metadata/_edit_group_ = true
 
@@ -12689,14 +12704,11 @@ metadata/_aseprite_wizard_interface_config_ = {
 "output_section": false
 }
 
-[node name="VoiceFX" type="AudioStreamPlayer2D" parent="Boss2"]
-volume_db = -6.256
-bus = &"SFX"
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Boss2"]
 libraries = {
 "": SubResource("AnimationLibrary_l0b3o")
 }
+autoplay = "idle"
 
 [node name="Printer" type="Area2D" parent="." groups=["TaskObjects"]]
 position = Vector2(1134, -35)
@@ -12743,8 +12755,6 @@ libraries = {
 }
 
 [node name="Microwave" type="Area2D" parent="." groups=["TaskObjects"]]
-z_index = 1
-y_sort_enabled = true
 position = Vector2(733, 611)
 collision_layer = 2
 script = ExtResource("6_ef730")
@@ -12752,11 +12762,10 @@ objectTaskID = 5
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Microwave"]
-position = Vector2(0, 50)
-shape = SubResource("RectangleShape2D_u8a7i")
+position = Vector2(0, 40)
+shape = SubResource("RectangleShape2D_gstp0")
 
 [node name="Sprite2D2" type="Sprite2D" parent="Microwave"]
-z_index = 2
 texture_filter = 1
 position = Vector2(0, -24)
 scale = Vector2(9, 9)
@@ -12796,6 +12805,14 @@ bus = &"SFX"
 [node name="MicrowaveFXend" type="AudioStreamPlayer2D" parent="Microwave"]
 stream = ExtResource("20_81o6e")
 bus = &"SFX"
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="Microwave"]
+position = Vector2(56, 64)
+collision_layer = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Microwave/StaticBody2D2"]
+position = Vector2(138, 10)
+shape = SubResource("RectangleShape2D_vql2q")
 
 [node name="Employee11" type="Area2D" parent="." groups=["Employees"]]
 position = Vector2(-2076, -516)
@@ -12852,7 +12869,7 @@ scale = Vector2(11.835, 11.835)
 texture = SubResource("CompressedTexture2D_4exl8")
 hframes = 9
 vframes = 9
-frame = 66
+frame = 58
 metadata/_aseprite_wizard_config_ = {
 "i_mode": -1,
 "keep_anim_length": false,
@@ -12871,6 +12888,7 @@ metadata/_aseprite_wizard_source_file_hash_ = "20e8191b2b178a771d48bb4fd6e4d999"
 libraries = {
 "": SubResource("AnimationLibrary_hqhet")
 }
+autoplay = "left"
 
 [node name="VoiceFX" type="AudioStreamPlayer2D" parent="Employee11"]
 volume_db = -6.256
@@ -12920,7 +12938,7 @@ metadata/_aseprite_wizard_interface_config_ = {
 
 [node name="notification" type="Node2D" parent="Employee12"]
 visible = false
-position = Vector2(65.6304, -60.8063)
+position = Vector2(120, -128)
 scale = Vector2(0.575705, 0.660939)
 
 [node name="Sprite2D" type="Sprite2D" parent="Employee12/notification"]
@@ -12929,7 +12947,6 @@ scale = Vector2(11.835, 11.835)
 texture = SubResource("CompressedTexture2D_ipn2w")
 hframes = 9
 vframes = 9
-frame = 66
 metadata/_aseprite_wizard_config_ = {
 "i_mode": -1,
 "keep_anim_length": false,
@@ -12948,6 +12965,7 @@ metadata/_aseprite_wizard_source_file_hash_ = "20e8191b2b178a771d48bb4fd6e4d999"
 libraries = {
 "": SubResource("AnimationLibrary_7yepe")
 }
+autoplay = "left"
 
 [node name="VoiceFX" type="AudioStreamPlayer2D" parent="Employee12"]
 volume_db = -6.256
@@ -13008,7 +13026,6 @@ scale = Vector2(11.835, 11.835)
 texture = ExtResource("11_v47ny")
 hframes = 9
 vframes = 9
-frame = 66
 metadata/_aseprite_wizard_config_ = {
 "i_mode": -1,
 "keep_anim_length": false,
@@ -13027,6 +13044,7 @@ metadata/_aseprite_wizard_source_file_hash_ = "20e8191b2b178a771d48bb4fd6e4d999"
 libraries = {
 "": SubResource("AnimationLibrary_v3gl8")
 }
+autoplay = "left"
 
 [node name="VoiceFX" type="AudioStreamPlayer2D" parent="Employee13"]
 volume_db = -6.256
@@ -13169,7 +13187,6 @@ scale = Vector2(9, 9)
 texture = ExtResource("35_162fj")
 hframes = 2
 vframes = 2
-frame = 1
 metadata/_aseprite_wizard_config_ = {
 "i_mode": -1,
 "keep_anim_length": false,
@@ -13211,7 +13228,6 @@ scale = Vector2(9, 9)
 texture = ExtResource("35_162fj")
 hframes = 2
 vframes = 2
-frame = 1
 metadata/_aseprite_wizard_config_ = {
 "i_mode": -1,
 "keep_anim_length": false,
@@ -13338,6 +13354,14 @@ bus = &"SFX"
 libraries = {
 "": SubResource("AnimationLibrary_k544f")
 }
+autoplay = "idle"
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="Plant"]
+position = Vector2(-449, -754)
+collision_layer = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Plant/StaticBody2D2"]
+shape = SubResource("RectangleShape2D_uh0tv")
 
 [node name="Plant2" type="Area2D" parent="." groups=["Plants", "TaskObjects"]]
 position = Vector2(14, -1016)
@@ -13405,6 +13429,14 @@ bus = &"SFX"
 libraries = {
 "": SubResource("AnimationLibrary_v4r60")
 }
+autoplay = "idle"
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Plant2"]
+position = Vector2(447, 995)
+collision_layer = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Plant2/StaticBody2D"]
+shape = SubResource("RectangleShape2D_uh0tv")
 
 [node name="Plant3" type="Area2D" parent="." groups=["Plants", "TaskObjects"]]
 position = Vector2(-1405, -1039)
@@ -13541,12 +13573,21 @@ libraries = {
 }
 
 [node name="vending machine" type="Area2D" parent="."]
+y_sort_enabled = true
+position = Vector2(533, 731)
 collision_layer = 2
 
+[node name="StaticBody2D" type="StaticBody2D" parent="vending machine"]
+position = Vector2(6, 27)
+collision_layer = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="vending machine/StaticBody2D"]
+position = Vector2(0, -11.5)
+shape = SubResource("RectangleShape2D_4ylvc")
+
 [node name="Sprite2D" type="Sprite2D" parent="vending machine"]
-z_index = 2
 texture_filter = 1
-position = Vector2(536, 575)
+position = Vector2(6, -125)
 scale = Vector2(9, 9)
 texture = ExtResource("32_qp0i5")
 hframes = 4
@@ -13568,7 +13609,7 @@ metadata/_aseprite_wizard_source_file_hash_ = "527db13576b70980887d02187fc7003e"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="vending machine"]
 z_index = 2
-position = Vector2(532.5, 567)
+position = Vector2(6, -125)
 shape = SubResource("RectangleShape2D_batf5")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="vending machine"]
@@ -13984,8 +14025,10 @@ libraries = {
 
 [node name="Paper11" type="Area2D" parent="." groups=["Papers", "TaskObjects"]]
 unique_name_in_owner = true
-position = Vector2(813, 1567)
+position = Vector2(773, 1451)
+collision_layer = 2
 script = ExtResource("6_ef730")
+objectTaskID = 7
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Paper11"]
@@ -14046,10 +14089,32 @@ tile_set = ExtResource("37_k37px")
 format = 2
 layer_0/name = "Base"
 layer_0/y_sort_enabled = true
-layer_0/tile_data = PackedInt32Array(-983046, 1, 0, -983045, 65537, 0, -917510, 1, 1, -851974, 1, 2, -917509, 65537, 1, -917508, 131073, 1, -917507, 196609, 1, -917506, 262145, 1, -851973, 65537, 2, -851972, 65537, 2, -851971, 65537, 2, -851970, 262145, 2, -983042, 262145, 0, -983043, 196609, 0, -983044, 196609, 0, -1114104, 327681, 0, -1114103, 393217, 0, -1114102, 393217, 0, -1114101, 393217, 0, -1114099, 458753, 0, -1114100, 393217, 0, 1441786, 458753, 3, 1441787, 458753, 3, 1441788, 458753, 3, 1441789, 458753, 3, 1441790, 458753, 3, 1441791, 458753, 3, 1376250, 458753, 2, 1376251, 458753, 2, 1376252, 458753, 2, 1376253, 458753, 2, 1376254, 458753, 2, 1376255, 458753, 2, 1376249, 393217, 2, 1310720, 393217, 268435458, 1572857, 393217, 4, 1507328, 393217, 268435460, 1441785, 393217, 3, 1507321, 393217, 3, 1376256, 393217, 268435459, 1441792, 393217, 268435459, 1507322, 458753, 3, 1507323, 458753, 3, 1507324, 458753, 3, 1507325, 458753, 3, 1507326, 458753, 3, 1507327, 458753, 3, 1572858, 458753, 4, 1572859, 524289, 4, 1572860, 524289, 4, 1572861, 524289, 4, 1572862, 524289, 4, 1572863, 589825, 4, 1638394, 458753, 5, 1638399, 589825, 5, 851979, 1, 5, 851980, 65537, 5, 720907, 1, 3, 786443, 1, 4, 720908, 65537, 3, 786444, 65537, 4, 1048591, 196609, 5, 983054, 131073, 4, 1048590, 131073, 5, 917519, 196609, 3, 983055, 196609, 4, 983057, 1, 3, 1048593, 1, 4, 1114129, 1, 5, 983058, 65537, 3, 1048594, 65537, 4, 1114130, 65537, 5, 1179662, 262145, 3, 1245198, 262145, 4, 1310734, 262145, 5, 1245199, 327681, 4, 1310735, 327681, 5)
+layer_0/tile_data = PackedInt32Array(-983046, 1, 0, -983045, 65537, 0, -917510, 1, 1, -851974, 1, 2, -917509, 65537, 1, -917508, 131073, 1, -917507, 196609, 1, -917506, 262145, 1, -851973, 65537, 2, -851972, 65537, 2, -851971, 65537, 2, -851970, 262145, 2, -983042, 262145, 0, -983043, 196609, 0, -983044, 196609, 0, -1114104, 327681, 0, -1114103, 393217, 0, -1114102, 393217, 0, -1114101, 393217, 0, -1114099, 458753, 0, -1114100, 393217, 0, 1441786, 458753, 3, 1441787, 458753, 3, 1441788, 458753, 3, 1441789, 458753, 3, 1441790, 458753, 3, 1441791, 458753, 3, 1376250, 458753, 2, 1376251, 458753, 2, 1376252, 458753, 2, 1376253, 458753, 2, 1376254, 458753, 2, 1376255, 458753, 2, 1376249, 393217, 2, 1310720, 393217, 268435458, 1572857, 393217, 4, 1507328, 393217, 268435460, 1441785, 393217, 3, 1507321, 393217, 3, 1376256, 393217, 268435459, 1441792, 393217, 268435459, 1507322, 458753, 3, 1507323, 458753, 3, 1507324, 458753, 3, 1507325, 458753, 3, 1507326, 458753, 3, 1507327, 458753, 3, 1572858, 458753, 4, 1572859, 524289, 4, 1572860, 524289, 4, 1572861, 524289, 4, 1572862, 524289, 4, 1572863, 589825, 4, 1638394, 458753, 5, 1638399, 589825, 5, 1048591, 196609, 5, 983054, 131073, 4, 1048590, 131073, 5, 983055, 196609, 4, 1048593, 1, 4, 1114129, 1, 5, 1048594, 65537, 4, 1114130, 65537, 5, 1245198, 262145, 4, 1310734, 262145, 5, 1245199, 327681, 4, 1310735, 327681, 5, 851980, 1, 5, 851981, 65537, 5, 786444, 1, 4, 786445, 65537, 4)
 layer_1/name = "Coat"
 layer_1/y_sort_enabled = true
 layer_1/tile_data = PackedInt32Array(-1114104, 524289, 0, -1048568, 524289, 1, -1114103, 589825, 0, -1048567, 589825, 1, -1114102, 524289, 0, -1048566, 524289, 1, -1114101, 589825, 0, -1048565, 589825, 1, -1114100, 524289, 0, -1048564, 524289, 1, -1114099, 589825, 0, -1048563, 589825, 1)
+layer_2/name = "Chair Support"
+layer_2/y_sort_enabled = true
+layer_2/y_sort_origin = 2
+layer_2/tile_data = PackedInt32Array(983058, 65537, 3, 983057, 1, 3, 917519, 196609, 3, 1179662, 262145, 3, 720908, 1, 3, 720909, 65537, 3)
+
+[node name="Boundary" type="StaticBody2D" parent="."]
+visible = false
+collision_layer = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Boundary"]
+visible = false
+position = Vector2(-260, 118)
+shape = SubResource("RectangleShape2D_v4dht")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Boundary"]
+visible = false
+position = Vector2(-1067, 118)
+shape = SubResource("RectangleShape2D_v4dht")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Boundary"]
+position = Vector2(-1867, 118)
+shape = SubResource("RectangleShape2D_v4dht")
 
 [connection signal="loseGame" from="Player" to="." method="_on_player_lose_game"]
 [connection signal="body_entered" from="receptionist" to="receptionist" method="_on_body_entered"]
@@ -14143,9 +14208,9 @@ layer_1/tile_data = PackedInt32Array(-1114104, 524289, 0, -1048568, 524289, 1, -
 [connection signal="body_entered" from="Plant" to="Plant" method="_on_body_entered"]
 [connection signal="body_exited" from="Plant" to="WhiteBoard" method="_on_plant_body_exited"]
 [connection signal="timeout" from="Plant/PlantTimer" to="Plant" method="_on_plant_timer_timeout"]
-[connection signal="area_exited" from="Plant2" to="Plant2" method="_on_plant_area_exited"]
 [connection signal="body_entered" from="Plant2" to="Player" method="_on_printer_body_entered"]
 [connection signal="body_entered" from="Plant2" to="Plant2" method="_on_body_entered"]
+[connection signal="body_exited" from="Plant2" to="Paper10" method="_on_plant_body_exited"]
 [connection signal="timeout" from="Plant2/PlantTimer" to="Plant2" method="_on_plant_timer_timeout"]
 [connection signal="area_exited" from="Plant3" to="Plant3" method="_on_plant_area_exited"]
 [connection signal="body_entered" from="Plant3" to="Player" method="_on_printer_body_entered"]
@@ -14178,3 +14243,4 @@ layer_1/tile_data = PackedInt32Array(-1114104, 524289, 0, -1048568, 524289, 1, -
 [connection signal="area_entered" from="Paper11" to="Paper11" method="_on_files_area_entered"]
 [connection signal="body_entered" from="Paper11" to="Paper11" method="_on_body_entered"]
 [connection signal="finished" from="Music" to="." method="_on_music_finished"]
+[connection signal="finished" from="Boss" to="Player" method="_on_boss_finished"]
